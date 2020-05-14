@@ -11,25 +11,21 @@
         android:gravity="center">
 
         <Button
+            android:id="@+id/btnCalendarToday"
             android:layout_width="99dp"
             android:layout_height="76dp"
             android:background="@drawable/calendartoday" />
 
         <Button
-            android:layout_width="89dp"
-            android:layout_height="83dp"
-            android:background="@drawable/calendar" />
-
-        <Button
+            android:id="@+id/btnInsert"
             android:layout_width="103dp"
             android:layout_height="93dp"
             android:background="@drawable/insert" />
 
         <Button
+            android:id="@+id/btnSettings"
             android:layout_width="103dp"
             android:layout_height="92dp"
             android:background="@drawable/settings" />
-
-
     </LinearLayout>
 </RelativeLayout>
