@@ -7,9 +7,24 @@
     tools:context=".MainActivity">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/calendartoday"
-    />
+        android:layout_width="99dp"
+        android:layout_height="76dp"
+        android:background="@drawable/calendartoday" />
+
+    <Button
+        android:layout_width="89dp"
+        android:layout_height="83dp"
+        android:background="@drawable/calendar" />
+
+    <Button
+        android:layout_width="103dp"
+        android:layout_height="93dp"
+        android:background="@drawable/insert" />
+
+    <Button
+        android:layout_width="103dp"
+        android:layout_height="92dp"
+        android:background="@drawable/settings" />
+
 
 </LinearLayout>
