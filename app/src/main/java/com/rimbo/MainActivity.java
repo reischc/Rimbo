@@ -14,14 +14,14 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        /*BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -38,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             }
-        });
+        });*/
 
 
         /*---------------------------
                     Menu
         ---------------------------*/
-        /*Button btnCalendarToday = (Button) findViewById(R.id.btnCalendarToday);
+        Button btnCalendarToday = (Button) findViewById(R.id.btnCalendarToday);
         Button btnInsert = (Button) findViewById(R.id.btnInsert);
         Button btnSettings = (Button) findViewById(R.id.btnSettings);
 
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
-*/
+
     }
 
 }
