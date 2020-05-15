@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Settings">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@android:color/holo_green_light">
+
+        <ImageView
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:src="@drawable/rimbo" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,4 +26,30 @@
         tools:ignore="MissingConstraints">
 
     </TextView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnCalendarToday"
+            android:layout_width="99dp"
+            android:layout_height="76dp"
+            android:background="@drawable/calendartoday" />
+
+        <Button
+            android:id="@+id/btnInsert"
+            android:layout_width="103dp"
+            android:layout_height="93dp"
+            android:background="@drawable/insert" />
+
+        <Button
+            android:id="@+id/btnSettings"
+            android:layout_width="103dp"
+            android:layout_height="92dp"
+            android:background="@drawable/settings" />
+    </LinearLayout>
+</RelativeLayout>
