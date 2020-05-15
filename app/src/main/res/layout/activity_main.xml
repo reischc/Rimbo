@@ -14,6 +14,20 @@
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white" />
 </RelativeLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@android:color/holo_green_light">
+
+        <ImageView
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:src="@drawable/rimbo" />
+    </LinearLayout>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/buttonBar"
         android:layout_width="fill_parent"
