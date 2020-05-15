@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Rimbo</string>
+    <string name="top_bar">Reminder</string>
 </resources>
