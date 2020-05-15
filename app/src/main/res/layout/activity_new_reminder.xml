@@ -30,132 +30,125 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:text="Name:"
             android:textSize="20dp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name..."
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            />
+            android:hint="Name..." />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:text="Datum (dd.MM.YYYY):"
             android:textSize="20dp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txtDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Datum..."
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            />
+            android:hint="Datum..." />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:text="Zeit:"
             android:textSize="20dp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/txtTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Zeit..."
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            />
+            android:hint="Zeit..." />
 
         <CheckBox
             android:id="@+id/checkBoxLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Location"
             android:layout_gravity="left"
             android:layout_marginLeft="19dp"
             android:scaleX="1.3"
             android:scaleY="1.3"
-            />
+            android:text="Location" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:text="Location:"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:visibility="gone"
-            />
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/txtLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="name..."
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:visibility="gone"
-            />
+            android:hint="Location..."
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/checkBoxVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vehicle"
             android:layout_gravity="left"
             android:layout_marginLeft="18dp"
             android:scaleX="1.3"
             android:scaleY="1.3"
-            />
+            android:text="Vehicle" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rimbo" />
 
         <CheckBox
             android:id="@+id/checkBoxImportance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Importance"
             android:layout_gravity="left"
             android:layout_marginLeft="22dp"
             android:scaleX="1.3"
             android:scaleY="1.3"
-            />
+            android:text="Importance" />
 
         <CheckBox
             android:id="@+id/checkBoxKind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kind of Reminder"
             android:layout_gravity="left"
             android:layout_marginLeft="28dp"
             android:scaleX="1.3"
             android:scaleY="1.3"
-            />
+            android:text="Kind of Reminder" />
 
         <Button
             android:id="@+id/btnCreateReminder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|bottom"
-            android:layout_marginBottom="5dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
             android:background="@android:color/holo_green_light"
             android:text="create"
             tools:ignore="MissingConstraints">
