@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".NewReminder">
 
-    <TextView
+    <Button
+        android:id="@+id/btnCreateReminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hallo new Reminder Seite"
+        android:background="@android:color/holo_green_light"
+        android:text="create"
         tools:ignore="MissingConstraints">
-
-    </TextView>
+    </Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
