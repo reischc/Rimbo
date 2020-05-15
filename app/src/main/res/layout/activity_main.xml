@@ -1,56 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <!--<android.support.design.widget.BottomNavigationView
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/relative_layout">
+    <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_nav_menu"
-        app:itemBackground="@color/colorPrimary"
-        app:itemIconTint="@android:color/white"
-        app:itemTextColor="@android:color/white" />
-</RelativeLayout>-->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:background="@android:color/holo_green_light">
-
-        <ImageView
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:src="@drawable/rimbo" />
-    </LinearLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/buttonBar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/btnCalendarToday"
-            android:layout_width="99dp"
-            android:layout_height="76dp"
-            android:background="@drawable/calendartoday" />
-
-        <Button
-            android:id="@+id/btnInsert"
-            android:layout_width="103dp"
-            android:layout_height="93dp"
-            android:background="@drawable/insert" />
-
-        <Button
-            android:id="@+id/btnSettings"
-            android:layout_width="103dp"
-            android:layout_height="92dp"
-            android:background="@drawable/settings" />
-    </LinearLayout>
+        app:itemTextColor="#ffffff"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
