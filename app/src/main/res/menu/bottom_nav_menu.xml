@@ -4,13 +4,13 @@
     <item
         android:id="@+id/navCalendar"
         android:icon="@drawable/calendartoday"
-        android:title="@string/home" />
+        android:title="Today" />
     <item
         android:id="@+id/navAddReminder"
         android:icon="@drawable/insert"
-        android:title="@string/favorites" />
+        android:title="New" />
     <item
         android:id="@+id/navSettings"
         android:icon="@drawable/settings"
-        android:title="@string/search" />
+        android:title="Settings" />
 </menu>
