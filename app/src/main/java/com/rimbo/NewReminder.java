@@ -11,6 +11,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class NewReminder extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
@@ -22,6 +24,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         //get all items by ID
         Button buttonBack = (Button) findViewById(R.id.btnBack);
         Button buttonCreate = (Button) findViewById(R.id.btnCreateReminder);
+
         CheckBox checkBoxLocation = (CheckBox) findViewById(R.id.checkBoxLocation);
         CheckBox checkBoxVehicle = (CheckBox) findViewById(R.id.checkBoxVehicle);
         CheckBox checkBoxImportance = (CheckBox) findViewById(R.id.checkBoxImportance);
@@ -103,13 +106,68 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
             case R.id.btnBack:
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.btnCreateReminder:
-                if (true) {
+                EditText txtName = (EditText) findViewById(R.id.txtName);
+                String vehicle = "";
+                String importance = "";
 
+                if (txtName.getText().toString().matches("")) {
+                    Toast.makeText(this, "You must set a name!", Toast.LENGTH_SHORT).show();
+                } else {
+                    EditText txtDate = (EditText) findViewById(R.id.txtDate);
+                    EditText txtTime = (EditText) findViewById(R.id.txtTime);
+                    EditText txtLocation = (EditText) findViewById(R.id.txtLocation);
+                    EditText txtTimer = (EditText) findViewById(R.id.txtTimer);
+                    RadioGroup radioGroupVehicle = (RadioGroup) findViewById(R.id.radioButtonGroupVehicle);
+                    RadioGroup radioGroupImportance = (RadioGroup) findViewById(R.id.radioButtonGroupImportance);
+
+                    //get the vehicle
+                    int radioButtonID = radioGroupVehicle.getCheckedRadioButtonId();
+                    View radioButton = radioGroupVehicle.findViewById(radioButtonID);
+                    int idx = radioGroupVehicle.indexOfChild(radioButton);
+                    switch (idx) {
+                        case 0:
+                            vehicle = "walking";
+                            break;
+                        case 1:
+                            vehicle = "bicycle";
+                            break;
+                        case 2:
+                            vehicle = "automobile";
+                            break;
+                        case 3:
+                            vehicle = "train";
+                            break;
+                        default:
+                            break;
+                    }
+                    //get the importance
+                    int radioButtonIDImportance = radioGroupImportance.getCheckedRadioButtonId();
+                    View radioButtonImportance = radioGroupImportance.findViewById(radioButtonIDImportance);
+                    int idxImportance = radioGroupImportance.indexOfChild(radioButtonImportance);
+                    switch (idxImportance) {
+                        case 0:
+                            importance = "normal";
+                            break;
+                        case 1:
+                            importance = "important";
+                            break;
+                        case 2:
+                            importance = "very important";
+                            break;
+                        default:
+                            break;
+                    }
+                    //create the reminder and add him reminder to the list
+                    Reminder reminder = new Reminder(txtDate.getText().toString(), txtTime.getText().toString(), txtName.getText().toString(), importance, txtLocation.getText().toString(), vehicle, txtTimer.getText().toString());
+                    Reminder.addReminder(reminder);
+
+                    Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent1);
+                    finish();
                 }
-                Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent1);
                 break;
             default:
                 break;

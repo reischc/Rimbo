@@ -23,10 +23,12 @@ public class Settings extends AppCompatActivity {
                     case R.id.navCalendar:
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
+                        finish();
                         break;
                     case R.id.navAddReminder:
                         Intent intent1 = new Intent(getApplicationContext(), NewReminder.class);
                         startActivity(intent1);
+                        finish();
                         break;
                     case R.id.navSettings:
                         break;
