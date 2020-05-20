@@ -31,10 +31,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navAddReminder:
                         Intent intent1 = new Intent(getApplicationContext(), NewReminder.class);
                         startActivity(intent1);
+                        finish();
                         break;
                     case R.id.navSettings:
                         Intent intent2 = new Intent(getApplicationContext(), Settings.class);
                         startActivity(intent2);
+                        finish();
                         break;
                     default:
                         break;

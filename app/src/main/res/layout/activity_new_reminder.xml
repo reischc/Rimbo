@@ -117,6 +117,7 @@
             android:text="Vehicle" />
 
         <RadioGroup
+            android:id="@+id/radioButtonGroupVehicle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -163,6 +164,7 @@
             android:text="Importance" />
 
         <RadioGroup
+            android:id="@+id/radioButtonGroupImportance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
