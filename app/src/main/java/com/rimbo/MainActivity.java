@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button btnInsert = (Button) findViewById(R.id.btnInsert);
         Button btnSettings = (Button) findViewById(R.id.btnSettings);
 
-        btnCalendarToday.setOnClickListener(this);
-        btnInsert.setOnClickListener(this);
-        btnSettings.setOnClickListener(this);
-    }
+        //btnCalendarToday.setOnClickListener(this);
+        //btnInsert.setOnClickListener(this);
+        //btnSettings.setOnClickListener(this);
+    //}
 
     @Override
     public void onClick(View v) {
@@ -61,4 +61,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
-}
+}}
