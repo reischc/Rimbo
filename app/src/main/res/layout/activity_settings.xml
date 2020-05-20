@@ -15,11 +15,11 @@
         android:id="@+id/header">
 
         <ImageView
-            android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="58dp"
             android:src="@drawable/rimbo" />
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,6 +39,12 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hallo Settings Seite"
+        tools:ignore="MissingConstraints" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -48,4 +54,7 @@
         android:layout_alignParentBottom="true"
         app:backgroundTint="#ffffff"
         app:itemIconTint="#000000" />
+
+
+
 </RelativeLayout>

@@ -15,12 +15,36 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navCalendar:
+                        Log.v("TAG", "Calendar");
+                        break;
+                    case R.id.navAddReminder:
+                        Intent intent1 = new Intent(getApplicationContext(), NewReminder.class);
+                        startActivity(intent1);
+                        break;
+                    case R.id.navSettings:
+                        Intent intent2 = new Intent(getApplicationContext(), Settings.class);
+                        startActivity(intent2);
+                        break;
+                    default:
+                        break;
+                }
+                return false;
+            }
+        });
+
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -33,32 +57,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /*---------------------------
                     Menu
         ---------------------------*/
-        Button btnCalendarToday = (Button) findViewById(R.id.btnCalendarToday);
-        Button btnInsert = (Button) findViewById(R.id.btnInsert);
-        Button btnSettings = (Button) findViewById(R.id.btnSettings);
 
-        //btnCalendarToday.setOnClickListener(this);
-        //btnInsert.setOnClickListener(this);
-        //btnSettings.setOnClickListener(this);
-    //}
 
-    @Override
-    public void onClick(View v) {
 
-        switch (v.getId()) {
-            case R.id.btnCalendarToday:
+   /* @Override
+    public boolean onNavigationListener(MenuItem item) {
+        System.out.println("here");
+        switch (item.getItemId()) {
+            case R.id.navCalendar:
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.btnInsert:
+            case R.id.navAddReminder:
                 Intent intent1 = new Intent(getApplicationContext(), NewReminder.class);
                 startActivity(intent1);
                 break;
-            case R.id.btnSettings:
+            case R.id.navSettings:
                 Intent intent2 = new Intent(getApplicationContext(), Settings.class);
                 startActivity(intent2);
                 break;
             default:
                 break;
         }
-}}
+
+        return false;
+    }*/
+}
+
+
