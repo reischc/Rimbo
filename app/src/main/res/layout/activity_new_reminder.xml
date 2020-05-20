@@ -13,7 +13,6 @@
         android:background="@android:color/holo_green_light">
 
         <ImageView
-            android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="58dp"
             android:src="@drawable/rimbo" />
@@ -42,14 +41,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:hint="Name..." />
+            android:hint="name..." />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
-            android:text="Datum (dd.MM.YYYY):"
+            android:text="Date (dd.MM.YYYY):"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -59,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:hint="Datum..." />
+            android:hint="date..." />
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:hint="Zeit..." />
+            android:hint="time..." />
 
         <CheckBox
             android:id="@+id/checkBoxLocation"
@@ -104,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:hint="Location..."
+            android:hint="location..."
             android:visibility="gone" />
 
         <CheckBox
@@ -117,10 +116,41 @@
             android:scaleY="1.3"
             android:text="Vehicle" />
 
-        <RadioButton
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            android:background="@drawable/walking" />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp">
+
+            <RadioButton
+                android:id="@+id/radioButtonWalking"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"
+                android:text="walking"
+                android:visibility="gone"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonBicycle"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"
+                android:text="bicycle"
+                android:visibility="gone"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonAutomobile"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="automobile"
+                android:visibility="gone"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonTrain"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="train"
+                android:visibility="gone"/>
+
+        </RadioGroup>
 
         <CheckBox
             android:id="@+id/checkBoxImportance"
@@ -132,15 +162,54 @@
             android:scaleY="1.3"
             android:text="Importance" />
 
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="40dp">
+
+            <RadioButton
+                android:id="@+id/radioButtonNormal"
+                android:layout_width="92dp"
+                android:layout_height="wrap_content"
+                android:text="normal"
+                android:checked="true"
+                android:visibility="gone"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonImportant"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="important"
+                android:visibility="gone"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonVeryImportant"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="very important"
+                android:visibility="gone"/>
+
+        </RadioGroup>
+
         <CheckBox
-            android:id="@+id/checkBoxKind"
+            android:id="@+id/checkBoxTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:layout_marginLeft="28dp"
+            android:layout_marginLeft="17dp"
             android:scaleX="1.3"
             android:scaleY="1.3"
-            android:text="Kind of Reminder" />
+            android:text="Timer" />
+
+        <EditText
+            android:id="@+id/txtTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:hint="timer..."
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/btnCreateReminder"
