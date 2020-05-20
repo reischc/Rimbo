@@ -2,32 +2,43 @@ package com.rimbo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
-public class NewReminder extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
+public class NewReminder extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_reminder);
 
+        //get all items by ID
+        Button buttonBack = (Button) findViewById(R.id.btnBack);
+        Button buttonCreate = (Button) findViewById(R.id.btnCreateReminder);
         CheckBox checkBoxLocation = (CheckBox) findViewById(R.id.checkBoxLocation);
         CheckBox checkBoxVehicle = (CheckBox) findViewById(R.id.checkBoxVehicle);
         CheckBox checkBoxImportance = (CheckBox) findViewById(R.id.checkBoxImportance);
         CheckBox checkBoxTimer = (CheckBox) findViewById(R.id.checkBoxTimer);
 
+        //load all listeners
+        buttonBack.setOnClickListener(this);
+        buttonCreate.setOnClickListener(this);
         checkBoxLocation.setOnCheckedChangeListener(this);
         checkBoxVehicle.setOnCheckedChangeListener(this);
         checkBoxImportance.setOnCheckedChangeListener(this);
         checkBoxTimer.setOnCheckedChangeListener(this);
     }
 
+    /*----------------------------------
+                Checkboxes
+     ---------------------------------*/
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
@@ -77,6 +88,28 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 } else {
                     txtTimer.setVisibility(View.GONE);
                 }
+                break;
+            default:
+                break;
+        }
+    }
+
+    /*---------------------------------------------
+                Create & Back Button
+     --------------------------------------------*/
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnBack:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnCreateReminder:
+                if (true) {
+
+                }
+                Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent1);
                 break;
             default:
                 break;

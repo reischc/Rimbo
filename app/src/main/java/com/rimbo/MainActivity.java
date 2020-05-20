@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navCalendar:
-                        Log.v("TAG", "Calendar");
                         break;
                     case R.id.navAddReminder:
                         Intent intent1 = new Intent(getApplicationContext(), NewReminder.class);
@@ -57,31 +56,6 @@ public class MainActivity extends AppCompatActivity {
         /*---------------------------
                     Menu
         ---------------------------*/
-
-
-
-   /* @Override
-    public boolean onNavigationListener(MenuItem item) {
-        System.out.println("here");
-        switch (item.getItemId()) {
-            case R.id.navCalendar:
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.navAddReminder:
-                Intent intent1 = new Intent(getApplicationContext(), NewReminder.class);
-                startActivity(intent1);
-                break;
-            case R.id.navSettings:
-                Intent intent2 = new Intent(getApplicationContext(), Settings.class);
-                startActivity(intent2);
-                break;
-            default:
-                break;
-        }
-
-        return false;
-    }*/
 }
 
 

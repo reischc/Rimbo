@@ -119,36 +119,36 @@
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="10dp">
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radioButtonWalking"
                 android:layout_width="92dp"
                 android:layout_height="wrap_content"
                 android:text="walking"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <RadioButton
                 android:id="@+id/radioButtonBicycle"
                 android:layout_width="92dp"
                 android:layout_height="wrap_content"
                 android:text="bicycle"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <RadioButton
                 android:id="@+id/radioButtonAutomobile"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:text="automobile"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <RadioButton
                 android:id="@+id/radioButtonTrain"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:text="train"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </RadioGroup>
 
@@ -165,30 +165,30 @@
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="40dp">
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radioButtonNormal"
                 android:layout_width="92dp"
                 android:layout_height="wrap_content"
-                android:text="normal"
                 android:checked="true"
-                android:visibility="gone"/>
+                android:text="normal"
+                android:visibility="gone" />
 
             <RadioButton
                 android:id="@+id/radioButtonImportant"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="important"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <RadioButton
                 android:id="@+id/radioButtonVeryImportant"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="very important"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </RadioGroup>
 
@@ -209,20 +209,37 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:hint="timer..."
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
-        <Button
-            android:id="@+id/btnCreateReminder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|bottom"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:background="#ffffff"
-            android:text="create"
-            tools:ignore="MissingConstraints">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
 
-        </Button>
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:background="#ffffff"
+                android:text="back"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                tools:ignore="MissingConstraints">
+            </Button>
+
+            <Button
+                android:id="@+id/btnCreateReminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="#ffffff"
+                android:text="create"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                tools:ignore="MissingConstraints">
+            </Button>
+
+        </RelativeLayout>
 
     </LinearLayout>
 

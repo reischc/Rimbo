@@ -8,12 +8,12 @@ public class Reminder {
     private String location;
     private String vehicle;
     private String repetition;
-    private String kindOfReminder;
+    private String timer;
 
     /*-------------------------
            Constructor
     -------------------------*/
-    public Reminder(String date, String time, String name, int importanceLevel, String location, String vehicle, String repetition, String kindOfReminder) {
+    public Reminder(String date, String time, String name, int importanceLevel, String location, String vehicle, String repetition, String timer) {
         this.date = date;
         this.time = time;
         this.name = name;
@@ -21,7 +21,7 @@ public class Reminder {
         this.location = location;
         this.vehicle = vehicle;
         this.repetition = repetition;
-        this.kindOfReminder = kindOfReminder;
+        this.timer = timer;
     }
     /*-------------------------
               Methods
@@ -59,7 +59,7 @@ public class Reminder {
     }
 
     public String getKindOfReminder() {
-        return kindOfReminder;
+        return timer;
     }
     /*-------------------------
              Setter
@@ -92,7 +92,7 @@ public class Reminder {
         this.repetition = repetition;
     }
 
-    public void setKindOfReminder(String kindOfReminder) {
-        this.kindOfReminder = kindOfReminder;
+    public void setKindOfReminder(String timer) {
+        this.timer = timer;
     }
 }
