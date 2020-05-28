@@ -19,7 +19,7 @@ public class SQLite extends SQLiteOpenHelper {
 
     //table columns
     private static final String tableName = "Note";
-    private static final String ColumnIDNote = "ID_Note";
+    private static final String ColumnIDReminder = "ID_Note";
     private static final String ColumnName = "Name";
     private static final String ColumnDate = "Date";
     private static final String ColumnTime = "Time";
@@ -28,6 +28,7 @@ public class SQLite extends SQLiteOpenHelper {
     private static final String ColumnImportance = "Importance";
     private static final String ColumnTimer = "Timer";
     private static final String ColumnDone = "Done";
+    private int id;
 
     public SQLite(@Nullable Context context) {
         super(context, databaseName, null, databaseVersion);
@@ -35,13 +36,14 @@ public class SQLite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String script = "Create table"+tableName+"("+ColumnIDNote+"Integer Primary key autoo_increment"+ColumnName+"String"+ColumnDate+"String"+ColumnTime+"String"+ColumnLocation+"String"+ColumnVehicle+"String"+ColumnImportance+"String"+ColumnTimer+"String"+ColumnDone+"boolean"+")";
+        String script = "Create table "+tableName+"("+ColumnIDReminder+" Integer Primary key AUTOINCREMENT,"+ColumnName+" TEXT, "+ColumnDate+" TEXT, "+ColumnTime+" TEXT, "+ColumnLocation+" TEXT, "+ColumnVehicle+" TEXT, "+ColumnImportance+" TEXT, "+ColumnTimer+" TEXT, "+ColumnDone+" boolean"+")";
         db.execSQL(script);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("Drop Table if exists "+tableName);
+        onCreate(db);
     }
 
     public void addReminder(Reminder reminder) {
@@ -67,17 +69,37 @@ public class SQLite extends SQLiteOpenHelper {
 
     public List<Reminder> getReminder() {
         List<Reminder> allReminder = new ArrayList<>();
-        String selectQuery = "Select * FROM"+tableName;
+        String selectQuery = "Select * FROM "+tableName;
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()) {
             do {
-                Reminder reminder = new Reminder(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), Boolean.parseBoolean(String.valueOf(cursor.getInt(8))));
+                Reminder reminder = new Reminder(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), Boolean.parseBoolean(String.valueOf(cursor.getInt(8))));
                 allReminder.add(reminder);
             } while(cursor.moveToNext());
         }
         return allReminder;
     }
-    
+
+    public void updateReminder(Reminder reminder) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        //fill values with content
+        values.put(ColumnName, reminder.getName());
+        values.put(ColumnDate, reminder.getDate());
+        values.put(ColumnTime, reminder.getTime());
+        values.put(ColumnLocation, reminder.getLocation());
+        values.put(ColumnVehicle, reminder.getVehicle());
+        values.put(ColumnImportance, reminder.getImportanceLevel());
+        values.put(ColumnTimer, reminder.getTimer());
+        values.put(ColumnDone, reminder.isDone());
+
+        //insert values into db
+        db.update(tableName, values, "id = ?", new String[] {String.valueOf(reminder.getId())});
+
+        //close Connection
+        db.close();
+    }
 }
