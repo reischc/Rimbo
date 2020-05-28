@@ -163,8 +163,9 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                     }
 
                     //create the reminder and add him reminder to the list
-                    Reminder reminder = new Reminder(txtDate.getText().toString(), txtTime.getText().toString(), txtName.getText().toString(), importance, txtLocation.getText().toString(), vehicle, txtTimer.getText().toString(),done);
-                    Reminder.addReminder(reminder);
+                    Reminder reminder = new Reminder(0, txtDate.getText().toString(), txtTime.getText().toString(), txtName.getText().toString(), importance, txtLocation.getText().toString(), vehicle, txtTimer.getText().toString(),done);
+                    SQLite db = new SQLite(this);
+                    db.addReminder(reminder);
 
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent1);

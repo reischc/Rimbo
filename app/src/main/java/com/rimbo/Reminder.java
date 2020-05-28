@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Reminder {
+    private int id;
     private String date;
     private String time;
     private String name;
@@ -12,12 +13,13 @@ public class Reminder {
     private String vehicle;
     private String timer;
     private boolean done;
-    static List<Reminder> allReminders = new ArrayList<>();
+    private static List<Reminder> allReminders = new ArrayList<>();
 
     /*-------------------------
            Constructor
     -------------------------*/
-    public Reminder(String date, String time, String name, String importanceLevel, String location, String vehicle, String timer, boolean done) {
+    public Reminder(int id, String date, String time, String name, String importanceLevel, String location, String vehicle, String timer, boolean done) {
+        this.id = id;
         this.date = date;
         this.time = time;
         this.name = name;
@@ -38,6 +40,11 @@ public class Reminder {
     /*-------------------------
              Getter
      ------------------------*/
+
+    public int getId() {
+        return id;
+    }
+
     public String getDate() {
         return date;
     }
@@ -72,7 +79,12 @@ public class Reminder {
 
     /*-------------------------
                      Setter
-             ------------------------*/
+    -------------------------*/
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setDate(String date) {
         this.date = date;
     }
