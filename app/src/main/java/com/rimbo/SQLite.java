@@ -74,8 +74,11 @@ public class SQLite extends SQLiteOpenHelper {
         if(cursor.moveToFirst()) {
             do {
                 Reminder reminder = new Reminder(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), Boolean.parseBoolean(String.valueOf(cursor.getInt(8))));
-
+                allReminder.add(reminder);
             } while(cursor.moveToNext());
         }
+        return allReminder;
     }
+
+    public
 }
