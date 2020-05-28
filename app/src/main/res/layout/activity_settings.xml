@@ -9,16 +9,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
+        android:layout_height="65dp"
         android:background="@android:color/white"
         android:id="@+id/header"
         android:backgroundTint="#0d7acc">
 
         <ImageView
+            android:id="@+id/button4"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:src="@drawable/rimbo" />
+            android:layout_height="50dp"
+            android:src="@drawable/rimbo_schrift"
+            android:layout_gravity="center"/>
+
     </LinearLayout>
 
 
@@ -47,9 +49,8 @@
         app:menu="@menu/bottom_nav_menu"
         app:itemTextColor="#000000"
         android:layout_alignParentBottom="true"
-        app:backgroundTint="#ffffff"
-        app:itemIconTint="#000000" />
-
-
-
+        app:backgroundTint="#f1f2f4"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconSize="30dp" />
 </RelativeLayout>
