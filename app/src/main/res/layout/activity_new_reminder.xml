@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        android:id="@+id/header"
+        android:backgroundTint="#0d7acc">
 
         <ImageView
             android:layout_width="match_parent"
