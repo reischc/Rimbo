@@ -26,7 +26,7 @@
             android:layout_gravity="center" />
 
         <Button
-            android:id="@+id/button_calendar"
+            android:id="@+id/btnCalendar"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center"
