@@ -11,12 +11,13 @@ public class Reminder {
     private String location;
     private String vehicle;
     private String timer;
+    private boolean done;
     static List<Reminder> allReminders = new ArrayList<>();
 
     /*-------------------------
            Constructor
     -------------------------*/
-    public Reminder(String date, String time, String name, String importanceLevel, String location, String vehicle, String timer) {
+    public Reminder(String date, String time, String name, String importanceLevel, String location, String vehicle, String timer, boolean done) {
         this.date = date;
         this.time = time;
         this.name = name;
@@ -24,6 +25,7 @@ public class Reminder {
         this.location = location;
         this.vehicle = vehicle;
         this.timer = timer;
+        this.done = done;
     }
     /*-------------------------
               Methods
@@ -60,12 +62,17 @@ public class Reminder {
         return vehicle;
     }
 
-    public String getKindOfReminder() {
+    public String getTimer() {
         return timer;
     }
+
+    public boolean isDone() {
+        return done;
+    }
+
     /*-------------------------
-             Setter
-     ------------------------*/
+                     Setter
+             ------------------------*/
     public void setDate(String date) {
         this.date = date;
     }
@@ -90,7 +97,11 @@ public class Reminder {
         this.vehicle = vehicle;
     }
 
-    public void setKindOfReminder(String timer) {
+    public void setTimer(String timer) {
         this.timer = timer;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 }
