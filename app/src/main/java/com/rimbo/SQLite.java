@@ -67,7 +67,7 @@ public class SQLite extends SQLiteOpenHelper {
         db.close();
     }
 
-    public List<Reminder> getReminder() {
+    public List<Reminder> getAllReminder() {
         List<Reminder> allReminder = new ArrayList<>();
         String selectQuery = "Select * FROM "+tableName;
 
