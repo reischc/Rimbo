@@ -8,16 +8,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
+        android:layout_height="65dp"
         android:background="@android:color/white"
         android:id="@+id/header"
         android:backgroundTint="#0d7acc">
 
         <ImageView
+            android:id="@+id/button4"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:src="@drawable/rimbo" />
+            android:layout_height="50dp"
+            android:src="@drawable/rimbo_schrift"
+            android:layout_gravity="center"/>
+
     </LinearLayout>
 
     <LinearLayout
