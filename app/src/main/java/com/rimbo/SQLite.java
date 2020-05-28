@@ -79,6 +79,5 @@ public class SQLite extends SQLiteOpenHelper {
         }
         return allReminder;
     }
-
-    public
+    
 }
