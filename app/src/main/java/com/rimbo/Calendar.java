@@ -3,7 +3,7 @@ package com.rimbo;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class activity_calendar extends AppCompatActivity {
+public class Calendar extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
