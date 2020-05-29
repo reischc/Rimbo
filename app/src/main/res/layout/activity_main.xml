@@ -41,7 +41,7 @@
         android:orientation="vertical"
         android:layout_below="@+id/header">
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Today, 10.05.2020"
