@@ -10,8 +10,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -27,6 +33,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button btnCalendar = (Button)findViewById(R.id.btnCalendar);
         this.listViewReminder = (ListView)findViewById(R.id.listViewReminder);
 
+        TextView theDate = (TextView) findViewById(R.id.date);
+
+
+        Intent incomingIntent = getIntent();
+        String date = incomingIntent.getStringExtra("date");
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        if (date == null){
+            theDate.setText("Today, "+ formatter.format(calendar.getTime()));
+        }
+        else{
+            theDate.setText(date);
+        }
 
 
         //activate click Listener
