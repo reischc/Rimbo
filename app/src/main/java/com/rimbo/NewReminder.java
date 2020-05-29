@@ -8,12 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.media.Image;
-=======
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -27,7 +28,7 @@ import android.widget.RadioGroup;
 
 import android.widget.Switch;
 import android.widget.TextView;
-=======
+
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -114,7 +115,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         layoutVehicle = (LinearLayout) findViewById(R.id.layoutVehicle);
         layoutVehicleBtn = (LinearLayout) findViewById(R.id.layoutVehicleBtn);
 
-        //load all listeners<<<<<<< cedi
+        //load all listeners
 
         btnBack.setOnClickListener(this);
         btnCreate.setOnClickListener(this);
@@ -124,18 +125,9 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         switchLocation.setOnCheckedChangeListener(this);
         switchVehicle.setOnCheckedChangeListener(this);
 
-        */
-        buttonBack.setOnClickListener(this);
-        buttonCreate.setOnClickListener(this);
-        /*
-        checkBoxLocation.setOnCheckedChangeListener(this);
-        checkBoxVehicle.setOnCheckedChangeListener(this);
-        checkBoxImportance.setOnCheckedChangeListener(this);
-        checkBoxTimer.setOnCheckedChangeListener(this);
-         */
 
         /* Date and Time */
-        mDisplayDate = (TextView) findViewById(R.id.selectDate);
+        mDisplayDate = (TextView) findViewById(R.id.txtDate);
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,7 +152,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
             }
         };
 
-        mDisplayTime = (TextView) findViewById(R.id.selectTime);
+        mDisplayTime = (TextView) findViewById(R.id.txtTime);
 
         Calendar calendar = Calendar.getInstance();
 
@@ -191,17 +183,90 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
             case R.id.switchDate:
                 if (buttonView.isChecked()) {
                     txtDate.setVisibility(View.VISIBLE);
-                    layoutTime.setVisibility(View.VISIBLE);
+                    if (txtDate.getText() == "") {
+                        txtDate.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                layoutTime.setVisibility(View.VISIBLE);
+                            }
+                        });
+                    } else {
+                        layoutTime.setVisibility(View.VISIBLE);
+                    }
                 } else {
                     txtDate.setVisibility(View.GONE);
                     layoutTime.setVisibility(View.GONE);
                 }
                 break;
             case R.id.switchTime:
+                if (buttonView.isChecked()){
+                    txtTime.setVisibility(View.VISIBLE);
+                    if (txtTime.getText() == "") {
+                        txtTime.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                layoutNotification.setVisibility(View.VISIBLE);
+                                layoutNotificationBtn.setVisibility(View.VISIBLE);
+                            }
+                        });
+                    } else {
+                        layoutNotification.setVisibility(View.VISIBLE);
+                        layoutNotificationBtn.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    txtTime.setVisibility(View.GONE);
+                    layoutNotification.setVisibility(View.GONE);
+                    layoutNotificationBtn.setVisibility(View.GONE);
+                }
                 break;
             case R.id.switchLocation:
+                if (buttonView.isChecked()){
+                    txtLocation.setVisibility(View.VISIBLE);
+                    if (txtLocation.getText() == "") {
+                        txtLocation.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                layoutVehicle.setVisibility(View.VISIBLE);
+                            }
+                        });
+                    } else {
+                        layoutVehicle.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    txtLocation.setVisibility(View.GONE);
+                    layoutVehicle.setVisibility(View.GONE);
+                }
                 break;
             case R.id.switchVehicle:
+                if (buttonView.isChecked()) {
+                    layoutVehicleBtn.setVisibility(View.VISIBLE);
+                } else {
+                    layoutVehicleBtn.setVisibility(View.GONE);
+                }
                 break;
             default:
                 break;
