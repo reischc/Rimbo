@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.media.Image;
-=======
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 
@@ -27,7 +26,6 @@ import android.widget.RadioGroup;
 
 import android.widget.Switch;
 import android.widget.TextView;
-=======
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -124,9 +122,6 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         switchLocation.setOnCheckedChangeListener(this);
         switchVehicle.setOnCheckedChangeListener(this);
 
-        */
-        buttonBack.setOnClickListener(this);
-        buttonCreate.setOnClickListener(this);
         /*
         checkBoxLocation.setOnCheckedChangeListener(this);
         checkBoxVehicle.setOnCheckedChangeListener(this);
@@ -135,7 +130,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
          */
 
         /* Date and Time */
-        mDisplayDate = (TextView) findViewById(R.id.selectDate);
+        mDisplayDate = (TextView) findViewById(R.id.txtDate);
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,7 +155,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
             }
         };
 
-        mDisplayTime = (TextView) findViewById(R.id.selectTime);
+        mDisplayTime = (TextView) findViewById(R.id.txtTime);
 
         Calendar calendar = Calendar.getInstance();
 

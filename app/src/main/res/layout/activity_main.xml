@@ -15,14 +15,16 @@
         android:backgroundTint="#0d7acc">
         <Button
             android:id="@+id/btnChangeEditChecklist"
-            android:layout_width="50dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="37dp"
             android:layout_gravity="center"
             android:background="@drawable/edit"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:stateListAnimator="@null"
+            android:layout_marginLeft="6dp"/>
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="310dp"
+            android:layout_width="302dp"
             android:layout_height="50dp"
             android:src="@drawable/rimbo_schrift"
             android:layout_gravity="center" />
@@ -35,7 +37,8 @@
             android:layout_weight="1"
             android:background="@drawable/calendar"
             android:stateListAnimator="@null"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:layout_marginRight="6dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
