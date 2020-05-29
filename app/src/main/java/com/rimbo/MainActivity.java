@@ -77,12 +77,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void initListViewData() {
-        String[] reminderNameList = new String[]{};
+        List<String> reminderNameList = new ArrayList<>();
         String name;
         if (allReminder.size() != 0) {
-            for (int i = 0; i <= allReminder.size(); i++) {
+            for (int i = 0; i+1 <= allReminder.size(); i++) {
                 name = allReminder.get(i).getName();
-                reminderNameList[i] = name;
+                reminderNameList.add(name);
             }
         }
 
