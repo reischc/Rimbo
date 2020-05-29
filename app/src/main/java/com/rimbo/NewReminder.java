@@ -3,6 +3,7 @@ package com.rimbo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -10,37 +11,93 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class NewReminder extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+    /*------------------------
+            all elements
+     -----------------------*/
+    private Button btnBack;
+    private Button btnCreate;
+
+    private ImageButton btnNotification;
+    private ImageButton btnAlarm;
+    private ImageButton btnWalking;
+    private ImageButton btnBycicle;
+    private ImageButton btnCar;
+    private ImageButton btnTrain;
+    private ImageButton btnNormal;
+    private ImageButton btnImportant;
+    private ImageButton btnVeryImportant;
+
+    private EditText txtName;
+    private TextView txtDate;
+    private TextView txtTime;
+    private TextView txtLocation;
+
+    private Switch switchDate;
+    private Switch switchTime;
+    private Switch switchLocation;
+    private Switch switchVehicle;
+
+    private LinearLayout layoutTime;
+    private LinearLayout layoutNotification;
+    private LinearLayout layoutNotificationBtn;
+    private LinearLayout layoutVehicle;
+    private LinearLayout layoutVehicleBtn;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_reminder);
 
-
         //get all items by ID
-        Button buttonBack = (Button) findViewById(R.id.btnBack);
-        Button buttonCreate = (Button) findViewById(R.id.btnCreate);
-        /*
-        CheckBox checkBoxLocation = (CheckBox) findViewById(R.id.checkBoxLocation);
-        CheckBox checkBoxVehicle = (CheckBox) findViewById(R.id.checkBoxVehicle);
-        CheckBox checkBoxImportance = (CheckBox) findViewById(R.id.checkBoxImportance);
-        CheckBox checkBoxTimer = (CheckBox) findViewById(R.id.checkBoxTimer);
+        btnBack = (Button) findViewById(R.id.btnBack);
+        btnCreate = (Button) findViewById(R.id.btnCreate);
+        btnNotification = (ImageButton) findViewById(R.id.btnNotification);
+        btnAlarm = (ImageButton) findViewById(R.id.btnAlarm);
+        btnWalking = (ImageButton) findViewById(R.id.btnWalking);
+        btnBycicle = (ImageButton) findViewById(R.id.btnBycicle);
+        btnCar = (ImageButton) findViewById(R.id.btnCar);
+        btnTrain = (ImageButton) findViewById(R.id.btnTrain);
+        btnNormal = (ImageButton) findViewById(R.id.btnNormal);
+        btnImportant = (ImageButton) findViewById(R.id.btnImportant);
+        btnVeryImportant = (ImageButton) findViewById(R.id.btnVeryImportant);
+
+        txtName = (EditText) findViewById(R.id.txtName);
+        txtDate = (TextView) findViewById(R.id.txtDate);
+        txtTime = (TextView) findViewById(R.id.txtTime);
+        txtLocation = (TextView) findViewById(R.id.txtLocation);
+
+        switchDate = (Switch) findViewById(R.id.switchDate);
+        switchTime = (Switch) findViewById(R.id.switchTime);
+        switchLocation = (Switch) findViewById(R.id.switchLocation);
+        switchVehicle = (Switch) findViewById(R.id.switchVehicle);
+
+        layoutTime = (LinearLayout) findViewById(R.id.layoutTime);
+        layoutNotification = (LinearLayout) findViewById(R.id.layoutNotification);
+        layoutNotificationBtn = (LinearLayout) findViewById(R.id.layoutNotificationBtn);
+        layoutVehicle = (LinearLayout) findViewById(R.id.layoutVehicle);
+        layoutVehicleBtn = (LinearLayout) findViewById(R.id.layoutVehicleBtn);
 
         //load all listeners
-        */
-        buttonBack.setOnClickListener(this);
-        buttonCreate.setOnClickListener(this);
-        /*
-        checkBoxLocation.setOnCheckedChangeListener(this);
-        checkBoxVehicle.setOnCheckedChangeListener(this);
-        checkBoxImportance.setOnCheckedChangeListener(this);
-        checkBoxTimer.setOnCheckedChangeListener(this);
-         */
+
+        btnBack.setOnClickListener(this);
+        btnCreate.setOnClickListener(this);
+
+        switchDate.setOnCheckedChangeListener(this);
+        switchTime.setOnCheckedChangeListener(this);
+        switchLocation.setOnCheckedChangeListener(this);
+        switchVehicle.setOnCheckedChangeListener(this);
     }
 
     /*----------------------------------
@@ -48,6 +105,25 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
      ---------------------------------*/
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        switch (buttonView.getId()) {
+            case R.id.switchDate:
+                if (buttonView.isChecked()) {
+                    txtDate.setVisibility(View.VISIBLE);
+                    layoutTime.setVisibility(View.VISIBLE);
+                } else {
+                    txtDate.setVisibility(View.GONE);
+                    layoutTime.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.switchTime:
+                break;
+            case R.id.switchLocation:
+                break;
+            case R.id.switchVehicle:
+                break;
+            default:
+                break;
+        }
         /*switch (buttonView.getId()) {
             case R.id.checkBoxLocation:
                 EditText txtLocation = (EditText) findViewById(R.id.txtLocation);
@@ -113,7 +189,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 finish();
                 break;
             case R.id.btnCreate:
-                EditText txtName = (EditText) findViewById(R.id.txtName);
+
                 String vehicle = "";
                 String importance = "";
 
