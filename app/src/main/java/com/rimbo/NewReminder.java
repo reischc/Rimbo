@@ -1,6 +1,7 @@
 package com.rimbo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -70,6 +71,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     private LinearLayout layoutNotificationBtn;
     private LinearLayout layoutVehicle;
     private LinearLayout layoutVehicleBtn;
+    private LinearLayout layoutDate;
 
 
 
@@ -114,6 +116,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         layoutNotificationBtn = (LinearLayout) findViewById(R.id.layoutNotificationBtn);
         layoutVehicle = (LinearLayout) findViewById(R.id.layoutVehicle);
         layoutVehicleBtn = (LinearLayout) findViewById(R.id.layoutVehicleBtn);
+        layoutDate = (LinearLayout)  findViewById(R.id.layoutDate);
 
         //load all listeners
 
@@ -183,6 +186,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
             case R.id.switchDate:
                 if (buttonView.isChecked()) {
                     txtDate.setVisibility(View.VISIBLE);
+                    layoutDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_top));
                     if (txtDate.getText() == "") {
                         txtDate.addTextChangedListener(new TextWatcher() {
                             @Override
@@ -204,6 +208,8 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 } else {
                     txtDate.setVisibility(View.GONE);
                     layoutTime.setVisibility(View.GONE);
+                    layoutDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border));
+
                 }
                 break;
             case R.id.switchTime:
