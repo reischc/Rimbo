@@ -73,7 +73,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/dateLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -91,14 +90,14 @@
                     android:textStyle="bold" />
 
                 <Switch
-                    android:id="@+id/switch1"
+                    android:id="@+id/switchDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="30dp"
                     android:layout_weight="1" />
         </LinearLayout>
             <TextView
-                android:id="@+id/selectDate"
+                android:id="@+id/txtDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -107,15 +106,17 @@
                 android:background="@drawable/border_bottom"
                 android:textAlignment="center"
                 android:paddingBottom="10dp"
-                android:paddingTop="10dp"/>
+                android:paddingTop="10dp"
+                android:visibility="gone"/>
 
 
         <LinearLayout
-            android:id="@+id/timeLayout"
+            android:id="@+id/layoutTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:paddingBottom="10dp"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="300dp"
@@ -126,14 +127,14 @@
                 android:textStyle="bold" />
 
             <Switch
-                android:id="@+id/timeSwitch"
+                android:id="@+id/switchTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="30dp"
                 android:layout_weight="1" />
         </LinearLayout>
         <TextView
-            android:id="@+id/selectTime"
+            android:id="@+id/txtTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -142,15 +143,15 @@
             android:background="@drawable/border_bottom"
             android:textAlignment="center"
             android:paddingBottom="10dp"
-            android:paddingTop="10dp"/>
+            android:paddingTop="10dp"
+            android:visibility="gone"/>
 
                 <LinearLayout
-                    android:id="@+id/timerLayout"
+                    android:id="@+id/layoutNotification"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp">
-
 
                     <TextView
                         android:layout_width="300dp"
@@ -162,18 +163,19 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layoutNotificationBtn"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:background="@drawable/border_bottom">
                     <ImageButton
-                        android:id="@+id/imageButtonNotification"
+                        android:id="@+id/btnNotification"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
                         app:srcCompat="@drawable/notification"
                         android:scaleType="fitCenter"
                         android:layout_marginLeft="110dp" />
                     <ImageButton
-                        android:id="@+id/imageButtonAlarm"
+                        android:id="@+id/btnAlarm"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
                         app:srcCompat="@drawable/alarm"
@@ -182,14 +184,12 @@
                 </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/locationLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:background="@drawable/border_top"
             android:paddingTop="10dp"
             android:paddingBottom="10dp">
-
 
             <TextView
                 android:layout_width="300dp"
@@ -208,7 +208,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/selectLocation"
+            android:id="@+id/txtLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -220,12 +220,11 @@
             android:paddingTop="10dp"/>
 
         <LinearLayout
-            android:id="@+id/vehicleLayout"
+            android:id="@+id/layoutVehicle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingBottom="10dp">
-
 
             <TextView
                 android:layout_width="300dp"
@@ -244,25 +243,26 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layoutVehicleBtn"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/border_bottom">
         <ImageButton
-            android:id="@+id/imageButtonWalking"
+            android:id="@+id/btnWalking"
             android:layout_width="90dp"
             android:layout_height="60dp"
             app:srcCompat="@drawable/walking"
             android:scaleType="fitCenter"
             android:layout_marginLeft="10dp" />
         <ImageButton
-            android:id="@+id/imageButtonBycicle"
+            android:id="@+id/btnBycicle"
             android:layout_width="90dp"
             android:layout_height="60dp"
             app:srcCompat="@drawable/bycicle"
             android:scaleType="fitCenter"
             android:layout_marginLeft="10dp"/>/>
         <ImageButton
-            android:id="@+id/imageButtonCar"
+            android:id="@+id/btnCar"
             android:layout_width="90dp"
             android:layout_height="60dp"
             app:srcCompat="@drawable/car"
@@ -270,7 +270,7 @@
             android:layout_marginLeft="10dp"/>/>
 
             <ImageButton
-                android:id="@+id/imageButtonTrain"
+                android:id="@+id/btnTrain"
                 android:layout_width="90dp"
                 android:layout_height="60dp"
                 android:scaleType="fitCenter"
@@ -279,13 +279,11 @@
     </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/importanceLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:layout_marginTop="30dp">
-
 
                     <TextView
                         android:layout_width="300dp"
@@ -301,21 +299,21 @@
                     android:layout_height="60dp"
                     android:background="@drawable/border_bottom">
                     <ImageButton
-                        android:id="@+id/imageButtonNormal"
+                        android:id="@+id/btnNormal"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
                         app:srcCompat="@drawable/excalmation1"
                         android:scaleType="fitCenter"
                         android:layout_marginLeft="60dp" />
                     <ImageButton
-                        android:id="@+id/imageButtonImportant"
+                        android:id="@+id/btnImportant"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
                         app:srcCompat="@drawable/excalmation2"
                         android:scaleType="fitCenter"
                         android:layout_marginLeft="10dp"/>
                     <ImageButton
-                        android:id="@+id/imageButtonVeryImportant"
+                        android:id="@+id/btnVeryImportant"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
                         app:srcCompat="@drawable/excalmation3"
