@@ -67,7 +67,7 @@ public class SQLite extends SQLiteOpenHelper {
         db.close();
     }
 
-    public List<Reminder> getReminder() {
+    public List<Reminder> getAllReminder() {
         List<Reminder> allReminder = new ArrayList<>();
         String selectQuery = "Select * FROM "+tableName;
 
@@ -75,7 +75,7 @@ public class SQLite extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()) {
             do {
-                Reminder reminder = new Reminder(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), Boolean.parseBoolean(String.valueOf(cursor.getInt(8))));
+                Reminder reminder = new Reminder(cursor.getInt(0), cursor.getString(2), cursor.getString(3), cursor.getString(1), cursor.getString(6), cursor.getString(4), cursor.getString(5), cursor.getString(7), Boolean.parseBoolean(String.valueOf(cursor.getInt(8))));
                 allReminder.add(reminder);
             } while(cursor.moveToNext());
         }
