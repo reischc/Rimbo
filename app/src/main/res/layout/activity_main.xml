@@ -13,11 +13,13 @@
         android:background="@android:color/white"
         android:id="@+id/header"
         android:backgroundTint="#0d7acc">
-        <ImageView
-            android:id="@+id/placemaker"
+        <Button
+            android:id="@+id/btnChangeEditChecklist"
             android:layout_width="50dp"
-            android:layout_height="50dp"
-            />
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:background="@drawable/edit"
+            android:textColor="#ffffff" />
         <ImageView
             android:id="@+id/logo"
             android:layout_width="310dp"
@@ -53,9 +55,9 @@
 
 
         <ListView
-            android:id="@+id/listViewReminder"
-            android:layout_width="wrap_content"
-            android:layout_height="548dp"
+            android:id="@+id/listViewReminderChecklist"
+            android:layout_width="match_parent"
+            android:layout_height="540dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
@@ -66,6 +68,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ListView
+            android:id="@+id/listViewReminderEdit"
+            android:layout_width="match_parent"
+            android:layout_height="540dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone" />
 
 
     </LinearLayout>
