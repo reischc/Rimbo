@@ -21,22 +21,26 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_reminder);
 
+
         //get all items by ID
         Button buttonBack = (Button) findViewById(R.id.btnBack);
-        Button buttonCreate = (Button) findViewById(R.id.btnCreateReminder);
-
+        Button buttonCreate = (Button) findViewById(R.id.btnCreate);
+        /*
         CheckBox checkBoxLocation = (CheckBox) findViewById(R.id.checkBoxLocation);
         CheckBox checkBoxVehicle = (CheckBox) findViewById(R.id.checkBoxVehicle);
         CheckBox checkBoxImportance = (CheckBox) findViewById(R.id.checkBoxImportance);
         CheckBox checkBoxTimer = (CheckBox) findViewById(R.id.checkBoxTimer);
 
         //load all listeners
+        */
         buttonBack.setOnClickListener(this);
         buttonCreate.setOnClickListener(this);
+        /*
         checkBoxLocation.setOnCheckedChangeListener(this);
         checkBoxVehicle.setOnCheckedChangeListener(this);
         checkBoxImportance.setOnCheckedChangeListener(this);
         checkBoxTimer.setOnCheckedChangeListener(this);
+         */
     }
 
     /*----------------------------------
@@ -44,7 +48,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
      ---------------------------------*/
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId()) {
+        /*switch (buttonView.getId()) {
             case R.id.checkBoxLocation:
                 EditText txtLocation = (EditText) findViewById(R.id.txtLocation);
                 if (isChecked) {
@@ -94,7 +98,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 break;
             default:
                 break;
-        }
+        }*/
     }
 
     /*---------------------------------------------
@@ -108,7 +112,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 startActivity(intent);
                 finish();
                 break;
-            case R.id.btnCreateReminder:
+            case R.id.btnCreate:
                 EditText txtName = (EditText) findViewById(R.id.txtName);
                 String vehicle = "";
                 String importance = "";
@@ -116,7 +120,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 if (txtName.getText().toString().matches("")) {
                     Toast.makeText(this, "You must set a name!", Toast.LENGTH_SHORT).show();
                 } else {
-                    EditText txtDate = (EditText) findViewById(R.id.txtDate);
+                    /*EditText txtDate = (EditText) findViewById(R.id.txtDate);
                     EditText txtTime = (EditText) findViewById(R.id.txtTime);
                     EditText txtLocation = (EditText) findViewById(R.id.txtLocation);
                     EditText txtTimer = (EditText) findViewById(R.id.txtTimer);
@@ -166,7 +170,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                     Reminder reminder = new Reminder(0, txtDate.getText().toString(), txtTime.getText().toString(), txtName.getText().toString(), importance, txtLocation.getText().toString(), vehicle, txtTimer.getText().toString(),done);
                     SQLite db = new SQLite(this);
                     db.addReminder(reminder);
-
+*/
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent1);
                     finish();
