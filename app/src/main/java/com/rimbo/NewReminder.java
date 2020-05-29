@@ -119,9 +119,17 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         layoutDate = (LinearLayout)  findViewById(R.id.layoutDate);
 
         //load all listeners
-
         btnBack.setOnClickListener(this);
         btnCreate.setOnClickListener(this);
+        btnNotification.setOnClickListener(this);
+        btnAlarm.setOnClickListener(this);
+        btnWalking.setOnClickListener(this);
+        btnBycicle.setOnClickListener(this);
+        btnCar.setOnClickListener(this);
+        btnTrain.setOnClickListener(this);
+        btnNormal.setOnClickListener(this);
+        btnImportant.setOnClickListener(this);
+        btnVeryImportant.setOnClickListener(this);
 
         switchDate.setOnCheckedChangeListener(this);
         switchTime.setOnCheckedChangeListener(this);
@@ -178,7 +186,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     }
 
     /*----------------------------------
-                Checkboxes
+                Switches
      ---------------------------------*/
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -207,8 +215,12 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                     }
                 } else {
                     txtDate.setVisibility(View.GONE);
+                    txtTime.setVisibility(View.GONE);
                     layoutTime.setVisibility(View.GONE);
-                    layoutDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border));
+
+                    layoutNotification.setVisibility(View.GONE);
+                    layoutNotificationBtn.setVisibility(View.GONE);
+                    switchTime.setChecked(false);
 
                 }
                 break;
@@ -277,57 +289,6 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
             default:
                 break;
         }
-        /*switch (buttonView.getId()) {
-            case R.id.checkBoxLocation:
-                EditText txtLocation = (EditText) findViewById(R.id.txtLocation);
-                if (isChecked) {
-                    txtLocation.setVisibility(View.VISIBLE);
-                } else {
-                    txtLocation.setVisibility(View.GONE);
-                }
-                break;
-            case R.id.checkBoxVehicle:
-                RadioButton radioButtonWalking = (RadioButton) findViewById(R.id.radioButtonWalking);
-                RadioButton radioButtonBicycle = (RadioButton) findViewById(R.id.radioButtonBicycle);
-                RadioButton radioButtonAutomobile = (RadioButton) findViewById(R.id.radioButtonAutomobile);
-                RadioButton radioButtonTrain = (RadioButton) findViewById(R.id.radioButtonTrain);
-                if (isChecked) {
-                    radioButtonAutomobile.setVisibility(View.VISIBLE);
-                    radioButtonBicycle.setVisibility(View.VISIBLE);
-                    radioButtonTrain.setVisibility(View.VISIBLE);
-                    radioButtonWalking.setVisibility(View.VISIBLE);
-                } else {
-                    radioButtonAutomobile.setVisibility(View.GONE);
-                    radioButtonBicycle.setVisibility(View.GONE);
-                    radioButtonTrain.setVisibility(View.GONE);
-                    radioButtonWalking.setVisibility(View.GONE);
-                }
-                break;
-            case R.id.checkBoxImportance:
-                RadioButton radioButtonNormal = (RadioButton) findViewById(R.id.radioButtonNormal);
-                RadioButton radioButtonImportant = (RadioButton) findViewById(R.id.radioButtonImportant);
-                RadioButton radioButtonVeryImportant = (RadioButton) findViewById(R.id.radioButtonVeryImportant);
-                if (isChecked) {
-                    radioButtonNormal.setVisibility(View.VISIBLE);
-                    radioButtonImportant.setVisibility(View.VISIBLE);
-                    radioButtonVeryImportant.setVisibility(View.VISIBLE);
-                } else {
-                    radioButtonNormal.setVisibility(View.GONE);
-                    radioButtonImportant.setVisibility(View.GONE);
-                    radioButtonVeryImportant.setVisibility(View.GONE);
-                }
-                break;
-            case R.id.checkBoxTimer:
-                EditText txtTimer = (EditText) findViewById(R.id.txtTimer);
-                if (isChecked) {
-                    txtTimer.setVisibility(View.VISIBLE);
-                } else {
-                    txtTimer.setVisibility(View.GONE);
-                }
-                break;
-            default:
-                break;
-        }*/
     }
 
     /*---------------------------------------------
@@ -336,6 +297,25 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btnNotification:
+                
+                break;
+            case R.id.btnAlarm:
+                break;
+            case R.id.btnWalking:
+                break;
+            case R.id.btnBycicle:
+                break;
+            case R.id.btnCar:
+                break;
+            case R.id.btnTrain:
+                break;
+            case R.id.btnNormal:
+                break;
+            case R.id.btnImportant:
+                break;
+            case R.id.btnVeryImportant:
+                break;
             case R.id.btnBack:
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);

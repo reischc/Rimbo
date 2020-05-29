@@ -311,6 +311,7 @@
                         android:layout_height="60dp"
                         app:srcCompat="@drawable/excalmation1"
                         android:scaleType="fitCenter"
+                        android:backgroundTint="@color/blue"
                         android:layout_marginLeft="60dp" />
                     <ImageButton
                         android:id="@+id/btnImportant"
