@@ -56,15 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="110dp"
-            android:layout_height="50dp"
-            android:text="Save"
-            android:backgroundTint="#0d7acc"
-            android:textColor="#ffffff"
-            android:layout_gravity="center"/>
-
     </LinearLayout>
 
 </RelativeLayout>

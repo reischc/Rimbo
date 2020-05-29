@@ -8,245 +8,317 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:background="@android:color/white"
-        android:id="@+id/header"
-        android:backgroundTint="#0d7acc">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/button4"
+        <LinearLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:src="@drawable/rimbo_schrift"
-            android:layout_gravity="center"/>
+            android:layout_height="65dp"
+            android:background="@android:color/white"
+            android:backgroundTint="#0d7acc">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/rimbo_schrift" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="673dp"
-        android:layout_marginTop="58dp"
-        android:orientation="vertical"
+        </LinearLayout>
 
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:text="Name:"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/txtName"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:hint="name..." />
+            android:layout_height="match_parent"
+            android:paddingBottom="40dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:text="Date (dd.MM.YYYY):"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/txtDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:hint="date..." />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:text="Zeit:"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/txtTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:hint="time..." />
-
-        <CheckBox
-            android:id="@+id/checkBoxLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="19dp"
-            android:scaleX="1.3"
-            android:scaleY="1.3"
-            android:text="Location" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:text="Location:"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:visibility="gone" />
-
-        <EditText
-            android:id="@+id/txtLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:hint="location..."
-            android:visibility="gone" />
-
-        <CheckBox
-            android:id="@+id/checkBoxVehicle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="18dp"
-            android:scaleX="1.3"
-            android:scaleY="1.3"
-            android:text="Vehicle" />
-
-        <RadioGroup
-            android:id="@+id/radioButtonGroupVehicle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radioButtonWalking"
-                android:layout_width="92dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="walking"
-                android:visibility="gone" />
+                android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/radioButtonBicycle"
-                android:layout_width="92dp"
+
+        <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="bicycle"
-                android:visibility="gone" />
+                android:background="@drawable/border"
+            android:layout_marginTop="30dp">
 
-            <RadioButton
-                android:id="@+id/radioButtonAutomobile"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="automobile"
-                android:visibility="gone" />
+                <EditText
+                    android:id="@+id/txtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:hint="Name"
+                    android:background="@null"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"/>
 
-            <RadioButton
-                android:id="@+id/radioButtonTrain"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="train"
-                android:visibility="gone" />
+        </LinearLayout>
 
-        </RadioGroup>
-
-        <CheckBox
-            android:id="@+id/checkBoxImportance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="22dp"
-            android:scaleX="1.3"
-            android:scaleY="1.3"
-            android:text="Importance" />
-
-        <RadioGroup
-            android:id="@+id/radioButtonGroupImportance"
+        <LinearLayout
+            android:id="@+id/dateLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="30dp"
+            android:background="@drawable/border_top"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
-            <RadioButton
-                android:id="@+id/radioButtonNormal"
-                android:layout_width="92dp"
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Remind Me on a Date"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1" />
+        </LinearLayout>
+            <TextView
+                android:id="@+id/selectDate"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="normal"
-                android:visibility="gone" />
+                android:layout_gravity="center"
+                android:hint="Select Date"
+                android:textSize="20dp"
+                android:background="@drawable/border_bottom"
+                android:textAlignment="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"/>
 
-            <RadioButton
-                android:id="@+id/radioButtonImportant"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="important"
-                android:visibility="gone" />
 
-            <RadioButton
-                android:id="@+id/radioButtonVeryImportant"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:text="very important"
-                android:visibility="gone" />
-
-        </RadioGroup>
-
-        <CheckBox
-            android:id="@+id/checkBoxTimer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="17dp"
-            android:scaleX="1.3"
-            android:scaleY="1.3"
-            android:text="Timer" />
-
-        <EditText
-            android:id="@+id/txtTimer"
+        <LinearLayout
+            android:id="@+id/timeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:hint="timer..."
-            android:visibility="gone" />
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-
-            <Button
-                android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:background="#ffffff"
-                android:text="back"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                tools:ignore="MissingConstraints">
-            </Button>
+                android:text="Remind Me on a Time"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/btnCreateReminder"
+            <Switch
+                android:id="@+id/timeSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:background="#ffffff"
-                android:text="create"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="15dp"
-                tools:ignore="MissingConstraints">
-            </Button>
+                android:layout_marginRight="30dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/selectTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Select Time"
+            android:textSize="20dp"
+            android:background="@drawable/border_bottom"
+            android:textAlignment="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"/>
 
-        </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/timerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
 
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="Notification Method"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/border_bottom">
+                    <ImageButton
+                        android:id="@+id/imageButtonNotification"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/notification"
+                        android:scaleType="fitCenter"
+                        android:layout_marginLeft="110dp" />
+                    <ImageButton
+                        android:id="@+id/imageButtonAlarm"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/alarm"
+                        android:scaleType="fitCenter"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/locationLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/border_top"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Add a Location"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/switchLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/selectLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Select Location"
+            android:textSize="20dp"
+            android:background="@drawable/border_bottom"
+            android:textAlignment="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"/>
+
+        <LinearLayout
+            android:id="@+id/vehicleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Add a Vehicle"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/switchVehicle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/border_bottom">
+        <ImageButton
+            android:id="@+id/imageButtonWalking"
+            android:layout_width="90dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/walking"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="10dp" />
+        <ImageButton
+            android:id="@+id/imageButtonBycicle"
+            android:layout_width="90dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/bycicle"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="10dp"/>/>
+        <ImageButton
+            android:id="@+id/imageButtonCar"
+            android:layout_width="90dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/car"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="10dp"/>/>
+
+            <ImageButton
+                android:id="@+id/imageButtonTrain"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/train"
+                android:layout_marginLeft="10dp"/>/>
     </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/importanceLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginTop="30dp">
+
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="Importance"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/border_bottom">
+                    <ImageButton
+                        android:id="@+id/imageButtonNormal"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/excalmation1"
+                        android:scaleType="fitCenter"
+                        android:layout_marginLeft="60dp" />
+                    <ImageButton
+                        android:id="@+id/imageButtonImportant"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/excalmation2"
+                        android:scaleType="fitCenter"
+                        android:layout_marginLeft="10dp"/>
+                    <ImageButton
+                        android:id="@+id/imageButtonVeryImportant"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/excalmation3"
+                        android:scaleType="fitCenter"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:text="CREATE"
+                    android:backgroundTint="#0d7acc"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"/>
+
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </RelativeLayout>
