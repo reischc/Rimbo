@@ -28,8 +28,12 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private ListView listViewReminder;
+    private ListView listViewReminderChecklist;
+    private ListView listViewReminderEdit;
+    private Button btnCalendar;
+    private Button btnChangeEditChecklist;
     private List<Reminder> allReminder = new ArrayList<>();
+    private List<String> reminderNameList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +42,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
         //find items by id
-        Button btnCalendar = (Button)findViewById(R.id.btnCalendar);
-        this.listViewReminder = (ListView)findViewById(R.id.listViewReminder);
+        btnCalendar = (Button)findViewById(R.id.btnCalendar);
+        btnChangeEditChecklist = (Button)findViewById(R.id.btnChangeEditChecklist);
+        listViewReminderChecklist = (ListView)findViewById(R.id.listViewReminderChecklist);
+        listViewReminderEdit = (ListView)findViewById(R.id.listViewReminderEdit);
 
 
         TextView theDate = (TextView) findViewById(R.id.date);
@@ -57,18 +63,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         //set listView mod
-        this.listViewReminder.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        listViewReminderChecklist.setChoiceMode(listViewReminderChecklist.CHOICE_MODE_MULTIPLE);
 
 
         //activate click Listener
         btnCalendar.setOnClickListener(this);
+        btnChangeEditChecklist.setOnClickListener(this);
 
-        this.listViewReminder.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewReminderChecklist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CheckedTextView v = (CheckedTextView) view;
-                boolean currentCheck = v.isChecked();
+                CheckedTextView reminder = (CheckedTextView) view;
+                reminder.setMinWidth(200);
 
             }
         });
@@ -100,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void initListViewData() {
-        List<String> reminderNameList = new ArrayList<>();
         String name;
         if (allReminder.size() != 0) {
             for (int i = 0; i+1 <= allReminder.size(); i++) {
@@ -109,9 +115,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_checked , reminderNameList);
-        this.listViewReminder.setAdapter(arrayAdapter);
+        ArrayAdapter<String> arrayAdapterChecklist = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_checked , reminderNameList);
+        listViewReminderChecklist.setAdapter(arrayAdapterChecklist);
 
+        ArrayAdapter<String> arrayAdapterEdit = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 , reminderNameList);
+        listViewReminderEdit.setAdapter(arrayAdapterEdit);
     }
 
     public void loadReminder() {
@@ -128,9 +136,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(getApplicationContext(), Calendar.class);
-        startActivity(intent);
-        finish();
+        if (v.getId() == R.id.btnCalendar) {
+            Intent intent = new Intent(getApplicationContext(), Calendar.class);
+            startActivity(intent);
+            finish();
+        } else {
+            if (listViewReminderChecklist.getVisibility() == View.VISIBLE) {
+                listViewReminderChecklist.setVisibility(View.GONE);
+                listViewReminderEdit.setVisibility(View.VISIBLE);
+                btnChangeEditChecklist.setBackgroundResource(R.drawable.checklist);
+            } else {
+                listViewReminderChecklist.setVisibility(View.VISIBLE);
+                listViewReminderEdit.setVisibility(View.GONE);
+                btnChangeEditChecklist.setBackgroundResource(R.drawable.edit);
+
+            }
+        }
     }
 
 }
