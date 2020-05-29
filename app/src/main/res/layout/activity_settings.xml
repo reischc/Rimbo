@@ -52,5 +52,5 @@
         app:backgroundTint="#f1f2f4"
         app:itemIconTint="@drawable/bottom_navigation_selector"
         app:labelVisibilityMode="unlabeled"
-        app:itemIconSize="30dp" />
+        app:itemIconSize="35dp" />
 </RelativeLayout>
