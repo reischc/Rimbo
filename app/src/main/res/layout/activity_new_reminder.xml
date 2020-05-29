@@ -176,7 +176,8 @@
                         android:layout_height="60dp"
                         app:srcCompat="@drawable/notification"
                         android:scaleType="fitCenter"
-                        android:layout_marginLeft="110dp" />
+                        android:layout_marginLeft="110dp"
+                        android:backgroundTint="@color/blue"/>
                     <ImageButton
                         android:id="@+id/btnAlarm"
                         android:layout_width="90dp"
@@ -259,7 +260,8 @@
             android:layout_height="60dp"
             app:srcCompat="@drawable/walking"
             android:scaleType="fitCenter"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/blue"/>
         <ImageButton
             android:id="@+id/btnBycicle"
             android:layout_width="90dp"
