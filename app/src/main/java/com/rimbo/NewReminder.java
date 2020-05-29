@@ -3,11 +3,13 @@ package com.rimbo;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 
+import android.content.res.ColorStateList;
 import android.media.Image;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -294,13 +296,15 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     /*---------------------------------------------
                 Create & Back Button
      --------------------------------------------*/
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnNotification:
-                
+                btnNotification.setBackgroundTintList(ColorStateList.valueOf(R.color.colorPrimary));
                 break;
             case R.id.btnAlarm:
+                btnAlarm.setBackgroundTintList(ColorStateList.valueOf(R.color.colorPrimary));
                 break;
             case R.id.btnWalking:
                 break;
