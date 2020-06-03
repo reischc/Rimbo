@@ -76,7 +76,9 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     private LinearLayout layoutDate;
     private LinearLayout layoutLocation;
 
-
+    private String vehicle = "walking";
+    private String importance = "normal";
+    private String notification = "notification";
 
 
     /* Date and Time */
@@ -325,51 +327,89 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnNotification:
+                notification = "notification";
                 btnNotification.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnNotification.setImageResource(R.drawable.notification_white);
                 btnAlarm.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnAlarm.setImageResource(R.drawable.alarm);
                 break;
             case R.id.btnAlarm:
+                notification = "alarm";
                 btnAlarm.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnAlarm.setImageResource(R.drawable.alarm_white);
                 btnNotification.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnNotification.setImageResource(R.drawable.notification);
                 break;
             case R.id.btnWalking:
+                vehicle = "walking";
                 btnWalking.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnWalking.setImageResource(R.drawable.walking_white);
                 btnBycicle.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnCar.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnTrain.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnBycicle.setImageResource(R.drawable.bycicle);
+                btnCar.setImageResource(R.drawable.car);
+                btnTrain.setImageResource(R.drawable.train);
                 break;
             case R.id.btnBycicle:
+                vehicle = "bycicle";
                 btnBycicle.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnBycicle.setImageResource(R.drawable.bycicle_white);
                 btnWalking.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnCar.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnTrain.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnWalking.setImageResource(R.drawable.walking);
+                btnCar.setImageResource(R.drawable.car);
+                btnTrain.setImageResource(R.drawable.train);
                 break;
             case R.id.btnCar:
+                vehicle = "car";
                 btnCar.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnCar.setImageResource(R.drawable.car_white);
                 btnWalking.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnBycicle.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnTrain.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnWalking.setImageResource(R.drawable.walking);
+                btnBycicle.setImageResource(R.drawable.bycicle);
+                btnTrain.setImageResource(R.drawable.train);
                 break;
             case R.id.btnTrain:
+                vehicle = "train";
                 btnTrain.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnTrain.setImageResource(R.drawable.train_white);
                 btnWalking.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnBycicle.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnCar.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnWalking.setImageResource(R.drawable.walking);
+                btnBycicle.setImageResource(R.drawable.bycicle);
+                btnCar.setImageResource(R.drawable.car);
                 break;
             case R.id.btnNormal:
+                importance = "normal";
                 btnNormal.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnNormal.setImageResource(R.drawable.exclamation1_white);
                 btnImportant.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnVeryImportant.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnImportant.setImageResource(R.drawable.exclamation2);
+                btnVeryImportant.setImageResource(R.drawable.exclamation3);
                 break;
             case R.id.btnImportant:
+                importance = "important";
                 btnImportant.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnImportant.setImageResource(R.drawable.exclamation2_white);
                 btnNormal.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnVeryImportant.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnNormal.setImageResource(R.drawable.exclamation1);
+                btnVeryImportant.setImageResource(R.drawable.exclamation3);
                 break;
             case R.id.btnVeryImportant:
+                importance = "very important";
                 btnVeryImportant.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnVeryImportant.setImageResource(R.drawable.excla3_white);
                 btnNormal.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnImportant.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnNormal.setImageResource(R.drawable.exclamation1);
+                btnImportant.setImageResource(R.drawable.exclamation2);
                 break;
             case R.id.btnBack:
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -377,9 +417,6 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 finish();
                 break;
             case R.id.btnCreate:
-
-                String vehicle = "";
-                String importance = "";
 
                 if (txtName.getText().toString().matches("")) {
                     Toast.makeText(this, "You must set a name!", Toast.LENGTH_SHORT).show();

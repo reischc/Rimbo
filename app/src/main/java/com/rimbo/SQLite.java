@@ -23,10 +23,10 @@ public class SQLite extends SQLiteOpenHelper {
     private static final String ColumnName = "Name";
     private static final String ColumnDate = "Date";
     private static final String ColumnTime = "Time";
+    private static final String ColumnNotification = "Notification";
     private static final String ColumnLocation = "Location";
     private static final String ColumnVehicle = "Vehicle";
     private static final String ColumnImportance = "Importance";
-    private static final String ColumnTimer = "Timer";
     private static final String ColumnDone = "Done";
     private int id;
 
@@ -36,7 +36,7 @@ public class SQLite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String script = "Create table "+tableName+"("+ColumnIDReminder+" Integer Primary key AUTOINCREMENT,"+ColumnName+" TEXT, "+ColumnDate+" TEXT, "+ColumnTime+" TEXT, "+ColumnLocation+" TEXT, "+ColumnVehicle+" TEXT, "+ColumnImportance+" TEXT, "+ColumnTimer+" TEXT, "+ColumnDone+" boolean"+")";
+        String script = "Create table "+tableName+"("+ColumnIDReminder+" Integer Primary key AUTOINCREMENT,"+ColumnName+" TEXT, "+ColumnDate+" TEXT, "+ColumnTime+" TEXT, "+ColumnNotification+" TEXT, "+ColumnLocation+" TEXT, "+ColumnVehicle+" TEXT, "+ColumnImportance+" TEXT, "+ColumnDone+" boolean"+")";
         db.execSQL(script);
     }
 
@@ -54,10 +54,10 @@ public class SQLite extends SQLiteOpenHelper {
         values.put(ColumnName, reminder.getName());
         values.put(ColumnDate, reminder.getDate());
         values.put(ColumnTime, reminder.getTime());
+        values.put(ColumnNotification, reminder.getTimer());
         values.put(ColumnLocation, reminder.getLocation());
         values.put(ColumnVehicle, reminder.getVehicle());
         values.put(ColumnImportance, reminder.getImportanceLevel());
-        values.put(ColumnTimer, reminder.getTimer());
         values.put(ColumnDone, reminder.isDone());
 
         //insert values into db
@@ -75,7 +75,7 @@ public class SQLite extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()) {
             do {
-                Reminder reminder = new Reminder(cursor.getInt(0), cursor.getString(2), cursor.getString(3), cursor.getString(1), cursor.getString(6), cursor.getString(4), cursor.getString(5), cursor.getString(7), Boolean.parseBoolean(String.valueOf(cursor.getInt(8))));
+                Reminder reminder = new Reminder(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), Boolean.parseBoolean(String.valueOf(cursor.getInt(8))));
                 allReminder.add(reminder);
             } while(cursor.moveToNext());
         }
@@ -90,10 +90,10 @@ public class SQLite extends SQLiteOpenHelper {
         values.put(ColumnName, reminder.getName());
         values.put(ColumnDate, reminder.getDate());
         values.put(ColumnTime, reminder.getTime());
+        values.put(ColumnNotification, reminder.getTimer());
         values.put(ColumnLocation, reminder.getLocation());
         values.put(ColumnVehicle, reminder.getVehicle());
         values.put(ColumnImportance, reminder.getImportanceLevel());
-        values.put(ColumnTimer, reminder.getTimer());
         values.put(ColumnDone, reminder.isDone());
 
         //insert values into db

@@ -176,7 +176,7 @@
                         android:id="@+id/btnNotification"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
-                        app:srcCompat="@drawable/notification"
+                        app:srcCompat="@drawable/notification_white"
                         android:scaleType="fitCenter"
                         android:layout_marginLeft="110dp"
                         android:backgroundTint="@color/blue"/>
@@ -261,7 +261,7 @@
             android:id="@+id/btnWalking"
             android:layout_width="90dp"
             android:layout_height="60dp"
-            app:srcCompat="@drawable/walking"
+            app:srcCompat="@drawable/walking_white"
             android:scaleType="fitCenter"
             android:layout_marginLeft="10dp"
             android:backgroundTint="@color/blue"/>
@@ -313,7 +313,7 @@
                         android:id="@+id/btnNormal"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
-                        app:srcCompat="@drawable/excalmation1"
+                        app:srcCompat="@drawable/exclamation1_white"
                         android:scaleType="fitCenter"
                         android:backgroundTint="@color/blue"
                         android:layout_marginLeft="60dp" />
@@ -321,14 +321,14 @@
                         android:id="@+id/btnImportant"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
-                        app:srcCompat="@drawable/excalmation2"
+                        app:srcCompat="@drawable/exclamation2"
                         android:scaleType="fitCenter"
                         android:layout_marginLeft="10dp"/>
                     <ImageButton
                         android:id="@+id/btnVeryImportant"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
-                        app:srcCompat="@drawable/excalmation3"
+                        app:srcCompat="@drawable/exclamation3"
                         android:scaleType="fitCenter"
                         android:layout_marginLeft="10dp"/>
                 </LinearLayout>
