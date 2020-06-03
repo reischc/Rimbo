@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewReminder">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@android:color/white"
+            android:id="@+id/header"
+            android:backgroundTint="#0d7acc">
+
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/back"
+                android:stateListAnimator="@null"
+                android:textColor="#ffffff" />
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="310dp"
+                android:layout_height="50dp"
+                android:src="@drawable/rimbo_schrift"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:id="@+id/placemaker"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_bottom"
+                    android:layout_marginTop="30dp">
+
+                    <EditText
+                        android:id="@+id/txtName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:hint="Name"
+                        android:background="@null"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/border_bottom"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:id="@+id/layoutDate">
+
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="Remind Me on a Date"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <Switch
+                        android:id="@+id/switchDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:hint="Select Date"
+                    android:textSize="20dp"
+                    android:background="@drawable/border_bottom"
+                    android:textAlignment="center"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:visibility="gone"/>
+
+
+                <LinearLayout
+                    android:id="@+id/layoutTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="30dp">
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="Remind Me on a Time"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <Switch
+                        android:id="@+id/switchTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/txtTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:hint="Select Time"
+                    android:textSize="20dp"
+                    android:background="@drawable/border_bottom"
+                    android:textAlignment="center"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:id="@+id/layoutNotification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="30dp">
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="Notification Method"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutNotificationBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/border_bottom"
+                    android:visibility="gone">
+                    <ImageButton
+                        android:id="@+id/btnNotification"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/notification_white"
+                        android:scaleType="fitCenter"
+                        android:layout_marginLeft="110dp"
+                        android:backgroundTint="@color/blue"/>
+                    <ImageButton
+                        android:id="@+id/btnAlarm"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/alarm"
+                        android:scaleType="fitCenter"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/border_bottom"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:id="@+id/layoutLocation">
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="Add a Location"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <Switch
+                        android:id="@+id/switchLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:hint="Select Location"
+                    android:textSize="20dp"
+                    android:background="@drawable/border_bottom"
+                    android:textAlignment="center"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:id="@+id/layoutVehicle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="Add a Vehicle"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <Switch
+                        android:id="@+id/switchVehicle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutVehicleBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/border_bottom"
+                    android:visibility="gone">
+                    <ImageButton
+                        android:id="@+id/btnWalking"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/walking_white"
+                        android:scaleType="fitCenter"
+                        android:layout_marginLeft="10dp"
+                        android:backgroundTint="@color/blue"/>
+                    <ImageButton
+                        android:id="@+id/btnBycicle"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/bycicle"
+                        android:scaleType="fitCenter"
+                        android:layout_marginLeft="10dp"/>
+                    <ImageButton
+                        android:id="@+id/btnCar"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/car"
+                        android:scaleType="fitCenter"
+                        android:layout_marginLeft="10dp"/>
+
+                    <ImageButton
+                        android:id="@+id/btnTrain"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/train"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginTop="30dp">
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="Importance"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/border_bottom">
+                    <ImageButton
+                        android:id="@+id/btnNormal"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/exclamation1_white"
+                        android:scaleType="fitCenter"
+                        android:backgroundTint="@color/blue"
+                        android:layout_marginLeft="60dp" />
+                    <ImageButton
+                        android:id="@+id/btnImportant"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/exclamation2"
+                        android:scaleType="fitCenter"
+                        android:layout_marginLeft="10dp"/>
+                    <ImageButton
+                        android:id="@+id/btnVeryImportant"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        app:srcCompat="@drawable/exclamation3"
+                        android:scaleType="fitCenter"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnCreate"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:text="CREATE"
+                    android:backgroundTint="#0d7acc"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:textColor="#ffffff"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</RelativeLayout>

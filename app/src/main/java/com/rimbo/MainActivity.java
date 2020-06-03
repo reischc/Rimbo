@@ -14,13 +14,11 @@ import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,10 +140,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
         } else {
             if (listViewReminderChecklist.getVisibility() == View.VISIBLE) {
+                Toast.makeText(this, "Edit mode!", Toast.LENGTH_SHORT).show();
                 listViewReminderChecklist.setVisibility(View.GONE);
                 listViewReminderEdit.setVisibility(View.VISIBLE);
                 btnChangeEditChecklist.setBackgroundResource(R.drawable.checklist);
             } else {
+                Toast.makeText(this, "Check list!", Toast.LENGTH_SHORT).show();
                 listViewReminderChecklist.setVisibility(View.VISIBLE);
                 listViewReminderEdit.setVisibility(View.GONE);
                 btnChangeEditChecklist.setBackgroundResource(R.drawable.edit);
