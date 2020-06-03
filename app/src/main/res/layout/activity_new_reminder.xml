@@ -230,7 +230,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="300dp"
@@ -253,7 +253,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/border_bottom"
-            android:visibility="visible">
+            android:visibility="gone">
         <ImageButton
             android:id="@+id/btnWalking"
             android:layout_width="90dp"

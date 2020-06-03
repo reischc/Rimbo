@@ -271,14 +271,17 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                             @Override
                             public void afterTextChanged(Editable s) {
                                 layoutVehicle.setVisibility(View.VISIBLE);
+                                layoutVehicleBtn.setVisibility(View.VISIBLE);
                             }
                         });
                     } else {
                         layoutVehicle.setVisibility(View.VISIBLE);
+                        layoutVehicleBtn.setVisibility(View.VISIBLE);
                     }
                 } else {
                     txtLocation.setVisibility(View.GONE);
                     layoutVehicle.setVisibility(View.GONE);
+                    layoutVehicleBtn.setVisibility(View.GONE);
                 }
                 break;
             case R.id.switchVehicle:
@@ -301,24 +304,51 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnNotification:
-                btnNotification.setBackgroundTintList(ColorStateList.valueOf(R.color.colorPrimary));
+                btnNotification.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnAlarm.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 break;
             case R.id.btnAlarm:
-                btnAlarm.setBackgroundTintList(ColorStateList.valueOf(R.color.colorPrimary));
+                btnAlarm.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnNotification.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 break;
             case R.id.btnWalking:
+                btnWalking.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnBycicle.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnCar.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnTrain.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 break;
             case R.id.btnBycicle:
+                btnBycicle.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnWalking.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnCar.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnTrain.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 break;
             case R.id.btnCar:
+                btnCar.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnWalking.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnBycicle.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnTrain.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 break;
             case R.id.btnTrain:
+                btnTrain.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnWalking.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnBycicle.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnCar.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 break;
             case R.id.btnNormal:
+                btnNormal.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnImportant.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnVeryImportant.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 break;
             case R.id.btnImportant:
+                btnImportant.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnNormal.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnVeryImportant.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 break;
             case R.id.btnVeryImportant:
+                btnVeryImportant.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnNormal.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
+                btnImportant.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 break;
             case R.id.btnBack:
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -333,13 +363,8 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 if (txtName.getText().toString().matches("")) {
                     Toast.makeText(this, "You must set a name!", Toast.LENGTH_SHORT).show();
                 } else {
-                    /*EditText txtDate = (EditText) findViewById(R.id.txtDate);
-                    EditText txtTime = (EditText) findViewById(R.id.txtTime);
-                    EditText txtLocation = (EditText) findViewById(R.id.txtLocation);
-                    EditText txtTimer = (EditText) findViewById(R.id.txtTimer);
-                    RadioGroup radioGroupVehicle = (RadioGroup) findViewById(R.id.radioButtonGroupVehicle);
-                    RadioGroup radioGroupImportance = (RadioGroup) findViewById(R.id.radioButtonGroupImportance);
-                    boolean done = false;
+
+                    /*
 
                     //get the vehicle
                     int radioButtonID = radioGroupVehicle.getCheckedRadioButtonId();
