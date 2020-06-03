@@ -76,9 +76,13 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     private LinearLayout layoutDate;
     private LinearLayout layoutLocation;
 
+    private String name = "";
+    private String date = "";
+    private String time = "";
+    private String notification = "notification";
+    private String location = "";
     private String vehicle = "walking";
     private String importance = "normal";
-    private String notification = "notification";
 
 
     /* Date and Time */
@@ -421,52 +425,16 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 if (txtName.getText().toString().matches("")) {
                     Toast.makeText(this, "You must set a name!", Toast.LENGTH_SHORT).show();
                 } else {
-
-                    /*
-
-                    //get the vehicle
-                    int radioButtonID = radioGroupVehicle.getCheckedRadioButtonId();
-                    View radioButton = radioGroupVehicle.findViewById(radioButtonID);
-                    int idx = radioGroupVehicle.indexOfChild(radioButton);
-                    switch (idx) {
-                        case 0:
-                            vehicle = "walking";
-                            break;
-                        case 1:
-                            vehicle = "bicycle";
-                            break;
-                        case 2:
-                            vehicle = "automobile";
-                            break;
-                        case 3:
-                            vehicle = "train";
-                            break;
-                        default:
-                            break;
-                    }
-                    //get the importance
-                    int radioButtonIDImportance = radioGroupImportance.getCheckedRadioButtonId();
-                    View radioButtonImportance = radioGroupImportance.findViewById(radioButtonIDImportance);
-                    int idxImportance = radioGroupImportance.indexOfChild(radioButtonImportance);
-                    switch (idxImportance) {
-                        case 0:
-                            importance = "normal";
-                            break;
-                        case 1:
-                            importance = "important";
-                            break;
-                        case 2:
-                            importance = "very important";
-                            break;
-                        default:
-                            break;
-                    }
+                    name = txtName.getText().toString();
+                    date = txtDate.getText().toString();
+                    time = txtTime.getText().toString();
+                    location = txtLocation.getText().toString();
 
                     //create the reminder and add him reminder to the list
-                    Reminder reminder = new Reminder(0, txtDate.getText().toString(), txtTime.getText().toString(), txtName.getText().toString(), importance, txtLocation.getText().toString(), vehicle, txtTimer.getText().toString(),done);
+                    Reminder reminder = new Reminder(0, name, date, time, notification, location, vehicle, importance, false);
                     SQLite db = new SQLite(this);
                     db.addReminder(reminder);
-*/
+
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent1);
                     finish();
