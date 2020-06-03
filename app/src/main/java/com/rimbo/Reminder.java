@@ -5,30 +5,32 @@ import java.util.List;
 
 public class Reminder {
     private int id;
+    private String name;
     private String date;
     private String time;
-    private String name;
-    private String importanceLevel;
+    private String notification;
     private String location;
     private String vehicle;
-    private String timer;
+    private String importanceLevel;
     private boolean done;
     private static List<Reminder> allReminders = new ArrayList<>();
 
     /*-------------------------
            Constructor
     -------------------------*/
-    public Reminder(int id, String date, String time, String name, String importanceLevel, String location, String vehicle, String timer, boolean done) {
+
+    public Reminder(int id, String name, String date, String time, String notification, String location, String vehicle, String importanceLevel, boolean done) {
         this.id = id;
+        this.name = name;
         this.date = date;
         this.time = time;
-        this.name = name;
-        this.importanceLevel = importanceLevel;
+        this.notification = notification;
         this.location = location;
         this.vehicle = vehicle;
-        this.timer = timer;
+        this.importanceLevel = importanceLevel;
         this.done = done;
     }
+
     /*-------------------------
               Methods
      ------------------------*/
@@ -70,7 +72,7 @@ public class Reminder {
     }
 
     public String getTimer() {
-        return timer;
+        return notification;
     }
 
     public boolean isDone() {
@@ -109,8 +111,8 @@ public class Reminder {
         this.vehicle = vehicle;
     }
 
-    public void setTimer(String timer) {
-        this.timer = timer;
+    public void setTimer(String notification) {
+        this.notification = notification;
     }
 
     public void setDone(boolean done) {
