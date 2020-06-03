@@ -337,7 +337,7 @@
                     android:id="@+id/btnCreate"
                     android:layout_width="100dp"
                     android:layout_height="60dp"
-                    android:text="CREATE"
+                    android:text="UPDATE"
                     android:backgroundTint="#0d7acc"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
