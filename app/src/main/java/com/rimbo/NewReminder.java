@@ -74,6 +74,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     private LinearLayout layoutVehicle;
     private LinearLayout layoutVehicleBtn;
     private LinearLayout layoutDate;
+    private LinearLayout layoutLocation;
 
 
 
@@ -119,6 +120,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         layoutVehicle = (LinearLayout) findViewById(R.id.layoutVehicle);
         layoutVehicleBtn = (LinearLayout) findViewById(R.id.layoutVehicleBtn);
         layoutDate = (LinearLayout)  findViewById(R.id.layoutDate);
+        layoutLocation = (LinearLayout) findViewById(R.id.layoutLocation);
 
         //load all listeners
         btnBack.setOnClickListener(this);
@@ -159,7 +161,6 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
-
                 String date = dayOfMonth+ "." +month+"."+year;
                 mDisplayDate.setText(date);
             }
@@ -196,7 +197,9 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
             case R.id.switchDate:
                 if (buttonView.isChecked()) {
                     txtDate.setVisibility(View.VISIBLE);
-                    layoutDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_top));
+                    layoutDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
+                    layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
+                    txtDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
                     if (txtDate.getText() == "") {
                         txtDate.addTextChangedListener(new TextWatcher() {
                             @Override
@@ -210,15 +213,24 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                             @Override
                             public void afterTextChanged(Editable s) {
                                 layoutTime.setVisibility(View.VISIBLE);
+                                layoutDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
+                                layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
+                                txtDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
                             }
                         });
                     } else {
                         layoutTime.setVisibility(View.VISIBLE);
+                        layoutDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
+                        layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
+                        txtDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
                     }
                 } else {
                     txtDate.setVisibility(View.GONE);
                     txtTime.setVisibility(View.GONE);
                     layoutTime.setVisibility(View.GONE);
+                    layoutDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
+                    layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
+                    txtDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
 
                     layoutNotification.setVisibility(View.GONE);
                     layoutNotificationBtn.setVisibility(View.GONE);
@@ -229,6 +241,8 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
             case R.id.switchTime:
                 if (buttonView.isChecked()){
                     txtTime.setVisibility(View.VISIBLE);
+                    layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
+                    txtTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
                     if (txtTime.getText() == "") {
                         txtTime.addTextChangedListener(new TextWatcher() {
                             @Override
@@ -243,21 +257,28 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                             public void afterTextChanged(Editable s) {
                                 layoutNotification.setVisibility(View.VISIBLE);
                                 layoutNotificationBtn.setVisibility(View.VISIBLE);
+                                layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
+                                txtTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
                             }
                         });
                     } else {
                         layoutNotification.setVisibility(View.VISIBLE);
                         layoutNotificationBtn.setVisibility(View.VISIBLE);
+                        layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
+                        txtTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
                     }
                 } else {
                     txtTime.setVisibility(View.GONE);
                     layoutNotification.setVisibility(View.GONE);
                     layoutNotificationBtn.setVisibility(View.GONE);
+                    layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
+                    txtTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
                 }
                 break;
             case R.id.switchLocation:
                 if (buttonView.isChecked()){
                     txtLocation.setVisibility(View.VISIBLE);
+                    layoutLocation.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
                     if (txtLocation.getText() == "") {
                         txtLocation.addTextChangedListener(new TextWatcher() {
                             @Override

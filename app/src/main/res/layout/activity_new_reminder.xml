@@ -56,7 +56,7 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border"
+                android:background="@drawable/border_bottom"
             android:layout_marginTop="30dp">
 
                 <EditText
@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:background="@drawable/border"
+            android:background="@drawable/border_bottom"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:id="@+id/layoutDate">
@@ -117,7 +117,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:layout_marginTop="30dp">
 
             <TextView
                 android:layout_width="300dp"
@@ -153,7 +154,8 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    android:layout_marginTop="30dp">
 
                     <TextView
                         android:layout_width="300dp"
@@ -191,9 +193,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:background="@drawable/border_top"
+            android:background="@drawable/border_bottom"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp">
+            android:paddingBottom="10dp"
+            android:id="@+id/layoutLocation">
 
             <TextView
                 android:layout_width="300dp"
@@ -291,8 +294,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@drawable/border_top">
+                    android:layout_marginTop="30dp">
 
                     <TextView
                         android:layout_width="300dp"
