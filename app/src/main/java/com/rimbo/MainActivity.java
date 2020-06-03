@@ -78,6 +78,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        //set on edit list item click listener
+        listViewReminderEdit.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = (String) listViewReminderEdit.getItemAtPosition(position);
+                Intent intent = new Intent(getApplicationContext(), EditReminder.class);
+                intent.putExtra("name", item);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -152,6 +164,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         }
+    }
+
+    public List<Reminder> getAllReminder() {
+        return allReminder;
     }
 
 }

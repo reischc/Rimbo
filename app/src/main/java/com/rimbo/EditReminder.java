@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class EditReminder extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     /*------------------------
@@ -102,7 +103,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
         txtTime = (TextView) findViewById(R.id.txtTime);
         txtLocation = (TextView) findViewById(R.id.txtLocation);
 
-        switchDate = (Switch) findViewById(R.id.switchDate); 
+        switchDate = (Switch) findViewById(R.id.switchDate);
         switchTime = (Switch) findViewById(R.id.switchTime);
         switchLocation = (Switch) findViewById(R.id.switchLocation);
         switchVehicle = (Switch) findViewById(R.id.switchVehicle);
@@ -133,6 +134,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
         switchLocation.setOnCheckedChangeListener(this);
         switchVehicle.setOnCheckedChangeListener(this);
 
+        loadDataOfReminder();
 
         /* Date and Time */
         mDisplayDate = (TextView) findViewById(R.id.txtDate);
@@ -180,6 +182,30 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
         });
 
     }
+
+    /*---------------------------------
+          load the data of reminder
+     ---------------------------------*/
+    public void loadDataOfReminder() {
+        MainActivity mainActivity = new MainActivity();
+        List<Reminder> allReminder = mainActivity.getAllReminder();
+
+        Intent intent = getIntent();
+        name = intent.getStringExtra("name");
+        for (Reminder reminder : allReminder) {
+            if (name == reminder.getName()) {
+                date = reminder.getDate();
+                time = reminder.getTime();
+                notification = reminder.getNotification();
+                location = reminder.getLocation();
+                vehicle = reminder.getVehicle();
+                importance = reminder.getImportanceLevel();
+            }
+        }
+
+        txtName.setText(name);
+    }
+
 
     /*----------------------------------
                 Switches
