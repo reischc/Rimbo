@@ -543,21 +543,21 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btnNotification:
                 notification = "notification";
-                btnNotification.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnNotification.setBackgroundTintList(getResources().getColorStateList(R.color.button));
                 btnNotification.setImageResource(R.drawable.notification_white);
                 btnAlarm.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnAlarm.setImageResource(R.drawable.alarm);
                 break;
             case R.id.btnAlarm:
                 notification = "alarm";
-                btnAlarm.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnAlarm.setBackgroundTintList(getResources().getColorStateList(R.color.button));
                 btnAlarm.setImageResource(R.drawable.alarm_white);
                 btnNotification.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnNotification.setImageResource(R.drawable.notification);
                 break;
             case R.id.btnWalking:
                 vehicle = "walking";
-                btnWalking.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnWalking.setBackgroundTintList(getResources().getColorStateList(R.color.button));
                 btnWalking.setImageResource(R.drawable.walking_white);
                 btnBycicle.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnCar.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
@@ -568,7 +568,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnBycicle:
                 vehicle = "bycicle";
-                btnBycicle.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnBycicle.setBackgroundTintList(getResources().getColorStateList(R.color.button));
                 btnBycicle.setImageResource(R.drawable.bycicle_white);
                 btnWalking.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnCar.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
@@ -579,7 +579,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnCar:
                 vehicle = "car";
-                btnCar.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnCar.setBackgroundTintList(getResources().getColorStateList(R.color.button));
                 btnCar.setImageResource(R.drawable.car_white);
                 btnWalking.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnBycicle.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
@@ -590,7 +590,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnTrain:
                 vehicle = "train";
-                btnTrain.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnTrain.setBackgroundTintList(getResources().getColorStateList(R.color.button));
                 btnTrain.setImageResource(R.drawable.train_white);
                 btnWalking.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnBycicle.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
@@ -601,7 +601,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnNormal:
                 importance = "normal";
-                btnNormal.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnNormal.setBackgroundTintList(getResources().getColorStateList(R.color.button));
                 btnNormal.setImageResource(R.drawable.exclamation1_white);
                 btnImportant.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnVeryImportant.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
@@ -610,7 +610,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnImportant:
                 importance = "important";
-                btnImportant.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnImportant.setBackgroundTintList(getResources().getColorStateList(R.color.button));
                 btnImportant.setImageResource(R.drawable.exclamation2_white);
                 btnNormal.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnVeryImportant.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
@@ -619,7 +619,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnVeryImportant:
                 importance = "very important";
-                btnVeryImportant.setBackgroundTintList(getResources().getColorStateList(R.color.blue));
+                btnVeryImportant.setBackgroundTintList(getResources().getColorStateList(R.color.button));
                 btnVeryImportant.setImageResource(R.drawable.excla3_white);
                 btnNormal.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));
                 btnImportant.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#d8d8d8")));

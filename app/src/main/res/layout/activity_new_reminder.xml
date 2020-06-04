@@ -15,7 +15,10 @@
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:background="@android:color/white"
+
+            android:background="@color/header"
+            android:id="@+id/header"
+
             android:backgroundTint="#0d7acc">
 
             <Button
@@ -25,8 +28,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@drawable/back"
-                android:stateListAnimator="@null"
-                android:textColor="#ffffff" />
+                android:stateListAnimator="@null" />
 
             <ImageView
                 android:id="@+id/logo"
@@ -45,7 +47,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white">
+            android:background="@color/background">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,10 +78,17 @@
                     android:id="@+id/layoutDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:background="@drawable/border_bottom"
+
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:hint="Name"
+                    android:background="@null"
+                    android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp">
+                    android:textColorHint="@color/hint"/>
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/border_bottom">
+
 
 
                     <TextView
@@ -109,17 +118,33 @@
                     android:paddingBottom="10dp"
                     android:textAlignment="center"
                     android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_bold"/>
                     android:visibility="gone" />
+
 
 
                 <LinearLayout
                     android:id="@+id/layoutTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:visibility="gone">
+
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1" />
+        </LinearLayout>
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="Select Date"
+                android:textSize="20dp"
+                android:background="@drawable/border_bottom"
+                android:textAlignment="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:visibility="gone"
+                android:textColor="@color/hint"/>
 
                     <TextView
                         android:layout_width="300dp"
@@ -128,6 +153,46 @@
                         android:text="Remind Me on a Time"
                         android:textSize="20dp"
                         android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:id="@+id/layoutTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:visibility="gone"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Remind Me on a Time"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/text_bold"/>
+
+            <Switch
+                android:id="@+id/switchTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/txtTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Select Time"
+            android:textSize="20dp"
+            android:background="@drawable/border_bottom"
+            android:textAlignment="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:visibility="gone"
+            android:textColor="@color/hint"/>
 
                     <Switch
                         android:id="@+id/switchTime"
@@ -150,6 +215,7 @@
                     android:textSize="20dp"
                     android:visibility="gone" />
 
+
                 <LinearLayout
                     android:id="@+id/layoutNotification"
                     android:layout_width="match_parent"
@@ -165,7 +231,8 @@
                         android:layout_marginLeft="15dp"
                         android:text="Notification Method"
                         android:textSize="20dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="@color/text_bold"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -180,7 +247,7 @@
                         android:layout_width="90dp"
                         android:layout_height="60dp"
                         android:layout_marginLeft="110dp"
-                        android:backgroundTint="@color/blue"
+                        android:backgroundTint="@color/button"/>
                         android:scaleType="fitCenter"
                         app:srcCompat="@drawable/notification_white" />
 
@@ -192,6 +259,24 @@
                         android:scaleType="fitCenter"
                         app:srcCompat="@drawable/alarm" />
                 </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/border_bottom"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:id="@+id/layoutLocation">
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Add a Location"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/text_bold"/>
 
                 <LinearLayout
                     android:id="@+id/layoutLocation"
@@ -266,6 +351,55 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Add a Vehicle"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/text_bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutVehicleBtn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/border_bottom"
+            android:visibility="gone">
+        <ImageButton
+            android:id="@+id/btnWalking"
+            android:layout_width="90dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/walking_white"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/button"/>
+        <ImageButton
+            android:id="@+id/btnBycicle"
+            android:layout_width="90dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/bycicle"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="10dp"/>
+        <ImageButton
+            android:id="@+id/btnCar"
+            android:layout_width="90dp"
+            android:layout_height="60dp"
+            app:srcCompat="@drawable/car"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="10dp"/>
+
+            <ImageButton
+                android:id="@+id/btnTrain"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/train"
+                android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/layoutVehicleBtn"
                     android:layout_width="match_parent"
@@ -320,7 +454,8 @@
                         android:layout_marginLeft="15dp"
                         android:text="Importance"
                         android:textSize="20dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="@color/text_bold"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -332,10 +467,12 @@
                         android:id="@+id/btnNormal"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
-                        android:layout_marginLeft="60dp"
-                        android:backgroundTint="@color/blue"
+
+                        app:srcCompat="@drawable/exclamation1_white"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/exclamation1_white" />
+                        android:backgroundTint="@color/button"
+                        android:layout_marginLeft="60dp" />
+
 
                     <ImageButton
                         android:id="@+id/btnImportant"
@@ -360,9 +497,10 @@
                     android:layout_height="60dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
-                    android:backgroundTint="#0d7acc"
+                    android:textColor="@color/button_text"/>
                     android:text="CREATE"
-                    android:textColor="#ffffff" />
+
+
 
             </LinearLayout>
         </ScrollView>
