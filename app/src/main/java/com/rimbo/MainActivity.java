@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<Reminder> allReminder = new ArrayList<>();
     private List<String> reminderNameList = new ArrayList<>();
 
+    private String dateToday;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String date = incomingIntent.getStringExtra("date");
         java.util.Calendar calendar = java.util.Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        dateToday = formatter.format(calendar.getTime());
         if (date == null){
             theDate.setText("Today, "+ formatter.format(calendar.getTime()));
         }
@@ -121,7 +124,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (allReminder.size() != 0) {
             for (int i = 0; i+1 <= allReminder.size(); i++) {
                 name = allReminder.get(i).getName();
-                reminderNameList.add(name);
+                if (dateToday.equals(allReminder.get(i).getDate().toString())) {
+                    reminderNameList.add(name);
+                }
             }
         }
 
