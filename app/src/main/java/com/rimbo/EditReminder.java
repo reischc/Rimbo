@@ -135,6 +135,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
         switchVehicle.setOnCheckedChangeListener(this);
 
         loadDataOfReminder();
+        activateNeededElements();
 
         /* Date and Time */
         mDisplayDate = (TextView) findViewById(R.id.txtDate);
@@ -206,6 +207,12 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
         txtName.setText(name);
     }
 
+    /*----------------------------------
+        activate all needed elements
+     ---------------------------------*/
+    public void activateNeededElements() {
+
+    }
 
     /*----------------------------------
                 Switches
