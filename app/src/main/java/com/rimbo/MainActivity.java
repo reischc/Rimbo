@@ -166,9 +166,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public List<Reminder> getAllReminder() {
-        return allReminder;
-    }
-
 }
 

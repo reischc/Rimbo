@@ -97,7 +97,7 @@ public class SQLite extends SQLiteOpenHelper {
         values.put(ColumnDone, reminder.isDone());
 
         //insert values into db
-        db.update(tableName, values, "id = ?", new String[] {String.valueOf(reminder.getId())});
+        db.update(tableName, values, "ID_Note = ?", new String[] {String.valueOf(reminder.getId())});
 
         //close Connection
         db.close();
