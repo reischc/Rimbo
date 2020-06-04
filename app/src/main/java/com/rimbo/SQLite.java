@@ -48,7 +48,7 @@ public class SQLite extends SQLiteOpenHelper {
     }
 
     public void addReminder(Reminder reminder) {
-        reloadDatabase();
+        //reloadDatabase();
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
