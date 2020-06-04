@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -182,12 +184,29 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         mDisplayTime.setText(hourOfDay+":"+minute);
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        calendar.set(Calendar.MINUTE, minute);
+                        calendar.set(Calendar.SECOND, 0);
+
+                        startAlarm(calendar);
                     }
                 },hour,minute,android.text.format.DateFormat.is24HourFormat(mContext));
                 timePickerDialog.show();
             }
         });
 
+    }
+
+    /*----------------------------------
+                start alarm
+    ----------------------------------*/
+    public void startAlarm(Calendar calendar) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 
     /*----------------------------------
