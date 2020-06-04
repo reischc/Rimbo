@@ -12,10 +12,10 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@android:color/white"
-            android:id="@+id/header"
             android:backgroundTint="#0d7acc">
 
             <Button
@@ -32,8 +32,8 @@
                 android:id="@+id/logo"
                 android:layout_width="310dp"
                 android:layout_height="50dp"
-                android:src="@drawable/rimbo_schrift"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:src="@drawable/rimbo_schrift" />
 
             <ImageView
                 android:id="@+id/placemaker"
@@ -53,109 +53,111 @@
                 android:orientation="vertical">
 
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_bottom"
-            android:layout_marginTop="30dp">
-
-                <EditText
-                    android:id="@+id/txtName"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:hint="Name"
-                    android:background="@null"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"/>
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/border_bottom">
 
-        </LinearLayout>
+                    <EditText
+                        android:id="@+id/txtName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@null"
+                        android:hint="Name"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/border_bottom"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:id="@+id/layoutDate">
+                </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/layoutDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/border_bottom"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="Remind Me on a Date"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <Switch
+                        android:id="@+id/switchDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
 
                 <TextView
-                    android:layout_width="300dp"
+                    android:id="@+id/txtDate"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:text="Remind Me on a Date"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_bottom"
+                    android:hint="Select Date"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textAlignment="center"
                     android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:visibility="gone" />
 
-                <Switch
-                    android:id="@+id/switchDate"
-                    android:layout_width="wrap_content"
+
+                <LinearLayout
+                    android:id="@+id/layoutTime"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="30dp"
-                    android:layout_weight="1" />
-        </LinearLayout>
-            <TextView
-                android:id="@+id/txtDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:hint="Select Date"
-                android:textSize="20dp"
-                android:background="@drawable/border_bottom"
-                android:textAlignment="center"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:visibility="gone"/>
+                    android:layout_marginTop="30dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:visibility="gone">
 
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="Remind Me on a Time"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
-        <LinearLayout
-            android:id="@+id/layoutTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:visibility="gone"
-            android:layout_marginTop="30dp">
+                    <Switch
+                        android:id="@+id/switchTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="Remind Me on a Time"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <Switch
-                android:id="@+id/switchTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
-                android:layout_weight="1" />
-        </LinearLayout>
-        <TextView
-            android:id="@+id/txtTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="Select Time"
-            android:textSize="20dp"
-            android:background="@drawable/border_bottom"
-            android:textAlignment="center"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:visibility="gone"/>
+                <TextView
+                    android:id="@+id/txtTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_bottom"
+                    android:hint="Select Time"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textAlignment="center"
+                    android:textSize="20dp"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:id="@+id/layoutNotification"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:visibility="gone"
-                    android:layout_marginTop="30dp">
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="300dp"
@@ -172,138 +174,145 @@
                     android:layout_height="60dp"
                     android:background="@drawable/border_bottom"
                     android:visibility="gone">
+
                     <ImageButton
                         android:id="@+id/btnNotification"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
-                        app:srcCompat="@drawable/notification_white"
-                        android:scaleType="fitCenter"
                         android:layout_marginLeft="110dp"
-                        android:backgroundTint="@color/blue"/>
+                        android:backgroundTint="@color/blue"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/notification_white" />
+
                     <ImageButton
                         android:id="@+id/btnAlarm"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
-                        app:srcCompat="@drawable/alarm"
+                        android:layout_marginLeft="10dp"
                         android:scaleType="fitCenter"
-                        android:layout_marginLeft="10dp"/>
+                        app:srcCompat="@drawable/alarm" />
                 </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/border_bottom"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:id="@+id/layoutLocation">
-
-            <TextView
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="Add a Location"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <Switch
-                android:id="@+id/switchLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
-                android:layout_weight="1" />
-        </LinearLayout>
-
                 <LinearLayout
+                    android:id="@+id/layoutLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_marginTop="30dp"
                     android:background="@drawable/border_bottom"
-                    android:visibility="gone"
-                    android:id="@+id/layoutLocationInput">
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtLocationStreet"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:hint="Enter Street"
-            android:background="@null"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txtLocationPlace"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:hint="Enter Location"
-                    android:background="@null"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp" />
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="Add a Location"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <Switch
+                        android:id="@+id/switchLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1" />
                 </LinearLayout>
-        <LinearLayout
-            android:id="@+id/layoutVehicle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="Add a Vehicle"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutVehicleBtn"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/border_bottom"
-            android:visibility="gone">
-        <ImageButton
-            android:id="@+id/btnWalking"
-            android:layout_width="90dp"
-            android:layout_height="60dp"
-            app:srcCompat="@drawable/walking_white"
-            android:scaleType="fitCenter"
-            android:layout_marginLeft="10dp"
-            android:backgroundTint="@color/blue"/>
-        <ImageButton
-            android:id="@+id/btnBycicle"
-            android:layout_width="90dp"
-            android:layout_height="60dp"
-            app:srcCompat="@drawable/bycicle"
-            android:scaleType="fitCenter"
-            android:layout_marginLeft="10dp"/>
-        <ImageButton
-            android:id="@+id/btnCar"
-            android:layout_width="90dp"
-            android:layout_height="60dp"
-            app:srcCompat="@drawable/car"
-            android:scaleType="fitCenter"
-            android:layout_marginLeft="10dp"/>
-
-            <ImageButton
-                android:id="@+id/btnTrain"
-                android:layout_width="90dp"
-                android:layout_height="60dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/train"
-                android:layout_marginLeft="10dp"/>
-    </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layoutLocationInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_bottom"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/txtLocationStreet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@null"
+                        android:hint="Enter Street"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp" />
+
+                    <EditText
+                        android:id="@+id/txtLocationPlace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@null"
+                        android:hint="Enter Location"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutVehicle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:layout_marginTop="30dp">
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="Add a Vehicle"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutVehicleBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/border_bottom"
+                    android:visibility="gone">
+
+                    <ImageButton
+                        android:id="@+id/btnWalking"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="10dp"
+                        android:backgroundTint="@color/blue"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/walking_white" />
+
+                    <ImageButton
+                        android:id="@+id/btnBycicle"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="10dp"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/bycicle" />
+
+                    <ImageButton
+                        android:id="@+id/btnCar"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="10dp"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/car" />
+
+                    <ImageButton
+                        android:id="@+id/btnTrain"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="10dp"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/train" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
 
                     <TextView
                         android:layout_width="300dp"
@@ -318,39 +327,42 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:background="@drawable/border_bottom">
+
                     <ImageButton
                         android:id="@+id/btnNormal"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
-                        app:srcCompat="@drawable/exclamation1_white"
-                        android:scaleType="fitCenter"
+                        android:layout_marginLeft="60dp"
                         android:backgroundTint="@color/blue"
-                        android:layout_marginLeft="60dp" />
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/exclamation1_white" />
+
                     <ImageButton
                         android:id="@+id/btnImportant"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
-                        app:srcCompat="@drawable/exclamation2"
+                        android:layout_marginLeft="10dp"
                         android:scaleType="fitCenter"
-                        android:layout_marginLeft="10dp"/>
+                        app:srcCompat="@drawable/exclamation2" />
+
                     <ImageButton
                         android:id="@+id/btnVeryImportant"
                         android:layout_width="90dp"
                         android:layout_height="60dp"
-                        app:srcCompat="@drawable/exclamation3"
+                        android:layout_marginLeft="10dp"
                         android:scaleType="fitCenter"
-                        android:layout_marginLeft="10dp"/>
+                        app:srcCompat="@drawable/exclamation3" />
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/btnCreate"
                     android:layout_width="100dp"
                     android:layout_height="60dp"
-                    android:text="CREATE"
-                    android:backgroundTint="#0d7acc"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
-                    android:textColor="#ffffff"/>
+                    android:backgroundTint="#0d7acc"
+                    android:text="CREATE"
+                    android:textColor="#ffffff" />
 
             </LinearLayout>
         </ScrollView>
