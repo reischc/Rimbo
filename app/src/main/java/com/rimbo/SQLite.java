@@ -19,15 +19,16 @@ public class SQLite extends SQLiteOpenHelper {
 
     //table columns
     private static final String tableName = "Note";
-    private static final String ColumnIDReminder = "ID_Note";
-    private static final String ColumnName = "Name";
-    private static final String ColumnDate = "Date";
-    private static final String ColumnTime = "Time";
-    private static final String ColumnNotification = "Notification";
-    private static final String ColumnLocation = "Location";
-    private static final String ColumnVehicle = "Vehicle";
-    private static final String ColumnImportance = "Importance";
-    private static final String ColumnDone = "Done";
+    private static final String columnIDReminder = "ID_Note";
+    private static final String columnName = "Name";
+    private static final String columnDate = "Date";
+    private static final String columnTime = "Time";
+    private static final String columnNotification = "Notification";
+    private static final String columnLocationStreet = "LocationStreet";
+    private static final String columnLocationPlace = "LocationPlace";
+    private static final String columnVehicle = "Vehicle";
+    private static final String columnImportance = "Importance";
+    private static final String columnDone = "Done";
     private int id;
 
     public SQLite(@Nullable Context context) {
@@ -36,7 +37,7 @@ public class SQLite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String script = "Create table "+tableName+"("+ColumnIDReminder+" Integer Primary key AUTOINCREMENT,"+ColumnName+" TEXT, "+ColumnDate+" TEXT, "+ColumnTime+" TEXT, "+ColumnNotification+" TEXT, "+ColumnLocation+" TEXT, "+ColumnVehicle+" TEXT, "+ColumnImportance+" TEXT, "+ColumnDone+" boolean"+")";
+        String script = "Create table "+tableName+"("+columnIDReminder+" Integer Primary key AUTOINCREMENT,"+columnName+" TEXT, "+columnDate+" TEXT, "+columnTime+" TEXT, "+columnNotification+" TEXT, "+columnLocationStreet+" TEXT, "+columnLocationPlace+" TEXT, "+columnVehicle+" TEXT, "+columnImportance+" TEXT, "+columnDone+" boolean"+")";
         db.execSQL(script);
     }
 
@@ -51,14 +52,15 @@ public class SQLite extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         //fill values with content
-        values.put(ColumnName, reminder.getName());
-        values.put(ColumnDate, reminder.getDate());
-        values.put(ColumnTime, reminder.getTime());
-        values.put(ColumnNotification, reminder.getNotification());
-        values.put(ColumnLocation, reminder.getLocation());
-        values.put(ColumnVehicle, reminder.getVehicle());
-        values.put(ColumnImportance, reminder.getImportanceLevel());
-        values.put(ColumnDone, reminder.isDone());
+        values.put(columnName, reminder.getName());
+        values.put(columnDate, reminder.getDate());
+        values.put(columnTime, reminder.getTime());
+        values.put(columnNotification, reminder.getNotification());
+        values.put(columnLocationStreet, reminder.getLocationStreet());
+        values.put(columnLocationPlace, reminder.getLocationPlace());
+        values.put(columnVehicle, reminder.getVehicle());
+        values.put(columnImportance, reminder.getImportanceLevel());
+        values.put(columnDone, reminder.isDone());
 
         //insert values into db
         db.insert(tableName, null, values);
@@ -75,7 +77,7 @@ public class SQLite extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()) {
             do {
-                Reminder reminder = new Reminder(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), Boolean.parseBoolean(String.valueOf(cursor.getInt(8))));
+                Reminder reminder = new Reminder(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), Boolean.parseBoolean(String.valueOf(cursor.getInt(9))));
                 allReminder.add(reminder);
             } while(cursor.moveToNext());
         }
@@ -87,19 +89,26 @@ public class SQLite extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         //fill values with content
-        values.put(ColumnName, reminder.getName());
-        values.put(ColumnDate, reminder.getDate());
-        values.put(ColumnTime, reminder.getTime());
-        values.put(ColumnNotification, reminder.getNotification());
-        values.put(ColumnLocation, reminder.getLocation());
-        values.put(ColumnVehicle, reminder.getVehicle());
-        values.put(ColumnImportance, reminder.getImportanceLevel());
-        values.put(ColumnDone, reminder.isDone());
+        values.put(columnName, reminder.getName());
+        values.put(columnDate, reminder.getDate());
+        values.put(columnTime, reminder.getTime());
+        values.put(columnNotification, reminder.getNotification());
+        values.put(columnLocationStreet, reminder.getLocationStreet());
+        values.put(columnLocationPlace, reminder.getLocationPlace());
+        values.put(columnVehicle, reminder.getVehicle());
+        values.put(columnImportance, reminder.getImportanceLevel());
+        values.put(columnDone, reminder.isDone());
 
         //insert values into db
         db.update(tableName, values, "ID_Note = ?", new String[] {String.valueOf(reminder.getId())});
 
         //close Connection
         db.close();
+    }
+
+    public void reloadDatabase() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("Drop Table if exists "+tableName);
+        onCreate(db);
     }
 }

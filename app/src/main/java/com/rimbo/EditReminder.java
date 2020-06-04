@@ -52,9 +52,10 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
     private ImageButton btnVeryImportant;
 
     private EditText txtName;
+    private EditText txtLocationStreet;
+    private EditText txtLocationPlace;
     private TextView txtDate;
     private TextView txtTime;
-    private TextView txtLocation;
 
     private Switch switchDate;
     private Switch switchTime;
@@ -68,13 +69,15 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
     private LinearLayout layoutVehicleBtn;
     private LinearLayout layoutDate;
     private LinearLayout layoutLocation;
+    private LinearLayout layoutLocationInput;
 
     private int id = 0;
     private String name = "";
     private String date = "";
     private String time = "";
     private String notification = "notification";
-    private String location = "";
+    private String locationStreet = "";
+    private String locationPlace = "";
     private String vehicle = "walking";
     private String importance = "normal";
 
@@ -229,9 +232,10 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
         btnVeryImportant = (ImageButton) findViewById(R.id.btnVeryImportant);
 
         txtName = (EditText) findViewById(R.id.txtName);
+        txtLocationStreet = (EditText) findViewById(R.id.txtLocationStreet);
+        txtLocationPlace = (EditText) findViewById(R.id.txtLocationPlace);
         txtDate = (TextView) findViewById(R.id.txtDate);
         txtTime = (TextView) findViewById(R.id.txtTime);
-        txtLocation = (TextView) findViewById(R.id.txtLocation);
 
         switchDate = (Switch) findViewById(R.id.switchDate);
         switchTime = (Switch) findViewById(R.id.switchTime);
@@ -245,6 +249,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
         layoutVehicleBtn = (LinearLayout) findViewById(R.id.layoutVehicleBtn);
         layoutDate = (LinearLayout) findViewById(R.id.layoutDate);
         layoutLocation = (LinearLayout) findViewById(R.id.layoutLocation);
+        layoutLocationInput = (LinearLayout) findViewById(R.id.layoutLocationInput);
 
         //load all listeners
         btnBack.setOnClickListener(this);
@@ -327,7 +332,8 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
                 date = reminder.getDate();
                 time = reminder.getTime();
                 notification = reminder.getNotification();
-                location = reminder.getLocation();
+                locationStreet = reminder.getLocationStreet();
+                locationPlace = reminder.getLocationPlace();
                 vehicle = reminder.getVehicle();
                 importance = reminder.getImportanceLevel();
             }
@@ -351,9 +357,10 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
-        if (!location.equals("")) {
+        if (!locationStreet.equals("")) {
             switchLocation.setChecked(true);
-            txtLocation.setText(location);
+            txtLocationStreet.setText(locationStreet);
+            txtLocationPlace.setText(locationPlace);
             switchVehicle.setChecked(true);
             switch (vehicle) {
                 case "walking":
@@ -484,10 +491,11 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.switchLocation:
                 if (buttonView.isChecked()) {
-                    txtLocation.setVisibility(View.VISIBLE);
+                    layoutLocationInput.setVisibility(View.VISIBLE);
                     layoutLocation.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_none));
-                    if (txtLocation.getText() == "") {
-                        txtLocation.addTextChangedListener(new TextWatcher() {
+                    layoutLocationInput.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_bottom));
+                    if (txtLocationStreet.getText().toString().matches("") && txtLocationPlace.getText().toString().matches("")) {
+                        txtLocationStreet.addTextChangedListener(new TextWatcher() {
                             @Override
                             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                             }
@@ -505,9 +513,11 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
                     } else {
                         layoutVehicle.setVisibility(View.VISIBLE);
                         layoutVehicleBtn.setVisibility(View.VISIBLE);
+                        layoutLocationInput.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_none));
                     }
                 } else {
-                    txtLocation.setVisibility(View.GONE);
+                    layoutLocationInput.setVisibility(View.GONE);
+                    layoutLocation.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_bottom));
                     layoutVehicle.setVisibility(View.GONE);
                     layoutVehicleBtn.setVisibility(View.GONE);
                 }
@@ -628,10 +638,11 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
                     name = txtName.getText().toString();
                     date = txtDate.getText().toString();
                     time = txtTime.getText().toString();
-                    location = txtLocation.getText().toString();
+                    locationStreet = txtLocationStreet.getText().toString();
+                    locationPlace = txtLocationPlace.getText().toString();
 
                     //update reminder in the sqlite file
-                    Reminder reminder = new Reminder(id, name, date, time, notification, location, vehicle, importance, false);
+                    Reminder reminder = new Reminder(id, name, date, time, notification, locationStreet, locationPlace, vehicle, importance, false);
                     SQLite db = new SQLite(this);
                     db.updateReminder(reminder);
 

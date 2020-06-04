@@ -33,21 +33,7 @@ import android.widget.TimePicker;
 
 import android.widget.Toast;
 
-
-import com.google.android.gms.common.api.Status;
-import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.widget.Autocomplete;
-import com.google.android.libraries.places.widget.AutocompleteActivity;
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
-
-import org.w3c.dom.Text;
-
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.List;
-
-import javax.net.ssl.SSLEngineResult;
 
 public class NewReminder extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
     /*------------------------
@@ -89,7 +75,8 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     private String date = "";
     private String time = "";
     private String notification = "notification";
-    private String location = "";
+    private String locationStreet = "";
+    private String locationPlace = "";
     private String vehicle = "walking";
     private String importance = "normal";
 
@@ -453,10 +440,11 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                     name = txtName.getText().toString();
                     date = txtDate.getText().toString();
                     time = txtTime.getText().toString();
-                    location = txtLocationStreet.getText().toString()+txtLocationPlace.getText().toString();
+                    locationStreet = txtLocationStreet.getText().toString();
+                    locationPlace = txtLocationPlace.getText().toString();
 
                     //create the reminder and add him reminder to the list
-                    Reminder reminder = new Reminder(0, name, date, time, notification, location, vehicle, importance, false);
+                    Reminder reminder = new Reminder(0, name, date, time, notification, locationStreet, locationPlace, vehicle, importance, false);
                     SQLite db = new SQLite(this);
                     db.addReminder(reminder);
 
