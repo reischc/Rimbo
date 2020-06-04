@@ -54,7 +54,7 @@ public class SQLite extends SQLiteOpenHelper {
         values.put(ColumnName, reminder.getName());
         values.put(ColumnDate, reminder.getDate());
         values.put(ColumnTime, reminder.getTime());
-        values.put(ColumnNotification, reminder.getTimer());
+        values.put(ColumnNotification, reminder.getNotification());
         values.put(ColumnLocation, reminder.getLocation());
         values.put(ColumnVehicle, reminder.getVehicle());
         values.put(ColumnImportance, reminder.getImportanceLevel());
@@ -90,14 +90,14 @@ public class SQLite extends SQLiteOpenHelper {
         values.put(ColumnName, reminder.getName());
         values.put(ColumnDate, reminder.getDate());
         values.put(ColumnTime, reminder.getTime());
-        values.put(ColumnNotification, reminder.getTimer());
+        values.put(ColumnNotification, reminder.getNotification());
         values.put(ColumnLocation, reminder.getLocation());
         values.put(ColumnVehicle, reminder.getVehicle());
         values.put(ColumnImportance, reminder.getImportanceLevel());
         values.put(ColumnDone, reminder.isDone());
 
         //insert values into db
-        db.update(tableName, values, "id = ?", new String[] {String.valueOf(reminder.getId())});
+        db.update(tableName, values, "ID_Note = ?", new String[] {String.valueOf(reminder.getId())});
 
         //close Connection
         db.close();

@@ -71,7 +71,7 @@ public class Reminder {
         return vehicle;
     }
 
-    public String getTimer() {
+    public String getNotification() {
         return notification;
     }
 
@@ -111,7 +111,7 @@ public class Reminder {
         this.vehicle = vehicle;
     }
 
-    public void setTimer(String notification) {
+    public void setNotification(String notification) {
         this.notification = notification;
     }
 

@@ -1,5 +1,6 @@
 package com.rimbo;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -9,52 +10,36 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-
 import android.widget.Switch;
 import android.widget.TextView;
-
 import android.widget.TimePicker;
-
 import android.widget.Toast;
 
-
-import com.google.android.gms.common.api.Status;
-import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.widget.Autocomplete;
-import com.google.android.libraries.places.widget.AutocompleteActivity;
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
-
-import org.w3c.dom.Text;
-
-import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
-import javax.net.ssl.SSLEngineResult;
-
-public class NewReminder extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+public class EditReminder extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     /*------------------------
             all elements
      -----------------------*/
     private Button btnBack;
-    private Button btnCreate;
+    private Button btnUpdate;
 
     private ImageButton btnNotification;
     private ImageButton btnAlarm;
@@ -67,15 +52,15 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     private ImageButton btnVeryImportant;
 
     private EditText txtName;
-    private EditText txtLocationStreet;
-    private EditText txtLocationPlace;
     private TextView txtDate;
     private TextView txtTime;
-
+    private TextView txtLocation;
 
     private Switch switchDate;
     private Switch switchTime;
     private Switch switchLocation;
+    private Switch switchVehicle;
+
     private LinearLayout layoutTime;
     private LinearLayout layoutNotification;
     private LinearLayout layoutNotificationBtn;
@@ -83,8 +68,8 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     private LinearLayout layoutVehicleBtn;
     private LinearLayout layoutDate;
     private LinearLayout layoutLocation;
-    private LinearLayout layoutLocationInput;
 
+    private int id = 0;
     private String name = "";
     private String date = "";
     private String time = "";
@@ -92,6 +77,129 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     private String location = "";
     private String vehicle = "walking";
     private String importance = "normal";
+
+    List<Reminder> allReminder = new List<Reminder>() {
+        @Override
+        public int size() {
+            return 0;
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return false;
+        }
+
+        @Override
+        public boolean contains(@Nullable Object o) {
+            return false;
+        }
+
+        @NonNull
+        @Override
+        public Iterator<Reminder> iterator() {
+            return null;
+        }
+
+        @NonNull
+        @Override
+        public Object[] toArray() {
+            return new Object[0];
+        }
+
+        @NonNull
+        @Override
+        public <T> T[] toArray(@NonNull T[] a) {
+            return null;
+        }
+
+        @Override
+        public boolean add(Reminder reminder) {
+            return false;
+        }
+
+        @Override
+        public boolean remove(@Nullable Object o) {
+            return false;
+        }
+
+        @Override
+        public boolean containsAll(@NonNull Collection<?> c) {
+            return false;
+        }
+
+        @Override
+        public boolean addAll(@NonNull Collection<? extends Reminder> c) {
+            return false;
+        }
+
+        @Override
+        public boolean addAll(int index, @NonNull Collection<? extends Reminder> c) {
+            return false;
+        }
+
+        @Override
+        public boolean removeAll(@NonNull Collection<?> c) {
+            return false;
+        }
+
+        @Override
+        public boolean retainAll(@NonNull Collection<?> c) {
+            return false;
+        }
+
+        @Override
+        public void clear() {
+
+        }
+
+        @Override
+        public Reminder get(int index) {
+            return null;
+        }
+
+        @Override
+        public Reminder set(int index, Reminder element) {
+            return null;
+        }
+
+        @Override
+        public void add(int index, Reminder element) {
+
+        }
+
+        @Override
+        public Reminder remove(int index) {
+            return null;
+        }
+
+        @Override
+        public int indexOf(@Nullable Object o) {
+            return 0;
+        }
+
+        @Override
+        public int lastIndexOf(@Nullable Object o) {
+            return 0;
+        }
+
+        @NonNull
+        @Override
+        public ListIterator<Reminder> listIterator() {
+            return null;
+        }
+
+        @NonNull
+        @Override
+        public ListIterator<Reminder> listIterator(int index) {
+            return null;
+        }
+
+        @NonNull
+        @Override
+        public List<Reminder> subList(int fromIndex, int toIndex) {
+            return null;
+        }
+    };
 
 
     /* Date and Time */
@@ -101,14 +209,15 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     private TextView mDisplayTime;
     private Context mContext = this;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_reminder);
+        setContentView(R.layout.activity_edit_reminder);
 
         //get all items by ID
         btnBack = (Button) findViewById(R.id.btnBack);
-        btnCreate = (Button) findViewById(R.id.btnCreate);
+        btnUpdate = (Button) findViewById(R.id.btnUpdate);
         btnNotification = (ImageButton) findViewById(R.id.btnNotification);
         btnAlarm = (ImageButton) findViewById(R.id.btnAlarm);
         btnWalking = (ImageButton) findViewById(R.id.btnWalking);
@@ -122,25 +231,24 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         txtName = (EditText) findViewById(R.id.txtName);
         txtDate = (TextView) findViewById(R.id.txtDate);
         txtTime = (TextView) findViewById(R.id.txtTime);
-        txtLocationStreet = (EditText) findViewById(R.id.txtLocationStreet);
-        txtLocationPlace = (EditText) findViewById(R.id.txtLocationPlace);
+        txtLocation = (TextView) findViewById(R.id.txtLocation);
 
         switchDate = (Switch) findViewById(R.id.switchDate);
         switchTime = (Switch) findViewById(R.id.switchTime);
         switchLocation = (Switch) findViewById(R.id.switchLocation);
+        switchVehicle = (Switch) findViewById(R.id.switchVehicle);
 
         layoutTime = (LinearLayout) findViewById(R.id.layoutTime);
         layoutNotification = (LinearLayout) findViewById(R.id.layoutNotification);
         layoutNotificationBtn = (LinearLayout) findViewById(R.id.layoutNotificationBtn);
         layoutVehicle = (LinearLayout) findViewById(R.id.layoutVehicle);
         layoutVehicleBtn = (LinearLayout) findViewById(R.id.layoutVehicleBtn);
-        layoutDate = (LinearLayout)  findViewById(R.id.layoutDate);
+        layoutDate = (LinearLayout) findViewById(R.id.layoutDate);
         layoutLocation = (LinearLayout) findViewById(R.id.layoutLocation);
-        layoutLocationInput = (LinearLayout) findViewById(R.id.layoutLocationInput);
 
         //load all listeners
         btnBack.setOnClickListener(this);
-        btnCreate.setOnClickListener(this);
+        btnUpdate.setOnClickListener(this);
         btnNotification.setOnClickListener(this);
         btnAlarm.setOnClickListener(this);
         btnWalking.setOnClickListener(this);
@@ -154,19 +262,23 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         switchDate.setOnCheckedChangeListener(this);
         switchTime.setOnCheckedChangeListener(this);
         switchLocation.setOnCheckedChangeListener(this);
+        switchVehicle.setOnCheckedChangeListener(this);
 
+        loadReminder();
+        loadDataOfReminder();
+        activateNeededElements();
 
         /* Date and Time */
         mDisplayDate = (TextView) findViewById(R.id.txtDate);
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+                java.util.Calendar cal = java.util.Calendar.getInstance();
+                int year = cal.get(java.util.Calendar.YEAR);
+                int month = cal.get(java.util.Calendar.MONTH);
+                int day = cal.get(java.util.Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(NewReminder.this, mDateSetListener, year,month,day);
+                DatePickerDialog dialog = new DatePickerDialog(EditReminder.this, mDateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                 dialog.show();
             }
@@ -176,16 +288,16 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
-                String date = dayOfMonth+ "." +month+"."+year;
+                String date = dayOfMonth + "." + month + "." + year;
                 mDisplayDate.setText(date);
             }
         };
 
         mDisplayTime = (TextView) findViewById(R.id.txtTime);
 
-        Calendar calendar = Calendar.getInstance();
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
 
-        final int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        final int hour = calendar.get(java.util.Calendar.HOUR_OF_DAY);
         final int minute = calendar.get(Calendar.MINUTE);
 
         mDisplayTime.setOnClickListener(new View.OnClickListener() {
@@ -194,13 +306,93 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 TimePickerDialog timePickerDialog = new TimePickerDialog(mContext, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        mDisplayTime.setText(hourOfDay+":"+minute);
+                        mDisplayTime.setText(hourOfDay + ":" + minute);
                     }
-                },hour,minute,android.text.format.DateFormat.is24HourFormat(mContext));
+                }, hour, minute, android.text.format.DateFormat.is24HourFormat(mContext));
                 timePickerDialog.show();
             }
         });
 
+    }
+
+    /*---------------------------------
+          load the data of reminder
+     ---------------------------------*/
+    public void loadDataOfReminder() {
+        Intent intent = getIntent();
+        name = intent.getStringExtra("name");
+        for (Reminder reminder : allReminder) {
+            if (name.equals(reminder.getName())) {
+                id = reminder.getId();
+                date = reminder.getDate();
+                time = reminder.getTime();
+                notification = reminder.getNotification();
+                location = reminder.getLocation();
+                vehicle = reminder.getVehicle();
+                importance = reminder.getImportanceLevel();
+            }
+        }
+
+        txtName.setText(name);
+    }
+
+    /*----------------------------------
+        activate all needed elements
+     ---------------------------------*/
+    public void activateNeededElements() {
+        if (!date.equals("")) {
+            switchDate.setChecked(true);
+            txtDate.setText(date);
+            if (!time.equals("")) {
+                switchTime.setChecked(true);
+                txtTime.setText(time);
+                if (!notification.equals("notification")) {
+                    btnAlarm.callOnClick();
+                }
+            }
+        }
+        if (!location.equals("")) {
+            switchLocation.setChecked(true);
+            txtLocation.setText(location);
+            switchVehicle.setChecked(true);
+            switch (vehicle) {
+                case "walking":
+                    btnWalking.callOnClick();
+                    break;
+                case "bycicle":
+                    btnBycicle.callOnClick();
+                    break;
+                case "car":
+                    btnCar.callOnClick();
+                    break;
+                case "train":
+                    btnTrain.callOnClick();
+                    break;
+                default:
+                    break;
+            }
+        }
+        switch (importance) {
+            case "normal":
+                btnNormal.callOnClick();
+                break;
+            case "important":
+                btnImportant.callOnClick();
+                break;
+            case "very important":
+                btnVeryImportant.callOnClick();
+                break;
+            default:
+                break;
+        }
+    }
+
+    /*----------------------------------
+            load all reminders
+     ---------------------------------*/
+    public void loadReminder() {
+        SQLite db = new SQLite(this);
+        allReminder = db.getAllReminder();
     }
 
     /*----------------------------------
@@ -212,9 +404,9 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
             case R.id.switchDate:
                 if (buttonView.isChecked()) {
                     txtDate.setVisibility(View.VISIBLE);
-                    layoutDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
-                    layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
-                    txtDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
+                    layoutDate.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_none));
+                    layoutTime.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_bottom));
+                    txtDate.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_bottom));
                     if (txtDate.getText() == "") {
                         txtDate.addTextChangedListener(new TextWatcher() {
                             @Override
@@ -228,24 +420,24 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                             @Override
                             public void afterTextChanged(Editable s) {
                                 layoutTime.setVisibility(View.VISIBLE);
-                                layoutDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
-                                layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
-                                txtDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
+                                layoutDate.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_none));
+                                layoutTime.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_bottom));
+                                txtDate.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_bottom));
                             }
                         });
                     } else {
                         layoutTime.setVisibility(View.VISIBLE);
-                        layoutDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
-                        layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
-                        txtDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
+                        layoutDate.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_none));
+                        layoutTime.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_bottom));
+                        txtDate.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_bottom));
                     }
                 } else {
                     txtDate.setVisibility(View.GONE);
                     txtTime.setVisibility(View.GONE);
                     layoutTime.setVisibility(View.GONE);
-                    layoutDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
-                    layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
-                    txtDate.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
+                    layoutDate.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_bottom));
+                    layoutTime.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_none));
+                    txtDate.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_none));
 
                     layoutNotification.setVisibility(View.GONE);
                     layoutNotificationBtn.setVisibility(View.GONE);
@@ -254,10 +446,10 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 }
                 break;
             case R.id.switchTime:
-                if (buttonView.isChecked()){
+                if (buttonView.isChecked()) {
                     txtTime.setVisibility(View.VISIBLE);
-                    layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
-                    txtTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
+                    layoutTime.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_none));
+                    txtTime.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_bottom));
                     if (txtTime.getText() == "") {
                         txtTime.addTextChangedListener(new TextWatcher() {
                             @Override
@@ -272,31 +464,30 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                             public void afterTextChanged(Editable s) {
                                 layoutNotification.setVisibility(View.VISIBLE);
                                 layoutNotificationBtn.setVisibility(View.VISIBLE);
-                                layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
-                                txtTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
+                                layoutTime.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_none));
+                                txtTime.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_bottom));
                             }
                         });
                     } else {
                         layoutNotification.setVisibility(View.VISIBLE);
                         layoutNotificationBtn.setVisibility(View.VISIBLE);
-                        layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
-                        txtTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
+                        layoutTime.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_none));
+                        txtTime.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_bottom));
                     }
                 } else {
                     txtTime.setVisibility(View.GONE);
                     layoutNotification.setVisibility(View.GONE);
                     layoutNotificationBtn.setVisibility(View.GONE);
-                    layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
-                    txtTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
+                    layoutTime.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_bottom));
+                    txtTime.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_none));
                 }
                 break;
             case R.id.switchLocation:
-                if (buttonView.isChecked()){
-                    layoutLocationInput.setVisibility(View.VISIBLE);
-                    layoutLocation.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
-                    layoutLocationInput.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
-                    if (txtLocationStreet.getText().toString().matches("") && txtLocationPlace.getText().toString().matches("")) {
-                        txtLocationStreet.addTextChangedListener(new TextWatcher() {
+                if (buttonView.isChecked()) {
+                    txtLocation.setVisibility(View.VISIBLE);
+                    layoutLocation.setBackground(ContextCompat.getDrawable(EditReminder.this, R.drawable.border_none));
+                    if (txtLocation.getText() == "") {
+                        txtLocation.addTextChangedListener(new TextWatcher() {
                             @Override
                             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                             }
@@ -309,36 +500,22 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                             public void afterTextChanged(Editable s) {
                                 layoutVehicle.setVisibility(View.VISIBLE);
                                 layoutVehicleBtn.setVisibility(View.VISIBLE);
-                                layoutLocationInput.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
-
-                            }
-                        });
-                        txtLocationPlace.addTextChangedListener(new TextWatcher() {
-                            @Override
-                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                            }
-
-                            @Override
-                            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                            }
-
-                            @Override
-                            public void afterTextChanged(Editable s) {
-                                layoutVehicle.setVisibility(View.VISIBLE);
-                                layoutVehicleBtn.setVisibility(View.VISIBLE);
-                                layoutLocationInput.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
-
                             }
                         });
                     } else {
                         layoutVehicle.setVisibility(View.VISIBLE);
                         layoutVehicleBtn.setVisibility(View.VISIBLE);
-                        layoutLocationInput.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
-
                     }
                 } else {
-                    layoutLocationInput.setVisibility(View.GONE);
+                    txtLocation.setVisibility(View.GONE);
                     layoutVehicle.setVisibility(View.GONE);
+                    layoutVehicleBtn.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.switchVehicle:
+                if (buttonView.isChecked()) {
+                    layoutVehicleBtn.setVisibility(View.VISIBLE);
+                } else {
                     layoutVehicleBtn.setVisibility(View.GONE);
                 }
                 break;
@@ -347,9 +524,9 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         }
     }
 
-    /*---------------------------------------------
-                Create & Back Button
-     --------------------------------------------*/
+    /*--------------------------------------------
+               function buttons
+    --------------------------------------------*/
     @SuppressLint("ResourceAsColor")
     @Override
     public void onClick(View v) {
@@ -444,20 +621,19 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 startActivity(intent);
                 finish();
                 break;
-            case R.id.btnCreate:
-
+            case R.id.btnUpdate:
                 if (txtName.getText().toString().matches("")) {
                     Toast.makeText(this, "You must set a name!", Toast.LENGTH_SHORT).show();
                 } else {
                     name = txtName.getText().toString();
                     date = txtDate.getText().toString();
                     time = txtTime.getText().toString();
-                    location = txtLocationStreet.getText().toString()+txtLocationPlace.getText().toString();
+                    location = txtLocation.getText().toString();
 
-                    //create the reminder and add him reminder to the list
-                    Reminder reminder = new Reminder(0, name, date, time, notification, location, vehicle, importance, false);
+                    //update reminder in the sqlite file
+                    Reminder reminder = new Reminder(id, name, date, time, notification, location, vehicle, importance, false);
                     SQLite db = new SQLite(this);
-                    db.addReminder(reminder);
+                    db.updateReminder(reminder);
 
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent1);
@@ -467,5 +643,10 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }
