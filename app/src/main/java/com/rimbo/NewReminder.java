@@ -340,6 +340,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                     layoutLocationInput.setVisibility(View.GONE);
                     layoutVehicle.setVisibility(View.GONE);
                     layoutVehicleBtn.setVisibility(View.GONE);
+                    layoutLocation.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
                 }
                 break;
             default:
