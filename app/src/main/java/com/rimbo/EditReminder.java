@@ -1,5 +1,7 @@
 package com.rimbo;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -24,16 +26,20 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class EditReminder extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     /*------------------------
             all elements
      -----------------------*/
     private Button btnBack;
-    private Button btnCreate;
+    private Button btnUpdate;
 
     private ImageButton btnNotification;
     private ImageButton btnAlarm;
@@ -63,6 +69,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
     private LinearLayout layoutDate;
     private LinearLayout layoutLocation;
 
+    private int id = 0;
     private String name = "";
     private String date = "";
     private String time = "";
@@ -70,6 +77,129 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
     private String location = "";
     private String vehicle = "walking";
     private String importance = "normal";
+
+    List<Reminder> allReminder = new List<Reminder>() {
+        @Override
+        public int size() {
+            return 0;
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return false;
+        }
+
+        @Override
+        public boolean contains(@Nullable Object o) {
+            return false;
+        }
+
+        @NonNull
+        @Override
+        public Iterator<Reminder> iterator() {
+            return null;
+        }
+
+        @NonNull
+        @Override
+        public Object[] toArray() {
+            return new Object[0];
+        }
+
+        @NonNull
+        @Override
+        public <T> T[] toArray(@NonNull T[] a) {
+            return null;
+        }
+
+        @Override
+        public boolean add(Reminder reminder) {
+            return false;
+        }
+
+        @Override
+        public boolean remove(@Nullable Object o) {
+            return false;
+        }
+
+        @Override
+        public boolean containsAll(@NonNull Collection<?> c) {
+            return false;
+        }
+
+        @Override
+        public boolean addAll(@NonNull Collection<? extends Reminder> c) {
+            return false;
+        }
+
+        @Override
+        public boolean addAll(int index, @NonNull Collection<? extends Reminder> c) {
+            return false;
+        }
+
+        @Override
+        public boolean removeAll(@NonNull Collection<?> c) {
+            return false;
+        }
+
+        @Override
+        public boolean retainAll(@NonNull Collection<?> c) {
+            return false;
+        }
+
+        @Override
+        public void clear() {
+
+        }
+
+        @Override
+        public Reminder get(int index) {
+            return null;
+        }
+
+        @Override
+        public Reminder set(int index, Reminder element) {
+            return null;
+        }
+
+        @Override
+        public void add(int index, Reminder element) {
+
+        }
+
+        @Override
+        public Reminder remove(int index) {
+            return null;
+        }
+
+        @Override
+        public int indexOf(@Nullable Object o) {
+            return 0;
+        }
+
+        @Override
+        public int lastIndexOf(@Nullable Object o) {
+            return 0;
+        }
+
+        @NonNull
+        @Override
+        public ListIterator<Reminder> listIterator() {
+            return null;
+        }
+
+        @NonNull
+        @Override
+        public ListIterator<Reminder> listIterator(int index) {
+            return null;
+        }
+
+        @NonNull
+        @Override
+        public List<Reminder> subList(int fromIndex, int toIndex) {
+            return null;
+        }
+    };
 
 
     /* Date and Time */
@@ -87,7 +217,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
 
         //get all items by ID
         btnBack = (Button) findViewById(R.id.btnBack);
-        btnCreate = (Button) findViewById(R.id.btnCreate);
+        btnUpdate = (Button) findViewById(R.id.btnUpdate);
         btnNotification = (ImageButton) findViewById(R.id.btnNotification);
         btnAlarm = (ImageButton) findViewById(R.id.btnAlarm);
         btnWalking = (ImageButton) findViewById(R.id.btnWalking);
@@ -118,7 +248,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
 
         //load all listeners
         btnBack.setOnClickListener(this);
-        btnCreate.setOnClickListener(this);
+        btnUpdate.setOnClickListener(this);
         btnNotification.setOnClickListener(this);
         btnAlarm.setOnClickListener(this);
         btnWalking.setOnClickListener(this);
@@ -134,6 +264,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
         switchLocation.setOnCheckedChangeListener(this);
         switchVehicle.setOnCheckedChangeListener(this);
 
+        loadReminder();
         loadDataOfReminder();
         activateNeededElements();
 
@@ -188,13 +319,11 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
           load the data of reminder
      ---------------------------------*/
     public void loadDataOfReminder() {
-        MainActivity mainActivity = new MainActivity();
-        List<Reminder> allReminder = mainActivity.getAllReminder();
-
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         for (Reminder reminder : allReminder) {
-            if (name == reminder.getName()) {
+            if (name.equals(reminder.getName())) {
+                id = reminder.getId();
                 date = reminder.getDate();
                 time = reminder.getTime();
                 notification = reminder.getNotification();
@@ -211,7 +340,59 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
         activate all needed elements
      ---------------------------------*/
     public void activateNeededElements() {
+        if (!date.equals("")) {
+            switchDate.setChecked(true);
+            txtDate.setText(date);
+            if (!time.equals("")) {
+                switchTime.setChecked(true);
+                txtTime.setText(time);
+                if (!notification.equals("notification")) {
+                    btnAlarm.callOnClick();
+                }
+            }
+        }
+        if (!location.equals("")) {
+            switchLocation.setChecked(true);
+            txtLocation.setText(location);
+            switchVehicle.setChecked(true);
+            switch (vehicle) {
+                case "walking":
+                    btnWalking.callOnClick();
+                    break;
+                case "bycicle":
+                    btnBycicle.callOnClick();
+                    break;
+                case "car":
+                    btnCar.callOnClick();
+                    break;
+                case "train":
+                    btnTrain.callOnClick();
+                    break;
+                default:
+                    break;
+            }
+        }
+        switch (importance) {
+            case "normal":
+                btnNormal.callOnClick();
+                break;
+            case "important":
+                btnImportant.callOnClick();
+                break;
+            case "very important":
+                btnVeryImportant.callOnClick();
+                break;
+            default:
+                break;
+        }
+    }
 
+    /*----------------------------------
+            load all reminders
+     ---------------------------------*/
+    public void loadReminder() {
+        SQLite db = new SQLite(this);
+        allReminder = db.getAllReminder();
     }
 
     /*----------------------------------
@@ -343,8 +524,8 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    /*---------------------------------------------
-               Create & Back Button
+    /*--------------------------------------------
+               function buttons
     --------------------------------------------*/
     @SuppressLint("ResourceAsColor")
     @Override
@@ -440,11 +621,24 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 finish();
                 break;
-            case R.id.btnCreate:
-                name = "";
-                Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent1);
-                finish();
+            case R.id.btnUpdate:
+                if (txtName.getText().toString().matches("")) {
+                    Toast.makeText(this, "You must set a name!", Toast.LENGTH_SHORT).show();
+                } else {
+                    name = txtName.getText().toString();
+                    date = txtDate.getText().toString();
+                    time = txtTime.getText().toString();
+                    location = txtLocation.getText().toString();
+
+                    //update reminder in the sqlite file
+                    Reminder reminder = new Reminder(id, name, date, time, notification, location, vehicle, importance, false);
+                    SQLite db = new SQLite(this);
+                    db.updateReminder(reminder);
+
+                    Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent1);
+                    finish();
+                }
                 break;
             default:
                 break;

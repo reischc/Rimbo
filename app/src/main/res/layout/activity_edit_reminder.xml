@@ -334,7 +334,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btnCreate"
+                    android:id="@+id/btnUpdate"
                     android:layout_width="100dp"
                     android:layout_height="60dp"
                     android:text="UPDATE"
