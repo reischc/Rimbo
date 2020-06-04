@@ -9,7 +9,8 @@ public class Reminder {
     private String date;
     private String time;
     private String notification;
-    private String location;
+    private String locationStreet;
+    private String locationPlace;
     private String vehicle;
     private String importanceLevel;
     private boolean done;
@@ -19,13 +20,14 @@ public class Reminder {
            Constructor
     -------------------------*/
 
-    public Reminder(int id, String name, String date, String time, String notification, String location, String vehicle, String importanceLevel, boolean done) {
+    public Reminder(int id, String name, String date, String time, String notification, String locationStreet, String locationPlace, String vehicle, String importanceLevel, boolean done) {
         this.id = id;
         this.name = name;
         this.date = date;
         this.time = time;
         this.notification = notification;
-        this.location = location;
+        this.locationStreet = locationStreet;
+        this.locationPlace = locationPlace;
         this.vehicle = vehicle;
         this.importanceLevel = importanceLevel;
         this.done = done;
@@ -63,8 +65,12 @@ public class Reminder {
         return importanceLevel;
     }
 
-    public String getLocation() {
-        return location;
+    public String getLocationStreet() {
+        return locationStreet;
+    }
+
+    public String getLocationPlace() {
+        return locationPlace;
     }
 
     public String getVehicle() {
@@ -80,7 +86,7 @@ public class Reminder {
     }
 
     /*-------------------------
-                     Setter
+             Setter
     -------------------------*/
 
     public void setId(int id) {
@@ -103,8 +109,12 @@ public class Reminder {
         this.importanceLevel = importanceLevel;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLocationStreet(String locationStreet) {
+        this.locationStreet = locationStreet;
+    }
+
+    public void setLocationPlace(String locationPlace) {
+        this.locationPlace = locationPlace;
     }
 
     public void setVehicle(String vehicle) {
