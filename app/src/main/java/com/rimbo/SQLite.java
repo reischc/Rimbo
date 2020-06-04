@@ -54,7 +54,7 @@ public class SQLite extends SQLiteOpenHelper {
         values.put(ColumnName, reminder.getName());
         values.put(ColumnDate, reminder.getDate());
         values.put(ColumnTime, reminder.getTime());
-        values.put(ColumnNotification, reminder.getTimer());
+        values.put(ColumnNotification, reminder.getNotification());
         values.put(ColumnLocation, reminder.getLocation());
         values.put(ColumnVehicle, reminder.getVehicle());
         values.put(ColumnImportance, reminder.getImportanceLevel());
@@ -90,7 +90,7 @@ public class SQLite extends SQLiteOpenHelper {
         values.put(ColumnName, reminder.getName());
         values.put(ColumnDate, reminder.getDate());
         values.put(ColumnTime, reminder.getTime());
-        values.put(ColumnNotification, reminder.getTimer());
+        values.put(ColumnNotification, reminder.getNotification());
         values.put(ColumnLocation, reminder.getLocation());
         values.put(ColumnVehicle, reminder.getVehicle());
         values.put(ColumnImportance, reminder.getImportanceLevel());
