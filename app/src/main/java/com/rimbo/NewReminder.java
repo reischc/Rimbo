@@ -1,5 +1,6 @@
 package com.rimbo;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -19,6 +20,7 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -37,9 +39,20 @@ import android.widget.TimePicker;
 
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
+
 import org.w3c.dom.Text;
 
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
+
+import javax.net.ssl.SSLEngineResult;
 
 public class NewReminder extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
     /*------------------------
@@ -59,15 +72,15 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     private ImageButton btnVeryImportant;
 
     private EditText txtName;
+    private EditText txtLocationStreet;
+    private EditText txtLocationPlace;
     private TextView txtDate;
     private TextView txtTime;
-    private TextView txtLocation;
+
 
     private Switch switchDate;
     private Switch switchTime;
     private Switch switchLocation;
-    private Switch switchVehicle;
-
     private LinearLayout layoutTime;
     private LinearLayout layoutNotification;
     private LinearLayout layoutNotificationBtn;
@@ -75,6 +88,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     private LinearLayout layoutVehicleBtn;
     private LinearLayout layoutDate;
     private LinearLayout layoutLocation;
+    private LinearLayout layoutLocationInput;
 
     private String name = "";
     private String date = "";
@@ -113,12 +127,12 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         txtName = (EditText) findViewById(R.id.txtName);
         txtDate = (TextView) findViewById(R.id.txtDate);
         txtTime = (TextView) findViewById(R.id.txtTime);
-        txtLocation = (TextView) findViewById(R.id.txtLocation);
+        txtLocationStreet = (EditText) findViewById(R.id.txtLocationStreet);
+        txtLocationPlace = (EditText) findViewById(R.id.txtLocationPlace);
 
         switchDate = (Switch) findViewById(R.id.switchDate);
         switchTime = (Switch) findViewById(R.id.switchTime);
         switchLocation = (Switch) findViewById(R.id.switchLocation);
-        switchVehicle = (Switch) findViewById(R.id.switchVehicle);
 
         layoutTime = (LinearLayout) findViewById(R.id.layoutTime);
         layoutNotification = (LinearLayout) findViewById(R.id.layoutNotification);
@@ -127,6 +141,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         layoutVehicleBtn = (LinearLayout) findViewById(R.id.layoutVehicleBtn);
         layoutDate = (LinearLayout)  findViewById(R.id.layoutDate);
         layoutLocation = (LinearLayout) findViewById(R.id.layoutLocation);
+        layoutLocationInput = (LinearLayout) findViewById(R.id.layoutLocationInput);
 
         //load all listeners
         btnBack.setOnClickListener(this);
@@ -144,7 +159,6 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         switchDate.setOnCheckedChangeListener(this);
         switchTime.setOnCheckedChangeListener(this);
         switchLocation.setOnCheckedChangeListener(this);
-        switchVehicle.setOnCheckedChangeListener(this);
 
 
         /* Date and Time */
@@ -283,10 +297,11 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 break;
             case R.id.switchLocation:
                 if (buttonView.isChecked()){
-                    txtLocation.setVisibility(View.VISIBLE);
+                    layoutLocationInput.setVisibility(View.VISIBLE);
                     layoutLocation.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
-                    if (txtLocation.getText() == "") {
-                        txtLocation.addTextChangedListener(new TextWatcher() {
+                    layoutLocationInput.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
+                    if (txtLocationStreet.getText().toString().matches("") && txtLocationPlace.getText().toString().matches("")) {
+                        txtLocationStreet.addTextChangedListener(new TextWatcher() {
                             @Override
                             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                             }
@@ -299,22 +314,36 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                             public void afterTextChanged(Editable s) {
                                 layoutVehicle.setVisibility(View.VISIBLE);
                                 layoutVehicleBtn.setVisibility(View.VISIBLE);
+                                layoutLocationInput.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
+
+                            }
+                        });
+                        txtLocationPlace.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                layoutVehicle.setVisibility(View.VISIBLE);
+                                layoutVehicleBtn.setVisibility(View.VISIBLE);
+                                layoutLocationInput.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
+
                             }
                         });
                     } else {
                         layoutVehicle.setVisibility(View.VISIBLE);
                         layoutVehicleBtn.setVisibility(View.VISIBLE);
+                        layoutLocationInput.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
+
                     }
                 } else {
-                    txtLocation.setVisibility(View.GONE);
+                    layoutLocationInput.setVisibility(View.GONE);
                     layoutVehicle.setVisibility(View.GONE);
-                    layoutVehicleBtn.setVisibility(View.GONE);
-                }
-                break;
-            case R.id.switchVehicle:
-                if (buttonView.isChecked()) {
-                    layoutVehicleBtn.setVisibility(View.VISIBLE);
-                } else {
                     layoutVehicleBtn.setVisibility(View.GONE);
                 }
                 break;
@@ -428,7 +457,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                     name = txtName.getText().toString();
                     date = txtDate.getText().toString();
                     time = txtTime.getText().toString();
-                    location = txtLocation.getText().toString();
+                    location = txtLocationStreet.getText().toString()+txtLocationPlace.getText().toString();
 
                     //create the reminder and add him reminder to the list
                     Reminder reminder = new Reminder(0, name, date, time, notification, location, vehicle, importance, false);
