@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:background="@android:color/white"
+            android:background="@color/header"
             android:id="@+id/header"
             android:backgroundTint="#0d7acc">
 
@@ -25,8 +25,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@drawable/back"
-                android:stateListAnimator="@null"
-                android:textColor="#ffffff" />
+                android:stateListAnimator="@null" />
 
             <ImageView
                 android:id="@+id/logo"
@@ -45,7 +44,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white">
+            android:background="@color/background">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,7 +67,8 @@
                     android:hint="Name"
                     android:background="@null"
                     android:paddingBottom="10dp"
-                    android:paddingTop="10dp"/>
+                    android:paddingTop="10dp"
+                    android:textColorHint="@color/hint"/>
 
         </LinearLayout>
 
@@ -88,7 +88,8 @@
                     android:layout_marginLeft="15dp"
                     android:text="Remind Me on a Date"
                     android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@color/text_bold"/>
 
                 <Switch
                     android:id="@+id/switchDate"
@@ -108,7 +109,8 @@
                 android:textAlignment="center"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:textColor="@color/hint"/>
 
 
         <LinearLayout
@@ -126,7 +128,8 @@
                 android:layout_marginLeft="15dp"
                 android:text="Remind Me on a Time"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/text_bold"/>
 
             <Switch
                 android:id="@+id/switchTime"
@@ -146,7 +149,8 @@
             android:textAlignment="center"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:textColor="@color/hint"/>
 
                 <LinearLayout
                     android:id="@+id/layoutNotification"
@@ -163,7 +167,8 @@
                         android:layout_marginLeft="15dp"
                         android:text="Notification Method"
                         android:textSize="20dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="@color/text_bold"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -179,7 +184,7 @@
                         app:srcCompat="@drawable/notification_white"
                         android:scaleType="fitCenter"
                         android:layout_marginLeft="110dp"
-                        android:backgroundTint="@color/blue"/>
+                        android:backgroundTint="@color/button"/>
                     <ImageButton
                         android:id="@+id/btnAlarm"
                         android:layout_width="90dp"
@@ -204,7 +209,8 @@
                 android:layout_marginLeft="15dp"
                 android:text="Add a Location"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/text_bold"/>
 
             <Switch
                 android:id="@+id/switchLocation"
@@ -257,7 +263,8 @@
                 android:layout_marginLeft="15dp"
                 android:text="Add a Vehicle"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/text_bold"/>
         </LinearLayout>
 
         <LinearLayout
@@ -273,7 +280,7 @@
             app:srcCompat="@drawable/walking_white"
             android:scaleType="fitCenter"
             android:layout_marginLeft="10dp"
-            android:backgroundTint="@color/blue"/>
+            android:backgroundTint="@color/button"/>
         <ImageButton
             android:id="@+id/btnBycicle"
             android:layout_width="90dp"
@@ -311,7 +318,8 @@
                         android:layout_marginLeft="15dp"
                         android:text="Importance"
                         android:textSize="20dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="@color/text_bold"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -324,7 +332,7 @@
                         android:layout_height="60dp"
                         app:srcCompat="@drawable/exclamation1_white"
                         android:scaleType="fitCenter"
-                        android:backgroundTint="@color/blue"
+                        android:backgroundTint="@color/button"
                         android:layout_marginLeft="60dp" />
                     <ImageButton
                         android:id="@+id/btnImportant"
@@ -350,7 +358,7 @@
                     android:backgroundTint="#0d7acc"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
-                    android:textColor="#ffffff"/>
+                    android:textColor="@color/button_text"/>
 
             </LinearLayout>
         </ScrollView>

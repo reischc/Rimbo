@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:background="@android:color/white"
+        android:background="@color/header"
         android:id="@+id/header"
         android:backgroundTint="#0d7acc">
 
@@ -19,8 +19,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@drawable/back"
-            android:stateListAnimator="@null"
-            android:textColor="#ffffff" />
+            android:stateListAnimator="@null"/>
 
         <ImageView
             android:id="@+id/logo"
@@ -48,7 +47,8 @@
             android:layout_marginTop="20dp"
             android:text="Select a date:"
             android:textSize="20dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:textColor="@color/text"/>
 
         <CalendarView
             android:id="@+id/calendarView"

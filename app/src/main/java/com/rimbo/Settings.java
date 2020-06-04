@@ -6,13 +6,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Settings extends AppCompatActivity {
 
+    private Switch darkModeSwitch;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        darkModeSwitch = (Switch) findViewById(R.id.darkModeSwitch);
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
