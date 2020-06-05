@@ -2,101 +2,149 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:id="@+id/relative_layout">
+    tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@android:color/white"
-        android:id="@+id/header"
         android:backgroundTint="#0d7acc">
+
         <Button
             android:id="@+id/btnChangeEditChecklist"
             android:layout_width="40dp"
             android:layout_height="37dp"
             android:layout_gravity="center"
+            android:layout_marginLeft="6dp"
             android:background="@drawable/edit"
-            android:textColor="#ffffff"
             android:stateListAnimator="@null"
-            android:layout_marginLeft="6dp"/>
+            android:textColor="#ffffff" />
+
         <ImageView
             android:id="@+id/logo"
             android:layout_width="302dp"
             android:layout_height="50dp"
-            android:src="@drawable/rimbo_schrift"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:src="@drawable/rimbo_schrift" />
 
         <Button
             android:id="@+id/btnCalendar"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:layout_marginRight="6dp"
             android:layout_weight="1"
             android:background="@drawable/calendar"
             android:stateListAnimator="@null"
-            android:textColor="#ffffff"
-            android:layout_marginRight="6dp"/>
+            android:textColor="#ffffff" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@+id/header">
-        <TextView
-            android:id="@+id/date"
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Today, 10.05.2020"
-            android:paddingLeft="10dp"
-            android:paddingTop="15dp"
-            android:textSize="25dp"
-            android:textFontWeight="600"
-            android:textColor="#000000"/>
+            android:layout_height="match_parent"
+            android:layout_below="@+id/header"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp"
+                android:text="Today, 10.05.2020"
+                android:textColor="#000000"
+                android:textFontWeight="600"
+                android:textSize="25dp" />
 
 
-        <ListView
-            android:id="@+id/listViewReminderChecklist"
-            android:layout_width="match_parent"
-            android:layout_height="540dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ListView
+                android:id="@+id/listViewReminderChecklist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-        <ListView
-            android:id="@+id/listViewReminderEdit"
-            android:layout_width="match_parent"
-            android:layout_height="540dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:visibility="gone" />
+            <ListView
+                android:id="@+id/listViewReminderEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/dateTimeless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp"
+                android:text="Today, 10.05.2020"
+                android:textColor="#000000"
+                android:textFontWeight="600"
+                android:textSize="25dp" />
 
 
-    </LinearLayout>
+            <ListView
+                android:id="@+id/listViewReminderChecklistTimeless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ListView
+                android:id="@+id/listViewReminderEditTimeless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_nav_menu"
-        app:itemTextColor="#000000"
         android:layout_alignParentBottom="true"
         app:backgroundTint="#f1f2f4"
+        app:itemIconSize="35dp"
         app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="#000000"
         app:labelVisibilityMode="unlabeled"
-        app:itemIconSize="35dp" />
+        app:menu="@menu/bottom_nav_menu" />
 </RelativeLayout>

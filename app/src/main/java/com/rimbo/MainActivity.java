@@ -28,10 +28,15 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ListView listViewReminderChecklist;
     private ListView listViewReminderEdit;
+    private ListView listViewReminderChecklistTimeless;
+    private ListView listViewReminderEditTimeless;
     private Button btnCalendar;
     private Button btnChangeEditChecklist;
     private List<Reminder> allReminder = new ArrayList<>();
     private List<String> reminderNameList = new ArrayList<>();
+    private List<String> reminderNameListTimeless = new ArrayList<>();
+    private TextView txtTimeless;
+    private TextView txtDate;
 
     private String dateToday;
 
@@ -46,25 +51,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnChangeEditChecklist = (Button)findViewById(R.id.btnChangeEditChecklist);
         listViewReminderChecklist = (ListView)findViewById(R.id.listViewReminderChecklist);
         listViewReminderEdit = (ListView)findViewById(R.id.listViewReminderEdit);
+        listViewReminderChecklistTimeless = (ListView)findViewById(R.id.listViewReminderChecklistTimeless);
+        listViewReminderEditTimeless = (ListView)findViewById(R.id.listViewReminderEditTimeless);
 
+        txtTimeless = (TextView) findViewById(R.id.dateTimeless);
+        txtDate = (TextView) findViewById(R.id.date);
 
-        TextView theDate = (TextView) findViewById(R.id.date);
-
+        //set title for timeless reminders
+        txtTimeless.setText("Timeless Reminders");
 
         Intent incomingIntent = getIntent();
         String date = incomingIntent.getStringExtra("date");
         java.util.Calendar calendar = java.util.Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-        dateToday = formatter.format(calendar.getTime());
         if (date == null){
-            theDate.setText("Today, "+ formatter.format(calendar.getTime()));
+            txtDate.setText("Today, "+ formatter.format(calendar.getTime()));
         }
         else{
-            theDate.setText(date);
+            txtDate.setText(date);
+        }
+
+        //get the date from calendar
+        if (date == null) {
+            dateToday = formatter.format(calendar.getTime());
+        } else {
+            String[] arrayDate = date.split(",");
+            System.out.println(arrayDate[0]);
+            System.out.println(arrayDate[1]);
+            dateToday = arrayDate[1];
+            dateToday = dateToday.trim();
         }
 
         //set listView mod
         listViewReminderChecklist.setChoiceMode(listViewReminderChecklist.CHOICE_MODE_MULTIPLE);
+        listViewReminderChecklistTimeless.setChoiceMode(listViewReminderChecklistTimeless.CHOICE_MODE_MULTIPLE);
 
 
         //activate click Listener
@@ -86,6 +106,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) listViewReminderEdit.getItemAtPosition(position);
+                Intent intent = new Intent(getApplicationContext(), EditReminder.class);
+                intent.putExtra("name", item);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        //set on edit timeless list item click listener
+        listViewReminderEditTimeless.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = (String) listViewReminderEditTimeless.getItemAtPosition(position);
                 Intent intent = new Intent(getApplicationContext(), EditReminder.class);
                 intent.putExtra("name", item);
                 startActivity(intent);
@@ -124,8 +156,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (allReminder.size() != 0) {
             for (int i = 0; i+1 <= allReminder.size(); i++) {
                 name = allReminder.get(i).getName();
-                if (dateToday.equals(allReminder.get(i).getDate().toString())) {
+                if (dateToday.equals(allReminder.get(i).getDate())) {
                     reminderNameList.add(name);
+                }
+                if (allReminder.get(i).getDate().equals("")) {
+                    reminderNameListTimeless.add(name);
                 }
             }
         }
@@ -135,6 +170,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ArrayAdapter<String> arrayAdapterEdit = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 , reminderNameList);
         listViewReminderEdit.setAdapter(arrayAdapterEdit);
+
+        ArrayAdapter<String> arrayAdapterChecklistTimeless = new ArrayAdapter<>(this, android.R.layout.simple_list_item_checked, reminderNameListTimeless);
+        listViewReminderChecklistTimeless.setAdapter(arrayAdapterChecklistTimeless);
+
+        ArrayAdapter<String> arrayAdapterEditTimeless = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 , reminderNameListTimeless);
+        listViewReminderEditTimeless.setAdapter(arrayAdapterEditTimeless);
     }
 
     public void loadReminder() {

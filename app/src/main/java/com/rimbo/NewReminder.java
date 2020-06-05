@@ -1,6 +1,5 @@
 package com.rimbo;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -20,7 +19,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -86,6 +84,8 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     /* Date and Time */
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+
+    private Calendar calendar;
 
     private TextView mDisplayTime;
     private Context mContext = this;
@@ -165,17 +165,29 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
-                String date = dayOfMonth+ "." +month+"."+year;
+                String stringDayOfMonth;
+                String stringMonth;
+                if (dayOfMonth < 10) {
+                    stringDayOfMonth = "0"+dayOfMonth;
+                } else {
+                    stringDayOfMonth = String.valueOf(dayOfMonth);
+                }
+                if (month < 10) {
+                    stringMonth = "0"+month;
+                } else {
+                    stringMonth = String.valueOf(month);
+                }
+                String date = stringDayOfMonth+ "." +stringMonth+"."+year;
                 mDisplayDate.setText(date);
             }
         };
 
         mDisplayTime = (TextView) findViewById(R.id.txtTime);
 
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar1 = Calendar.getInstance();
 
-        final int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        final int minute = calendar.get(Calendar.MINUTE);
+        final int hour = calendar1.get(Calendar.HOUR_OF_DAY);
+        final int minute = calendar1.get(Calendar.MINUTE);
 
         mDisplayTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,12 +196,12 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         mDisplayTime.setText(hourOfDay+":"+minute);
-                        Calendar calendar = Calendar.getInstance();
+                        calendar = Calendar.getInstance();
                         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         calendar.set(Calendar.MINUTE, minute);
                         calendar.set(Calendar.SECOND, 0);
 
-                        startAlarm(calendar);
+
                     }
                 },hour,minute,android.text.format.DateFormat.is24HourFormat(mContext));
                 timePickerDialog.show();
@@ -202,9 +214,19 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 start alarm
     ----------------------------------*/
     public void startAlarm(Calendar calendar) {
+        Intent intent;
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, AlertReceiver.class);
+        intent = new Intent(this, AlarmReceiver.class);
+        if (notification.equals("alarm")) {
+            intent.putExtra("type", "alarm");
+            intent.putExtra("date", calendar.getTime());
+        } else {
+            intent.putExtra("type", "notification");
+            intent.putExtra("date", calendar.getTime());
+        }
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        sendBroadcast(intent);
+
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
@@ -466,6 +488,10 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                     Reminder reminder = new Reminder(0, name, date, time, notification, locationStreet, locationPlace, vehicle, importance, false);
                     SQLite db = new SQLite(this);
                     db.addReminder(reminder);
+
+                    if (!txtTime.getText().equals("")) {
+                        startAlarm(calendar);
+                    }
 
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent1);
