@@ -11,8 +11,6 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Vibrator;
 
-import androidx.core.app.NotificationCompat;
-
 import java.util.Calendar;
 import java.util.Date;
 
