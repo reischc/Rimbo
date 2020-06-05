@@ -26,6 +26,9 @@ public class Calendar extends AppCompatActivity {
 
                 java.util.Calendar calendar = java.util.Calendar.getInstance();
                 calendar.set(year, month, dayOfMonth);
+                month = month + 1;
+                String stringDayOfMonth;
+                String stringMonth;
                 int dayOfWeek = calendar.get(java.util.Calendar.DAY_OF_WEEK);
                 String dayOfWeekString;
                 switch (dayOfWeek){
@@ -51,7 +54,18 @@ public class Calendar extends AppCompatActivity {
                         dayOfWeekString = "Sunday";
                 }
 
-                String date = dayOfWeekString+", "+ dayOfMonth +"."+(month+1)+"."+year;
+                if (dayOfMonth < 10) {
+                    stringDayOfMonth = "0"+dayOfMonth;
+                } else {
+                    stringDayOfMonth = String.valueOf(dayOfMonth);
+                }
+                if (month < 10) {
+                    stringMonth = "0"+month;
+                } else {
+                    stringMonth = String.valueOf(month);
+                }
+
+                String date = dayOfWeekString+", "+ stringDayOfMonth +"."+stringMonth+"."+year;
 
                 Intent intent = new Intent(Calendar.this, MainActivity.class);
                 intent.putExtra("date", date);
