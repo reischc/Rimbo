@@ -33,7 +33,15 @@ import android.widget.TimePicker;
 
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 public class NewReminder extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
     /*------------------------
@@ -123,7 +131,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         layoutNotificationBtn = (LinearLayout) findViewById(R.id.layoutNotificationBtn);
         layoutVehicle = (LinearLayout) findViewById(R.id.layoutVehicle);
         layoutVehicleBtn = (LinearLayout) findViewById(R.id.layoutVehicleBtn);
-        layoutDate = (LinearLayout)  findViewById(R.id.layoutDate);
+        layoutDate = (LinearLayout) findViewById(R.id.layoutDate);
         layoutLocation = (LinearLayout) findViewById(R.id.layoutLocation);
         layoutLocationInput = (LinearLayout) findViewById(R.id.layoutLocationInput);
 
@@ -155,7 +163,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(NewReminder.this, mDateSetListener, year,month,day);
+                DatePickerDialog dialog = new DatePickerDialog(NewReminder.this, mDateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                 dialog.show();
             }
@@ -168,16 +176,16 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 String stringDayOfMonth;
                 String stringMonth;
                 if (dayOfMonth < 10) {
-                    stringDayOfMonth = "0"+dayOfMonth;
+                    stringDayOfMonth = "0" + dayOfMonth;
                 } else {
                     stringDayOfMonth = String.valueOf(dayOfMonth);
                 }
                 if (month < 10) {
-                    stringMonth = "0"+month;
+                    stringMonth = "0" + month;
                 } else {
                     stringMonth = String.valueOf(month);
                 }
-                String date = stringDayOfMonth+ "." +stringMonth+"."+year;
+                String date = stringDayOfMonth + "." + stringMonth + "." + year;
                 mDisplayDate.setText(date);
             }
         };
@@ -195,7 +203,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 TimePickerDialog timePickerDialog = new TimePickerDialog(mContext, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        mDisplayTime.setText(hourOfDay+":"+minute);
+                        mDisplayTime.setText(hourOfDay + ":" + minute);
                         calendar = Calendar.getInstance();
                         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         calendar.set(Calendar.MINUTE, minute);
@@ -203,7 +211,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
 
 
                     }
-                },hour,minute,android.text.format.DateFormat.is24HourFormat(mContext));
+                }, hour, minute, android.text.format.DateFormat.is24HourFormat(mContext));
                 timePickerDialog.show();
             }
         });
@@ -214,21 +222,62 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 start alarm
     ----------------------------------*/
     public void startAlarm(Calendar calendar) {
-        Intent intent;
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        intent = new Intent(this, AlarmReceiver.class);
-        if (notification.equals("alarm")) {
-            intent.putExtra("type", "alarm");
-            intent.putExtra("date", calendar.getTime());
-        } else {
-            intent.putExtra("type", "notification");
-            intent.putExtra("date", calendar.getTime());
+        SQLite db = new SQLite(this);
+        List<Reminder> allReminder = db.getAllReminder();
+        List<Date> allDates = new ArrayList<>();
+        Date minDate = new Date();
+        for (int i = 0; i < allReminder.size(); i++) {
+            Date date = null;
+            if (!allReminder.get(i).getTime().equals("")) {
+                String reminderDateTime = allReminder.get(i).getDate() + " " + allReminder.get(i).getTime();
+                try {
+                    date = new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(reminderDateTime);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (date != null) {
+                allDates.add(date);
+            }
         }
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
-        sendBroadcast(intent);
+
+        minDate = Collections.min(allDates);
+
+        for (Reminder reminder : allReminder) {
+            Date reminderDate = null;
+            if (!reminder.getTime().equals("")) {
+                try {
+                    reminderDate = new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(reminder.getDate()+ " " +reminder.getTime());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                if (reminderDate.equals(minDate)) {
+                    Intent intent;
+                    AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                    intent = new Intent(this, AlarmReceiver.class);
+                    if (reminder.getNotification().equals("alarm")) {
+                        intent.putExtra("type", "alarm");
+                        intent.putExtra("date", reminderDate);
+                    } else {
+                        intent.putExtra("type", "notification");
+                        intent.putExtra("date", reminderDate);
+                    }
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    sendBroadcast(intent);
+
+                    Date currentTime = Calendar.getInstance().getTime();
+                    Long millis = reminderDate.getTime() - currentTime.getTime();
+                    Calendar calendar1 = Calendar.getInstance();
+                    calendar.setTime(reminderDate);
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                    Intent intent2 = new Intent(getApplicationContext(), CancelAlarm.class);
+                    startActivity(intent2);
+                    finish();
+                }
+            }
+        }
 
 
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 
     /*----------------------------------
@@ -282,7 +331,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 }
                 break;
             case R.id.switchTime:
-                if (buttonView.isChecked()){
+                if (buttonView.isChecked()) {
                     txtTime.setVisibility(View.VISIBLE);
                     layoutTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
                     txtTime.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
@@ -319,7 +368,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 }
                 break;
             case R.id.switchLocation:
-                if (buttonView.isChecked()){
+                if (buttonView.isChecked()) {
                     layoutLocationInput.setVisibility(View.VISIBLE);
                     layoutLocation.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_none));
                     layoutLocationInput.setBackground(ContextCompat.getDrawable(NewReminder.this, R.drawable.border_bottom));
@@ -502,4 +551,6 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 break;
         }
     }
+
+
 }

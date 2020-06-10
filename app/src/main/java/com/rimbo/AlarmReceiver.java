@@ -15,38 +15,45 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class AlarmReceiver extends BroadcastReceiver {
-
     Date currentTime = Calendar.getInstance().getTime();
+    Date helperTime = currentTime;
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(5000);
-
-        Notification notification = new Notification.Builder(context)
-                .setContentTitle("Alarm is ON")
-                .setContentText("Alarm is daaaaaa")
-                .setSmallIcon(R.drawable.rimbo_logo).build();
-
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        notificationManager.notify(0, notification);
-
         String var = intent.getStringExtra("type");
         Date date = (Date) intent.getSerializableExtra("date");
-        intent.removeExtra("type");
+        helperTime.setTime(currentTime.getTime() - 20000);
+        Date beforeTimer = helperTime;
+        if (date.after(beforeTimer)) {
+            helperTime.setTime(currentTime.getTime() + 40000);
+            Date afterTimer = helperTime;
+            intent.removeExtra("type");
+            if (date.before(afterTimer)) {
 
-        Uri noti;
-        if (var.equals("alarm")) {
-            noti = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-        } else {
-            noti = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        }
+                Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(5000);
 
-        if (date.equals(currentTime)) {
-            MediaPlayer mp = MediaPlayer.create(context, noti);
-            mp.start();
+                Notification notification = new Notification.Builder(context)
+                        .setContentTitle("Alarm is ON")
+                        .setContentText("Alarm is daaaaaa")
+                        .setSmallIcon(R.drawable.rimbo_logo).build();
+
+                NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                notification.flags |= Notification.FLAG_AUTO_CANCEL;
+                notificationManager.notify(0, notification);
+
+                Uri noti;
+                if (var.equals("alarm")) {
+                    noti = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+                } else {
+                    noti = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                }
+
+                MediaPlayer mp = MediaPlayer.create(context, noti);
+                mp.start();
+
+            }
         }
 
     }
