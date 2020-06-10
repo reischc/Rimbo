@@ -74,6 +74,7 @@ public class DeatilsReminder extends AppCompatActivity {
 
 
     }
+
     public void loadDataOfReminder() {
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
@@ -90,16 +91,41 @@ public class DeatilsReminder extends AppCompatActivity {
             }
         }
         txtName2.setText(name);
-        txtDate2.setText(date);
-        txtTime2.setText(time);
-        txtNotification2.setText(notification);
-        txtLocation2.setText(locationStreet);
-        txtLocation3.setText(locationPlace);
-        txtVehicle2.setText(vehicle);
-        txtImportance2.setText(importance);
-    }
+        if (date != "") {
+            txtDate2.setText(date);
+            layoutDate.setVisibility(View.VISIBLE);
+        }
+        if (time != "") {
+            txtTime2.setText(time);
+            layoutTime.setVisibility(View.VISIBLE);
+        }
+        if (date != "" && time != "") {
+            txtNotification2.setText(notification);
+            layoutNotification.setVisibility(View.VISIBLE);
+        }
+        if (locationStreet == "" && locationPlace != "") {
+            txtLocation2.setText(locationPlace);
+            layoutLocation.setVisibility(View.VISIBLE);
+            txtVehicle2.setText(vehicle);
+            layoutVehicle.setVisibility(View.VISIBLE);
+        }
+        if (locationStreet != "" && locationPlace != "") {
+            txtLocation2.setText(locationStreet);
+            layoutLocation.setVisibility(View.VISIBLE);
+            layoutLocation2.setVisibility(View.VISIBLE);
+            txtLocation3.setText(locationPlace);
+            txtVehicle2.setText(vehicle);
+            layoutVehicle.setVisibility(View.VISIBLE);
+        }
+        if (locationStreet != "" && locationPlace == "") {
+            txtLocation2.setText(locationStreet);
+            layoutLocation.setVisibility(View.VISIBLE);
+            txtVehicle2.setText(vehicle);
+            layoutVehicle.setVisibility(View.VISIBLE);
+        }
 
-    public void loadReminder() {
+    }
+    public void loadReminder(){
         SQLite db = new SQLite(this);
         allReminder = db.getAllReminder();
     }
