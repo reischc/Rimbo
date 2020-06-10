@@ -3,6 +3,9 @@ package com.rimbo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -97,7 +100,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 CheckedTextView reminder = (CheckedTextView) view;
                 reminder.setMinWidth(200);
+                Context context;
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setCancelable(true);
+                builder.setTitle("Confirmation");
+                builder.setMessage("Do you want to mark this reminder as completed? (completed reminders are deleted)");
+                builder.setPositiveButton("Confirm",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
 
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
@@ -201,13 +222,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, "Edit mode!", Toast.LENGTH_SHORT).show();
                 listViewReminderChecklist.setVisibility(View.GONE);
                 listViewReminderEdit.setVisibility(View.VISIBLE);
+                listViewReminderChecklistTimeless.setVisibility(View.GONE);
+                listViewReminderEditTimeless.setVisibility(View.VISIBLE);
                 btnChangeEditChecklist.setBackgroundResource(R.drawable.checklist);
             } else {
                 Toast.makeText(this, "Check list!", Toast.LENGTH_SHORT).show();
                 listViewReminderChecklist.setVisibility(View.VISIBLE);
                 listViewReminderEdit.setVisibility(View.GONE);
+                listViewReminderChecklistTimeless.setVisibility(View.VISIBLE);
+                listViewReminderEditTimeless.setVisibility(View.GONE);
                 btnChangeEditChecklist.setBackgroundResource(R.drawable.edit);
-
             }
         }
     }
