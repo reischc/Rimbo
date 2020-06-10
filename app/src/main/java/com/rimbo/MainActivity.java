@@ -134,6 +134,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        //set on edit list item long click listener
+        listViewReminderEdit.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = (String) listViewReminderEdit.getItemAtPosition(position);
+                Intent intent = new Intent(getApplicationContext(), DeatilsReminder.class);
+                intent.putExtra("name", item);
+                startActivity(intent);
+                finish();
+                return true;
+            }
+        });
         //set on edit timeless list item click listener
         listViewReminderEditTimeless.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -143,6 +155,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("name", item);
                 startActivity(intent);
                 finish();
+            }
+        });
+        //set on edit list item long click listener
+        listViewReminderEditTimeless.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = (String) listViewReminderEdit.getItemAtPosition(position);
+                Intent intent = new Intent(getApplicationContext(), DeatilsReminder.class);
+                intent.putExtra("name", item);
+                startActivity(intent);
+                finish();
+                return true;
             }
         });
 
