@@ -16,7 +16,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeatilsReminder extends AppCompatActivity {
+public class DetailsReminder extends AppCompatActivity {
 
     private TextView txtName2;
     private TextView txtDate2;

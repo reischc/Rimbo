@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) listViewReminderEdit.getItemAtPosition(position);
-                Intent intent = new Intent(getApplicationContext(), DeatilsReminder.class);
+                Intent intent = new Intent(getApplicationContext(), DetailsReminder.class);
                 intent.putExtra("name", item);
                 startActivity(intent);
                 finish();
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) listViewReminderEdit.getItemAtPosition(position);
-                Intent intent = new Intent(getApplicationContext(), DeatilsReminder.class);
+                Intent intent = new Intent(getApplicationContext(), DetailsReminder.class);
                 intent.putExtra("name", item);
                 startActivity(intent);
                 finish();

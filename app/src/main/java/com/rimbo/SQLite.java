@@ -3,6 +3,7 @@ package com.rimbo;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -110,6 +111,15 @@ public class SQLite extends SQLiteOpenHelper {
     public void deleteReminder(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(tableName, "ID_Note = ?", new String[] {String.valueOf(id)});
+    }
+
+    public long getSize() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        long count = DatabaseUtils.queryNumEntries(db, tableName);
+
+        db.close();
+
+        return count;
     }
 
     public void reloadDatabase() {
