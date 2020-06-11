@@ -33,6 +33,7 @@ import android.widget.TimePicker;
 
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -92,14 +93,12 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     /* Date and Time */
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-
     private Calendar calendar;
-
     private TextView mDisplayTime;
     private Context mContext = this;
 
-    private PendingIntent pendingIntent;
-    private AlarmManager alarmManager;
+    /* Object for starting alarm */
+    private AlarmList alarmList = new AlarmList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -220,71 +219,6 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
         });
 
     }
-
-    /*----------------------------------
-                start alarm
-    ----------------------------------*/
-    public void startAlarm(Calendar calendar) {
-        SQLite db = new SQLite(this);
-        List<Reminder> allReminder = db.getAllReminder();
-        List<Date> allDates = new ArrayList<>();
-        Date minDate = new Date();
-        for (int i = 0; i < allReminder.size(); i++) {
-            Date date = null;
-            if (!allReminder.get(i).getTime().equals("")) {
-                String reminderDateTime = allReminder.get(i).getDate() + " " + allReminder.get(i).getTime();
-                try {
-                    date = new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(reminderDateTime);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (date != null) {
-                allDates.add(date);
-            }
-        }
-
-        minDate = Collections.min(allDates);
-
-        for (Reminder reminder : allReminder) {
-            Date reminderDate = null;
-            if (!reminder.getTime().equals("")) {
-                try {
-                    reminderDate = new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(reminder.getDate()+ " " +reminder.getTime());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                if (reminderDate.equals(minDate)) {
-                    Intent intent;
-                    alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                    intent = new Intent(this, AlarmReceiver.class);
-                    if (reminder.getNotification().equals("alarm")) {
-                        intent.putExtra("type", "alarm");
-                        intent.putExtra("date", reminderDate);
-                    } else {
-                        intent.putExtra("type", "notification");
-                        intent.putExtra("date", reminderDate);
-                    }
-                    pendingIntent = PendingIntent.getBroadcast(this, 122, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    sendBroadcast(intent);
-
-                    Date currentTime = Calendar.getInstance().getTime();
-                    Long millis = reminderDate.getTime() - currentTime.getTime();
-                    Calendar calendar1 = Calendar.getInstance();
-                    calendar.setTime(reminderDate);
-                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-                    Intent intent2 = new Intent(getApplicationContext(), CancelAlarm.class);
-                    startActivity(intent2);
-                    finish();
-                }
-            }
-        }
-    }
-
-    private void stopAlarm() {
-        alarmManager.cancel(pendingIntent);
-    }
-
     /*----------------------------------
                 Switches
      ---------------------------------*/
@@ -538,13 +472,21 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                     locationStreet = txtLocationStreet.getText().toString();
                     locationPlace = txtLocationPlace.getText().toString();
 
+                    if (txtTime.getText().equals("")) {
+                        notification = "";
+                    }
+
+                    if (!switchLocation.isChecked()) {
+                        vehicle = "";
+                    }
+
                     //create the reminder and add him reminder to the list
                     Reminder reminder = new Reminder(0, name, date, time, notification, locationStreet, locationPlace, vehicle, importance, false);
                     SQLite db = new SQLite(this);
                     db.addReminder(reminder);
 
                     if (!txtTime.getText().equals("")) {
-                        startAlarm(calendar);
+                        alarmList.startAlarm(this);
                     }
 
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
@@ -552,13 +494,8 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                     finish();
                 }
                 break;
-            case R.id.btnStopAlarm2:
-                stopAlarm();
-                break;
             default:
                 break;
         }
     }
-
-
 }

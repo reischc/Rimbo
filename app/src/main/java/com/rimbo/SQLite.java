@@ -107,6 +107,11 @@ public class SQLite extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void deleteReminder(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(tableName, "ID_Note = ?", new String[] {String.valueOf(id)});
+    }
+
     public void reloadDatabase() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("Drop Table if exists "+tableName);

@@ -37,7 +37,7 @@ import java.util.ListIterator;
 
 public class EditReminder extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     /*------------------------
-            all elements
+          all GUI elements
      -----------------------*/
     private Button btnBack;
     private Button btnUpdate;
@@ -72,6 +72,7 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
     private LinearLayout layoutLocation;
     private LinearLayout layoutLocationInput;
 
+    /* all elements from reminder */
     private int id = 0;
     private String name = "";
     private String date = "";
@@ -205,6 +206,8 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
         }
     };
 
+    /* objects from other classes */
+    AlarmList alarmList = new AlarmList();
 
     /* Date and Time */
     private TextView mDisplayDate;
@@ -646,6 +649,8 @@ public class EditReminder extends AppCompatActivity implements View.OnClickListe
                     Reminder reminder = new Reminder(id, name, date, time, notification, locationStreet, locationPlace, vehicle, importance, false);
                     SQLite db = new SQLite(this);
                     db.updateReminder(reminder);
+
+                    alarmList.startAlarm(this);
 
                     Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent1);

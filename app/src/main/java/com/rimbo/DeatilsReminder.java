@@ -85,14 +85,6 @@ public class DeatilsReminder extends AppCompatActivity {
     }
 
     public void loadDataOfReminder() {
-        name = "";
-        date = "";
-        time = "";
-        notification = "";
-        locationStreet = "";
-        locationPlace = "";
-        vehicle = "";
-        importance = "";
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         for (Reminder reminder : allReminder) {
@@ -108,12 +100,28 @@ public class DeatilsReminder extends AppCompatActivity {
             }
         }
         txtName2.setText(name);
-        txtDate2.setText(date);
-        txtTime2.setText(time);
-        txtNotification2.setText(notification);
-        txtLocation2.setText(locationStreet);
-        txtLocation3.setText(locationPlace);
-        txtVehicle2.setText(vehicle);
+        if (!date.equals("")) {
+            txtDate2.setText(date);
+            layoutDate.setVisibility(View.VISIBLE);
+            if (!time.equals("")) {
+                txtTime2.setText(time);
+                layoutTime.setVisibility(View.VISIBLE);
+                txtNotification2.setText(notification);
+                layoutNotification.setVisibility(View.VISIBLE);
+            }
+        }
+        if (!locationStreet.equals("")) {
+            txtLocation2.setText(locationStreet);
+            layoutLocation.setVisibility(View.VISIBLE);
+            txtVehicle2.setText(vehicle);
+            layoutVehicle.setVisibility(View.VISIBLE);
+        }
+        if (!locationPlace.equals("")) {
+            txtLocation3.setText(locationPlace);
+            layoutLocation2.setVisibility(View.VISIBLE);
+            txtVehicle2.setText(vehicle);
+            layoutVehicle.setVisibility(View.VISIBLE);
+        }
         txtImportance2.setText(importance);
         System.out.println(date);
         System.out.println(time);
