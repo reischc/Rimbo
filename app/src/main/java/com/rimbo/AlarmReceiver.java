@@ -11,21 +11,29 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Vibrator;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
 public class AlarmReceiver extends BroadcastReceiver {
-    Date currentTime = Calendar.getInstance().getTime();
-    Date helperTime = currentTime;
+    /* all normal elements */
+    private Date currentTime = Calendar.getInstance().getTime();
+    private Date helperTime = currentTime;
+    private String reminderName;
+    private int id;
+    private String notificationType;
 
-    Uri noti;
-    MediaPlayer mp;
+    /* Audio elements */
+    private static Uri noti;
+    private static MediaPlayer mp;
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        String var = intent.getStringExtra("type");
+        notificationType = intent.getStringExtra("type");
         Date date = (Date) intent.getSerializableExtra("date");
+        reminderName = intent.getStringExtra("name");
+        id = intent.getIntExtra("id", 0);
         helperTime.setTime(currentTime.getTime() - 20000);
         Date beforeTimer = helperTime;
         if (date.after(beforeTimer)) {
@@ -38,7 +46,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 vibrator.vibrate(5000);
 
                 Notification notification = new Notification.Builder(context)
-                        .setContentTitle("Alarm is ON")
+                        .setContentTitle(reminderName)
                         .setContentText("Alarm is daaaaaa")
                         .setSmallIcon(R.drawable.rimbo_logo).build();
 
@@ -47,7 +55,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 notificationManager.notify(0, notification);
 
 
-                if (var.equals("alarm")) {
+                if (notificationType.equals("alarm")) {
                     noti = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
                 } else {
                     noti = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -56,11 +64,14 @@ public class AlarmReceiver extends BroadcastReceiver {
                 mp = MediaPlayer.create(context, noti);
                 startAlarm();
 
-                Intent i = new Intent();
-                i.setClassName("com.rimbo", "com.rimbo.NewReminder");
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(i);
-                stopAlarm();
+                if (notificationType.equals("alarm")) {
+                    Intent i = new Intent();
+                    i.setClassName("com.rimbo", "com.rimbo.CancelAlarm");
+                    i.putExtra("name", reminderName);
+                    i.putExtra("id", id);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(i);
+                }
             }
         }
     }

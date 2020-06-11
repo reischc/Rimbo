@@ -91,7 +91,7 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="20dp"
                 android:id="@+id/layoutDate"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/txtDate1"
@@ -119,7 +119,7 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="20dp"
                 android:id="@+id/layoutTime"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/txtTime1"
@@ -147,7 +147,7 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="20dp"
                 android:id="@+id/layoutNotification"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/txtNotification1"
@@ -175,14 +175,14 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="20dp"
                 android:id="@+id/layoutLocation"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/txtLocation1"
                     android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Location:"
+                    android:text="Street:"
                     android:textColor="#000000"
                     android:textSize="20dp"
                     android:layout_marginLeft="10dp"/>
@@ -203,14 +203,14 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="20dp"
                 android:id="@+id/layoutLocation2"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/txtLocationPlaceholder"
                     android:layout_width="400dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text=""
+                    android:text="Place:"
                     android:textColor="#000000"
                     android:textSize="20dp"
                     android:layout_marginLeft="10dp"/>
@@ -231,7 +231,7 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="20dp"
                 android:id="@+id/layoutVehicle"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/txtVehicle1"
