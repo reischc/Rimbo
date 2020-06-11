@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listViewReminderEditTimeless.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                String item = (String) listViewReminderEdit.getItemAtPosition(position);
+                String item = (String) listViewReminderEditTimeless.getItemAtPosition(position);
                 Intent intent = new Intent(getApplicationContext(), DeatilsReminder.class);
                 intent.putExtra("name", item);
                 startActivity(intent);

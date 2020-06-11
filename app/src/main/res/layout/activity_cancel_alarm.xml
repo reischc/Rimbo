@@ -5,23 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CancelAlarm">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@android:color/white"
         android:id="@+id/header"
         android:backgroundTint="#0d7acc">
-
         <ImageView
             android:id="@+id/logo"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:src="@drawable/rimbo_schrift"
             android:layout_gravity="center" />
-
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="673dp"
@@ -65,7 +61,6 @@
             android:backgroundTint="@color/blue"
             android:textColor="#ffffff"
             android:layout_marginTop="350dp"
-            android:textSize="24dp" />
-
+            android:textSize="24dp"/>
     </LinearLayout>
 </RelativeLayout>
