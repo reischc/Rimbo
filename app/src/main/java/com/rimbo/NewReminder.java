@@ -98,6 +98,9 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
     private TextView mDisplayTime;
     private Context mContext = this;
 
+    private PendingIntent pendingIntent;
+    private AlarmManager alarmManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -253,7 +256,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 }
                 if (reminderDate.equals(minDate)) {
                     Intent intent;
-                    AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                    alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                     intent = new Intent(this, AlarmReceiver.class);
                     if (reminder.getNotification().equals("alarm")) {
                         intent.putExtra("type", "alarm");
@@ -262,7 +265,7 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                         intent.putExtra("type", "notification");
                         intent.putExtra("date", reminderDate);
                     }
-                    PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    pendingIntent = PendingIntent.getBroadcast(this, 122, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                     sendBroadcast(intent);
 
                     Date currentTime = Calendar.getInstance().getTime();
@@ -276,8 +279,10 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                 }
             }
         }
+    }
 
-
+    private void stopAlarm() {
+        alarmManager.cancel(pendingIntent);
     }
 
     /*----------------------------------
@@ -546,6 +551,9 @@ public class NewReminder extends AppCompatActivity implements CompoundButton.OnC
                     startActivity(intent1);
                     finish();
                 }
+                break;
+            case R.id.btnStopAlarm2:
+                stopAlarm();
                 break;
             default:
                 break;
