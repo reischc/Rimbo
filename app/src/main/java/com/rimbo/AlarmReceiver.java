@@ -18,6 +18,9 @@ public class AlarmReceiver extends BroadcastReceiver {
     Date currentTime = Calendar.getInstance().getTime();
     Date helperTime = currentTime;
 
+    Uri noti;
+    MediaPlayer mp;
+
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -43,18 +46,31 @@ public class AlarmReceiver extends BroadcastReceiver {
                 notification.flags |= Notification.FLAG_AUTO_CANCEL;
                 notificationManager.notify(0, notification);
 
-                Uri noti;
+
                 if (var.equals("alarm")) {
                     noti = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
                 } else {
                     noti = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 }
 
-                MediaPlayer mp = MediaPlayer.create(context, noti);
-                mp.start();
+                mp = MediaPlayer.create(context, noti);
+                startAlarm();
 
+                Intent i = new Intent();
+                i.setClassName("com.rimbo", "com.rimbo.NewReminder");
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+                stopAlarm();
             }
         }
-
     }
+
+    private void startAlarm() {
+        mp.start();
+    }
+
+    public void stopAlarm() {
+        mp.stop();
+    }
+
 }
