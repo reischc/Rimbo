@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,7 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    /* all GUI elements */
     private ListView listViewReminderChecklist;
     private ListView listViewReminderEdit;
     private ListView listViewReminderChecklistTimeless;
@@ -41,10 +43,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView txtTimeless;
     private TextView txtDate;
 
+    /* other elements */
     private String dateToday;
 
+    /* objects from other classes */
     SQLite db = new SQLite(this);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,11 +103,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listViewReminderChecklist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CheckedTextView reminder = (CheckedTextView) view;
-                reminder.setMinWidth(200);
-                Context context;
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
+                ((ListView)parent).setItemChecked(position, false);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this); /* id possible for darkmode AlertDialog.THEME_DEVICE_DEFAULT_DARK*/
                 builder.setCancelable(true);
                 builder.setTitle("Confirmation");
                 builder.setMessage("Do you want to mark this reminder as completed? (completed reminders are deleted)");
@@ -112,16 +114,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                ((ListView)parent).setItemChecked(position, true);
+                                for (Reminder reminder : allReminder) {
+                                    if (reminder.getName().equals(String.valueOf(listViewReminderChecklist.getItemAtPosition(position)))) {
+                                        db.deleteReminder(reminder.getId());
+                                        loadReminder();
+                                        initListViewData();
+                                    }
+                                }
                             }
                         });
                 builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        ((ListView)parent).setItemChecked(position, false);
                     }
                 });
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
+
+            }
+        });
+
+        listViewReminderChecklistTimeless.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
+                ((ListView)parent).setItemChecked(position, false);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this); /* id possible for darkmode AlertDialog.THEME_DEVICE_DEFAULT_DARK*/
+                builder.setCancelable(true);
+                builder.setTitle("Confirmation");
+                builder.setMessage("Do you want to mark this reminder as completed? (completed reminders are deleted)");
+                builder.setPositiveButton("Confirm",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ((ListView)parent).setItemChecked(position, true);
+                                for (Reminder reminder : allReminder) {
+                                    if (reminder.getName().equals(String.valueOf(listViewReminderChecklistTimeless.getItemAtPosition(position)))) {
+                                        db.deleteReminder(reminder.getId());
+                                        loadReminder();
+                                        initListViewData();
+                                    }
+                                }
+                            }
+                        });
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ((ListView)parent).setItemChecked(position, false);
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
             }
         });
 
@@ -164,11 +213,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listViewReminderEditTimeless.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
                 String item = (String) listViewReminderEdit.getItemAtPosition(position);
                 Intent intent = new Intent(getApplicationContext(), DetailsReminder.class);
-
-
                 intent.putExtra("name", item);
                 startActivity(intent);
                 finish();
