@@ -113,6 +113,7 @@ public class SQLite extends SQLiteOpenHelper {
         db.delete(tableName, "ID_Note = ?", new String[] {String.valueOf(id)});
     }
 
+
     public long getSize() {
         SQLiteDatabase db = this.getReadableDatabase();
         long count = DatabaseUtils.queryNumEntries(db, tableName);
@@ -121,6 +122,7 @@ public class SQLite extends SQLiteOpenHelper {
 
         return count;
     }
+
 
     public void reloadDatabase() {
         SQLiteDatabase db = this.getWritableDatabase();

@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private String dateToday;
 
+    SQLite db = new SQLite(this);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,8 +164,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listViewReminderEditTimeless.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
                 String item = (String) listViewReminderEdit.getItemAtPosition(position);
                 Intent intent = new Intent(getApplicationContext(), DetailsReminder.class);
+
+
                 intent.putExtra("name", item);
                 startActivity(intent);
                 finish();
