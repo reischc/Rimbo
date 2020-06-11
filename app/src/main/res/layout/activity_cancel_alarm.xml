@@ -7,45 +7,65 @@
     tools:context=".CancelAlarm">
 
     <LinearLayout
-        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:background="@android:color/white"
+        android:id="@+id/header"
         android:backgroundTint="#0d7acc">
 
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/back"
-            android:stateListAnimator="@null"
-            android:textColor="#ffffff" />
-
         <ImageView
-            android:id="@+id/placemaker"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@drawable/rimbo_schrift"
+            android:layout_gravity="center" />
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="673dp"
+        android:layout_marginTop="58dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="500dp"
-        tools:layout_editor_absoluteY="306dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Reminder Name"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            android:textColor="#000000"
+            android:id="@+id/txtName"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="11.03.2020, 22:22"
+            android:textSize="23dp"
+            android:layout_gravity="center"
+            android:textColor="#000000"
+            android:id="@+id/txtDateTime"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Münsingen"
+            android:textSize="23dp"
+            android:layout_gravity="center"
+            android:textColor="#000000"
+            android:id="@+id/txtPlace"/>
 
-    <Button
-        android:id="@+id/btnStopAlarm"
-        android:layout_width="285dp"
-        android:layout_height="291dp"
-        android:text="Stop alarm"
-        tools:layout_editor_absoluteX="300dp"
-        tools:layout_editor_absoluteY="1000dp" />
+        <Button
+            android:id="@+id/btnStopAlarm"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:text="Stop alarm"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/blue"
+            android:textColor="#ffffff"
+            android:layout_marginTop="350dp"
+            android:textSize="24dp" />
 
-
+    </LinearLayout>
 </RelativeLayout>
