@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,6 +37,8 @@ public class DeatilsReminder extends AppCompatActivity {
     private LinearLayout layoutImportance;
 
     private List<Reminder> allReminder = new ArrayList<>();
+
+    private Button btnBack;
 
     private int id = 0;
     private String name = "";
@@ -69,13 +72,27 @@ public class DeatilsReminder extends AppCompatActivity {
         layoutVehicle = (LinearLayout) findViewById(R.id.layoutVehicle);
         layoutImportance = (LinearLayout) findViewById(R.id.layoutImportance);
 
+        btnBack = (Button) findViewById(R.id.btnBack);
+
         loadReminder();
         loadDataOfReminder();
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { Intent activityCalendarIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(activityCalendarIntent); } });
 
     }
 
     public void loadDataOfReminder() {
+        name = "";
+        date = "";
+        time = "";
+        notification = "";
+        locationStreet = "";
+        locationPlace = "";
+        vehicle = "";
+        importance = "";
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         for (Reminder reminder : allReminder) {
@@ -91,37 +108,23 @@ public class DeatilsReminder extends AppCompatActivity {
             }
         }
         txtName2.setText(name);
-        if (date != "") {
-            txtDate2.setText(date);
-            layoutDate.setVisibility(View.VISIBLE);
-        }
-        if (time != "") {
-            txtTime2.setText(time);
-            layoutTime.setVisibility(View.VISIBLE);
-        }
-        if (date != "" && time != "") {
-            txtNotification2.setText(notification);
-            layoutNotification.setVisibility(View.VISIBLE);
-        }
-        if (locationStreet == "" && locationPlace != "") {
-            txtLocation2.setText(locationPlace);
-            layoutLocation.setVisibility(View.VISIBLE);
-            txtVehicle2.setText(vehicle);
-            layoutVehicle.setVisibility(View.VISIBLE);
-        }
-        if (locationStreet != "" && locationPlace != "") {
-            txtLocation2.setText(locationStreet);
-            layoutLocation.setVisibility(View.VISIBLE);
-            layoutLocation2.setVisibility(View.VISIBLE);
-            txtLocation3.setText(locationPlace);
-            txtVehicle2.setText(vehicle);
-            layoutVehicle.setVisibility(View.VISIBLE);
-        }
-        if (locationStreet != "" && locationPlace == "") {
-            txtLocation2.setText(locationStreet);
-            layoutLocation.setVisibility(View.VISIBLE);
-            txtVehicle2.setText(vehicle);
-            layoutVehicle.setVisibility(View.VISIBLE);
+        txtDate2.setText(date);
+        txtTime2.setText(time);
+        txtNotification2.setText(notification);
+        txtLocation2.setText(locationStreet);
+        txtLocation3.setText(locationPlace);
+        txtVehicle2.setText(vehicle);
+        txtImportance2.setText(importance);
+        System.out.println(date);
+        System.out.println(time);
+        System.out.println(name);
+        System.out.println(notification);
+        System.out.println(locationStreet);
+        System.out.println(locationPlace);
+        System.out.println(vehicle);
+        System.out.println(importance);
+        if(txtLocation2.getText() == ""&& txtLocation3.getText() ==""){
+            txtVehicle2.setText("");
         }
 
     }
