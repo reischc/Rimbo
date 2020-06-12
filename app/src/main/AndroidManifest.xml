@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DeatilsReminder"></activity>
+        <activity android:name=".DetailsReminder"></activity>
         <activity android:name=".CancelAlarm" />
         <activity android:name=".EditReminder" />
         <activity android:name=".Calendar" />
