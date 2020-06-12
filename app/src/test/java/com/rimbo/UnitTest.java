@@ -39,11 +39,10 @@ public class UnitTest {
 
     @Test
     public void loadDataOfReminderTest() {
-        DetailsReminder detailsReminder = new DetailsReminder();
-        Reminder reminder1 = new Reminder(1, "Test1","11.12.2020","","","","","","important",false);
-        Reminder reminder2 = new Reminder(2,"Test2","","","","Traubenstrasse 17","Oberdiessbach","walking","normal", false);
-        Reminder reminder3 = new Reminder(3,"Test3","13.3.2020","12:18","alarm","","","","very important",false);
-        List<Reminder> allReminder = new ArrayList<>(reminder1, reminder2, reminder3);
+        Reminder reminder = new Reminder(3,"Test3","13.3.2020","12:18","alarm","","","","very important",false);
+
+        assertEquals("alarm", reminder.getNotification());
+        assertNotEquals("13:00", reminder.getTime());
 
     }
 

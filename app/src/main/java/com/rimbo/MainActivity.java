@@ -48,12 +48,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /* objects from other classes */
     SQLite db = new SQLite(this);
+    AlarmList alarmList = new AlarmList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+
+        //reload alarmlist
+        alarmList.startAlarm(this);
 
         //find items by id
         btnCalendar = (Button)findViewById(R.id.btnCalendar);
@@ -118,10 +122,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 for (Reminder reminder : allReminder) {
                                     if (reminder.getName().equals(String.valueOf(listViewReminderChecklist.getItemAtPosition(position)))) {
                                         db.deleteReminder(reminder.getId());
-                                        loadReminder();
-                                        initListViewData();
+                                        //loadReminder();
+                                        //initListViewData();
                                     }
                                 }
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                                finish();
                             }
                         });
                 builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -155,10 +162,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 for (Reminder reminder : allReminder) {
                                     if (reminder.getName().equals(String.valueOf(listViewReminderChecklistTimeless.getItemAtPosition(position)))) {
                                         db.deleteReminder(reminder.getId());
-                                        loadReminder();
-                                        initListViewData();
+                                        //loadReminder();
+                                        //initListViewData();
                                     }
                                 }
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                                finish();
                             }
                         });
                 builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -313,4 +323,3 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 }
-
