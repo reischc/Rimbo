@@ -34,10 +34,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         Date date = (Date) intent.getSerializableExtra("date");
         reminderName = intent.getStringExtra("name");
         id = intent.getIntExtra("id", 0);
-        helperTime.setTime(currentTime.getTime() - 20000);
+        helperTime.setTime(currentTime.getTime() - 5000);
         Date beforeTimer = helperTime;
         if (date.after(beforeTimer)) {
-            helperTime.setTime(currentTime.getTime() + 40000);
+            helperTime.setTime(currentTime.getTime() + 10000);
             Date afterTimer = helperTime;
             intent.removeExtra("type");
             if (date.before(afterTimer)) {
