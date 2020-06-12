@@ -28,7 +28,6 @@ public class CancelAlarm extends AppCompatActivity implements View.OnClickListen
 
     private TextView txtName;
     private TextView txtDateTime;
-    private TextView txtPlace;
 
 
     private int idDB = 0;
@@ -55,7 +54,6 @@ public class CancelAlarm extends AppCompatActivity implements View.OnClickListen
 
         txtName = (TextView) findViewById(R.id.txtName);
         txtDateTime = (TextView) findViewById(R.id.txtDateTime);
-        txtPlace = (TextView) findViewById(R.id.txtPlace);
 
         //set click listeners
         btnStopAlarm.setOnClickListener(this);
@@ -64,6 +62,8 @@ public class CancelAlarm extends AppCompatActivity implements View.OnClickListen
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         id = intent.getIntExtra("id", 0);
+
+        loadDataOfReminder();
     }
 
     @Override
@@ -91,19 +91,6 @@ public class CancelAlarm extends AppCompatActivity implements View.OnClickListen
             }
         }
         txtName.setText(nameDB);
-        txtDateTime.setText(date + ", " + time);
-        if (locationPlace.equals("")&&locationStreet.equals("")){
-            txtPlace.setVisibility(View.GONE);
-        }
-        else if (!locationPlace.equals("")&&!locationStreet.equals("")){
-            txtPlace.setText(locationStreet+" "+locationPlace);
-        }
-        if (locationPlace.equals("")&&!locationStreet.equals("")){
-            txtPlace.setText(locationStreet);
-        }
-        if (locationStreet.equals("")&&!locationPlace.equals("")){
-            txtPlace.setText(locationPlace);
-        }
     }
     public void loadReminder(){
         SQLite db = new SQLite(this);
