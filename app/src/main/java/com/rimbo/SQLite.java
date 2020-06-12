@@ -12,6 +12,13 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+
+    In dieser Klasse werden alle Aktionen mit der Datenbank ausgeführt, man kann alle Reminder auslesen, die Datenbank wird erstellt, die Datenbank kann neu geladen werden, ein Reminder
+    kann gelöscht werden und ein Reminder kann hinzugefügt werden.
+
+*/
+
 public class SQLite extends SQLiteOpenHelper {
 
     //database name & version

@@ -27,7 +27,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
 
+    In dieser Klasse werden alle Reminder des heutigen Tages angezeigt und die ohne eine Zeitangabe, zudem kann man von hier aus einen Reminder löschen oder zu den Seiten,
+    wechseln um einen Reminder bearbeiten oder die Details davon ansehen.
+
+*/
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     /* all GUI elements */

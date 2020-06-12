@@ -12,6 +12,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+
+    Dies ist unser JUnit Test, der auskommentierte ist ein Test für das einfügen in die Datenbank, welcher leider nicht gemacht werden konnte da wir das mocken noch nicht können.
+    Darunter ist ein Test für den Konstruktor der Reminder Klasse.
+
+ */
+
+
 public class UnitTest {
     /*private SQLite db;
 

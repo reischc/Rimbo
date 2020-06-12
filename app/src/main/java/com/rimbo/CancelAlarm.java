@@ -16,6 +16,12 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+
+    In dieser Klasse wird der Alarm abgefangen und kann mit einem Knopfdruck beendet werden.
+
+ */
+
 public class CancelAlarm extends AppCompatActivity implements View.OnClickListener {
     /* all GUI elements */
     private Button btnStopAlarm;

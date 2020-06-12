@@ -36,6 +36,12 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNot.not;
 
+/*
+
+    Dies ist unser Instrumented Test, welcher die MainActivity und die NewReminderActivity testet
+
+ */
+
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {

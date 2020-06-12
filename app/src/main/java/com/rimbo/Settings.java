@@ -9,6 +9,13 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/*
+
+    Dies ist die Klasse für die Settings, allerdings gelang es uns aus Zeitgründen nicht mehr hier etwas zu machen. Somit wäre diese Klasse auch für die Weiterentwichlung und ist derzeit
+    einfach optisch da.
+
+ */
+
 public class Settings extends AppCompatActivity {
 
     @Override

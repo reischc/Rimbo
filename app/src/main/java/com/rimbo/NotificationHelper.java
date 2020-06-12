@@ -11,6 +11,12 @@ import androidx.core.app.NotificationCompat;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 
+/*
+
+    Diese Klasse ist ein Helfer für die Notification, welche derzeit nicht gebraucht wird. Für eine Erweiterung mit individuellen Notifications aber sehr wichtig ist.
+
+ */
+
 public class NotificationHelper extends ContextWrapper {
     public static final String channelID = "channelID";
     public static final String channelName = "Channel Name";

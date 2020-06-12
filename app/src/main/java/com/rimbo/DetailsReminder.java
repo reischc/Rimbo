@@ -16,6 +16,12 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+
+    In dieser Klasse können alle Details, welche beim erstellen eines Reminders angegeben wurden angesehen werden, allerdings nicht bearbeitet.
+
+ */
+
 public class DetailsReminder extends AppCompatActivity {
 
     private TextView txtName2;

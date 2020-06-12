@@ -35,6 +35,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+/*
+
+    In dieser Klasse kann ein Reminder angeschaut werden und dann können alle Attribute angepasst werden, dies funktioniert auf dieselbe Weise wie beim erstellen eines Reminders.
+
+ */
+
 public class EditReminder extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     /*------------------------
           all GUI elements

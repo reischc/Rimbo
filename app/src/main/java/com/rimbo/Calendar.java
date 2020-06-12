@@ -9,6 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 
+/*
+
+    In dieser Klasse wird die Kalender Funktion gemacht, also wird ein Kalender angezeigt und man kann den Tag auswählen. Dann wird das Datum mit dem Wochentag an die MainActivity geschickt.
+
+ */
+
 public class Calendar extends AppCompatActivity {
 
     @Override

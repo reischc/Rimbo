@@ -13,10 +13,21 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+/*
+
+    In dieser Klasse wird die Datenbank ausgelesen und dann geschaut welcher Timer der nächste ist, also als nächster starten sollte.
+    Für diesen wird dann ein Alarm Manager erstellt und somit wird der Alarm zur richtigen Zeit gestartet.
+
+ */
+
+
 public class AlarmList {
     /*----------------------------------
                 start alarm
     ----------------------------------*/
+    /*
+        Alle Reminder auslesen und die mit Datum und Zeit in allDates Liste speichern
+     */
     public void startAlarm(Context context) {
         SQLite db = new SQLite(context);
         List<Reminder> allReminder = db.getAllReminder();
@@ -37,6 +48,9 @@ public class AlarmList {
             }
         }
 
+        /*
+            Das kleinste Datum ausssuchen und solange weiter gehen bis das Datum grösser ist als der jetztige Zeitpunkt, dann Alarm starten
+        */
         if (allDates.size() != 0) {
 
             minDate = Collections.min(allDates);

@@ -15,6 +15,13 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
+/*
+
+    In dieser Klasse wird der Alarm gesetzt mit dem AlarmManager
+
+ */
+
+
 public class AlarmReceiver extends BroadcastReceiver {
     /* all normal elements */
     private Date currentTime = Calendar.getInstance().getTime();
@@ -47,7 +54,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
                 Notification notification = new Notification.Builder(context)
                         .setContentTitle(reminderName)
-                        .setContentText("Alarm is daaaaaa")
+                        .setContentText("Hallo Mike")
                         .setSmallIcon(R.drawable.rimbo_logo).build();
 
                 NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

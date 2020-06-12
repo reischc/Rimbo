@@ -3,6 +3,12 @@ package com.rimbo;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+
+    Von dieser Klasse werden sehr viele Objekte erstellt, durch diese Klasse steht fest was für Attribute ein Reminder haben kann.
+
+ */
+
 public class Reminder {
     private int id;
     private String name;

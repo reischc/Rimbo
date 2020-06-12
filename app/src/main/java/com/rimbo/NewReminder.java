@@ -44,6 +44,12 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+/*
+
+    In dieser Klasse kann ein neuer Reminder erstellt werden, dies Funktioniert durch die Auswahl verschiedener Komponenten und wir durch den Create Knopf bestätigt.
+
+ */
+
 public class NewReminder extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
     /*------------------------
             all elements
